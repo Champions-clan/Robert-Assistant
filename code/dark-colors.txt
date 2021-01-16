@@ -1,6 +1,0 @@
-chat area : #36393f
-chat typing area : #40444b
-profile : #282a2e
-profile-popup : #18191c
-left tabs : #202225
-contact list area : #2f3136

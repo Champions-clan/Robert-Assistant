@@ -1,0 +1,34 @@
+Hi Guys I am facing some error while using QVbox_layout 
+I need to make it like on the picture below but it is showing down not in a grid
+what to do it show it like this
+i can't find any thing on stackver flow and google
+```python
+class Ui_MainWindow(object):
+    def __init__(self, MainWindow, files):
+        self.files = files
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(400, 500)
+        MainWindow.setMinimumSize(QtCore.QSize(400, 500))
+        MainWindow.setMaximumSize(QtCore.QSize(450, 500))
+        MainWindow.setAutoFillBackground(False)
+        MainWindow.setIconSize(QtCore.QSize(24, 24))
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
+
+        self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setStyleSheet("background: #2ABF88; border-radius: 7px;")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget(self.scrollArea)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+
+        self.search_text = QtWidgets.QTextEdit()
+        self.search_text.setFixedSize(350,50)
+
+        self.search_btn = QtWidgets.QPushButton()
+        self.search_btn.setFixedSize(30,50)
+
+        self.verticalLayout.addWidget(self.search_text)
+        self.verticalLayout.addWidget(self.search_btn)
+        self.verticalLayout.addWidget(self.scrollArea)
+```
