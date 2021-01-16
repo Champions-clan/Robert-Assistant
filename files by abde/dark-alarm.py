@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QPushButton,QMainWindow, QTextEdit
+#from PyQt5.QtWidgets import QPushButton,QMainWindow, QTextEdit
 
 
 class Ui_MainWindow(object):
@@ -220,15 +220,36 @@ QTextEdit{
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.formLayout = QtWidgets.QFormLayout(self.scrollAreaWidgetContents)
+        self.cond_lst = ["icons\\off.png", "icons\\on.png"]
+        
+        def create_alarm_btn(btn, i, s):
+            self.cond = 0
+            btn.setFixedSize(40,35)
+            btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond]))
+            btn.setIconSize(QtCore.QSize(40,35))
+            btn.setStyleSheet("""
+QPushButton {
+    background-color: transparent;
+}
+QPushButton:hover {
+    background-color: #202225;
+}
+QPushButton:pressed {
+    background-color: #18191c;
+}
+""")
+            def alarm_switch():
+                self.cond = int(not self.cond)
+                btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond]))
+            btn.clicked.connect(lambda: alarm_switch())
 
         for i,s in enumerate(files):
             btn_horizontal = QtWidgets.QHBoxLayout()
-            alarm_switch_btn = QtWidgets.QPushButton("Toggle")
-            alarm_switch_btn.setText("OK")
-            alarm_switch_btn.setFixedSize(70,50)
-
-            main_btn = QPushButton(files[i])
-            main_btn.setFixedSize(300,60)
+            self.alarm_switch_btn = QtWidgets.QPushButton()
+            create_alarm_btn(self.alarm_switch_btn, i, s)
+            
+            main_btn = QtWidgets.QPushButton(files[i])
+            main_btn.setFixedSize(260,60)
             main_btn.setStyleSheet(
 '''
 QPushButton {
@@ -248,7 +269,7 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
-            edit_btn = QPushButton()   #39DFA2
+            edit_btn = QtWidgets.QPushButton()   #39DFA2
             edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
             edit_btn.setIconSize(QtCore.QSize(28, 28))
             edit_btn.setFixedSize(30,60)  
@@ -265,7 +286,7 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
-            del_btn = QPushButton()
+            del_btn = QtWidgets.QPushButton()
             del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
             del_btn.setIconSize(QtCore.QSize(28, 28))
             del_btn.setFixedSize(30,60)   #39DFA2
@@ -285,7 +306,7 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
-            btn_horizontal.addWidget(alarm_switch_btn)
+            btn_horizontal.addWidget(self.alarm_switch_btn)
             btn_horizontal.addWidget(main_btn)
             btn_horizontal.addWidget(edit_btn)
             btn_horizontal.addWidget(del_btn)
