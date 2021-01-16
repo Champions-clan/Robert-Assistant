@@ -1,0 +1,7 @@
+chat area : #ffffff
+chat typing area : #ebedef
+profile : #ebedef
+profile-popup : #ffffff
+left tabs : #e3e5e8
+contact list area : #f2f3f5
+hover-over-chat : #fafafa 
