@@ -75,69 +75,63 @@ QPushButton:pressed {
         self.title_layout.addWidget(self.addcode_btn)
         self.verticalLayout.addLayout(self.title_layout)
 #-----------------code adding window------------------------------------------------
-        def code_text():
-            import os.path
-            user = os.path.expanduser('~')
-            files_list = ['py', 'c++']
-            files_list_updated = [f"*.{i}" for i in files_list]
-            code_file = " ;; ".join(files_list_updated)
-
-            self.code_widget = QtWidgets.QWidget()
-            self.file_get = QtWidgets.QFileDialog.getOpenFileName(self.code_widget, 'Open File', user , code_file)
-            
-            self.file_selected = self.file_get[0]
-            if self.file_selected == '':
-                pass
-            else:
-                self.files_set_DialogWindow = QtWidgets.QDialog()
-                self.files_set_DialogWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)
-                self.files_set_DialogWindow.resize(330, 200)
-                self.files_set_DialogWindow.setMinimumSize(QtCore.QSize(330, 200))
-                self.files_set_DialogWindow.setMaximumSize(QtCore.QSize(350, 200))
-                self.files_set_DialogWindow.setStyleSheet("""
+        def add_alarm_window(txt):
+            self.files_set_DialogWindow = QtWidgets.QDialog()
+            self.files_set_DialogWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+            self.files_set_DialogWindow.resize(380, 300)
+            self.files_set_DialogWindow.setMinimumSize(QtCore.QSize(380, 300))
+            self.files_set_DialogWindow.setMaximumSize(QtCore.QSize(380, 300))
+            self.files_set_DialogWindow.setStyleSheet("""
 QDialog {
-    background-color: #36393f;
+background-color: #36393f;
 }
 QLabel {
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 30px;
+font-family: 'Titillium Web', sans-serif;
+font-size: 30px;
 }
 QPushButton {
-    background-color: #202225;
-    border-radius: 5px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 20px;
+background-color: #202225;
+border-radius: 5px;
+font-family: 'Roboto Mono', monospace;
+font-size: 20px;
 }
 QPushButton:hover {
-    background-color: #40444b;
+background-color: #40444b;
 }
 QPushButton:pressed {
-    background-color: #18191c;
+background-color: #18191c;
 }
 QTextEdit{
-    background-color: #40444b;
-    font-family: 'Cabin', sans-serif;
-    font-size: 20px;
-    border-radius: 5px;
+background-color: #40444b;
+font-family: 'Cabin', sans-serif;
+font-size: 20px;
+border-radius: 5px;
 }
 """)
-                self.dialog_ok_btn = QtWidgets.QPushButton(self.files_set_DialogWindow)
-                self.dialog_ok_btn.setGeometry(QtCore.QRect(10, 140, 151, 51))
+            self.dialog_ok_btn = QtWidgets.QPushButton(self.files_set_DialogWindow)
+            self.dialog_ok_btn.setGeometry(QtCore.QRect(15, 235, 151, 51))
+            if txt == "Add":
                 self.dialog_ok_btn.setText("Add")
-                self.dialog_cancel_btn = QtWidgets.QPushButton(self.files_set_DialogWindow)
-                self.dialog_cancel_btn.setGeometry(QtCore.QRect(170, 140, 151, 51))
-                self.dialog_cancel_btn.setText("Cancel")
-                self.dialog_textEdit = QtWidgets.QTextEdit(self.files_set_DialogWindow)
-                self.dialog_textEdit.setGeometry(QtCore.QRect(20, 80, 291, 41))
-                self.dialog_textEdit.setPlaceholderText("Type Name of your Code")
-                self.dialog_label = QtWidgets.QLabel(self.files_set_DialogWindow)
-                self.dialog_label.setGeometry(QtCore.QRect(60, 20, 231, 41))
-                self.dialog_label.setText("Name your Code")
+            else:
+                self.dialog_ok_btn.setText("Save")
+            self.dialog_cancel_btn = QtWidgets.QPushButton(self.files_set_DialogWindow)
+            self.dialog_cancel_btn.setGeometry(QtCore.QRect(175, 235, 151, 51))
+            self.dialog_cancel_btn.setText("Cancel")
+            self.dialog_cancel_btn.clicked.connect(self.files_set_DialogWindow.accept)
+            self.dialog_textEdit = QtWidgets.QTextEdit(self.files_set_DialogWindow)
+            self.dialog_textEdit.setGeometry(QtCore.QRect(20, 80, 291, 41))
+            self.dialog_textEdit.setPlaceholderText("Name")
+            self.dialoggg_textEdit = QtWidgets.QTextEdit(self.files_set_DialogWindow)
+            self.dialoggg_textEdit.setGeometry(QtCore.QRect(20, 140, 350, 71))
+            self.dialoggg_textEdit.setPlaceholderText("Description")
+            self.dialog_label = QtWidgets.QLabel(self.files_set_DialogWindow)
+            self.dialog_label.setGeometry(QtCore.QRect(60, 20, 231, 41))
+            self.dialog_label.setText(f"{txt} your Alarm")
 
-                import sys
-                sys.exit(self.files_set_DialogWindow.exec_())
+            self.files_set_DialogWindow.exec_()
 
 #-----------------end of code adding--------------------------------------
+        self.addcode_btn.clicked.connect(lambda : add_alarm_window("Add"))
         self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
         self.scrollArea.setWidgetResizable(True)
         MainWindow.setStyleSheet(
