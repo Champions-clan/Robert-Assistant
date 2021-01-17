@@ -75,7 +75,6 @@ QPushButton:pressed {
         self.verticalLayout.addLayout(self.title_layout)
 #-----------------code adding window------------------------------------------------
         def code_text(txt):
-            print(type(txt))
             self.files_set_DialogWindow = QtWidgets.QDialog()
             self.files_set_DialogWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)
             self.files_set_DialogWindow.resize(380, 300)
@@ -246,7 +245,6 @@ QComboBox QAbstractItemView {
 "}"
 )
         def show_des(btn_info):
-            print(btn_info)
             self.task_show_widget = QtWidgets.QDialog()
             self.task_show_widget.setWindowFlag(QtCore.Qt.FramelessWindowHint)
             self.task_show_widget.resize(350, 220)
@@ -301,32 +299,40 @@ border-radius: 5px;
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.formLayout = QtWidgets.QFormLayout(self.scrollAreaWidgetContents)
+        self.cond_lst = ["icons\\unchecked.png", "icons\\checked.png"]
+        self.cond = {}
+        
+        def create_task_btn(btn, i, s):
+            self.cond[btn] = 0
+            btn.setFixedSize(25,25)
+            btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
+            btn.setIconSize(QtCore.QSize(25,25))
+            btn.setStyleSheet("""
+QPushButton {
+    background-color: transparent;
+    font-size: 12px;
+}
+QPushButton:hover {
+    background-color: #202225;
+}
+QPushButton:pressed {
+    background-color: #18191c;
+}
+""")
+            def task_switch():
+                self.cond[btn] = not self.cond[btn]
+                btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
+            btn.clicked.connect(lambda: task_switch())
 
         for i,s in enumerate(files):
             btn_horizontal = QtWidgets.QHBoxLayout()
-            finished_btn = QtWidgets.QCheckBox()
-            finished_btn.setFixedSize(50,50)
-            #finished_btn.setChecked(True)
-            finished_btn.setStyleSheet("""
-
-QCheckBox::indicator {
-    border-radius: 5px;
-    width: 15px;
-    height: 15px;
-}
-QCheckBox::indicator:unchecked {
-    background-color: #CC0000;
-    color: #000000;
-}
-QCheckBox::indicator:checked {
-    background-color: #00CC00;
-}
-""")
-            btn_horizontal.addWidget(finished_btn)
+            checked_btn = QtWidgets.QPushButton()
+            create_task_btn(checked_btn, i, s)
+            btn_horizontal.addWidget(checked_btn)
 
 
             main_btn = QtWidgets.QPushButton(files[i])
-            main_btn.setFixedSize(250,60)
+            main_btn.setFixedSize(260,60)
             main_btn.setStyleSheet(
 '''
 QPushButton {
@@ -393,7 +399,6 @@ QPushButton:pressed {
 
         def combo(index):
             global files
-            print(self.choice_group.itemText(index))
             #i = self.choice_group.itemText(index)
             if index == 0:
                 files = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p']
@@ -409,24 +414,9 @@ QPushButton:pressed {
 
             for i,s in enumerate(files):
                 btn_horizontal = QtWidgets.QHBoxLayout()
-                finished_btn = QtWidgets.QCheckBox()
-                finished_btn.setFixedSize(50,50)
-                #finished_btn.setChecked(True)
-                finished_btn.setStyleSheet("""
-QCheckBox::indicator {
-    border-radius: 5px;
-    width: 15px;
-    height: 15px;
-}
-QCheckBox::indicator:unchecked {
-    background-color: #CC0000;
-    color: #000000;
-}
-QCheckBox::indicator:checked {
-    background-color: #00CC00;
-}
-""")
-                btn_horizontal.addWidget(finished_btn)
+                checked_btn = QtWidgets.QPushButton()
+                create_task_btn(checked_btn, i, s)
+                btn_horizontal.addWidget(checked_btn)
                 main_btn = QPushButton(files[i])
                 main_btn.setFixedSize(250,60)
                 main_btn.setStyleSheet(

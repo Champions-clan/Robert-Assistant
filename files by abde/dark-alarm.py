@@ -221,15 +221,18 @@ QTextEdit{
 
         self.formLayout = QtWidgets.QFormLayout(self.scrollAreaWidgetContents)
         self.cond_lst = ["icons\\off.png", "icons\\on.png"]
-        
+        self.cond_text = ["Off", "On"]
+        self.cond = {}
         def create_alarm_btn(btn, i, s):
-            self.cond = 0
-            btn.setFixedSize(40,35)
-            btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond]))
+            self.cond[btn] = 0
+            btn.setFixedSize(60,35)
+            btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
             btn.setIconSize(QtCore.QSize(40,35))
+            btn.setText(self.cond_text[self.cond[btn]])
             btn.setStyleSheet("""
 QPushButton {
     background-color: transparent;
+    font-size: 12px;
 }
 QPushButton:hover {
     background-color: #202225;
@@ -239,8 +242,9 @@ QPushButton:pressed {
 }
 """)
             def alarm_switch():
-                self.cond = int(not self.cond)
-                btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond]))
+                self.cond[btn] = not self.cond[btn]
+                btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
+                btn.setText(self.cond_text[self.cond[btn]])
             btn.clicked.connect(lambda: alarm_switch())
 
         for i,s in enumerate(files):
@@ -249,7 +253,7 @@ QPushButton:pressed {
             create_alarm_btn(self.alarm_switch_btn, i, s)
             
             main_btn = QtWidgets.QPushButton(files[i])
-            main_btn.setFixedSize(260,60)
+            main_btn.setFixedSize(240,60)
             main_btn.setStyleSheet(
 '''
 QPushButton {
