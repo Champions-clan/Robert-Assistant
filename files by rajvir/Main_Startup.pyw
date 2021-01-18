@@ -24,47 +24,132 @@ def fetching():
 
 fetching()
 
+print(user_settings)
+
 
 def Settings_Gui():
     global root
     global button1
 
     def buttons_save_function():
-        if entry1.get() != user_settings[0]:
+        if entry1['text'] != user_settings[0]:
             cur.execute("Update UserSettings set SettingsHotkey=? where SettingsHotkey=?", [
-                        entry1.get(), user_settings[0]])
+                        entry1['text'], user_settings[0]])
             db.commit()
             print("Done")
-        if entry2.get() != user_settings[2]:
+        elif entry2['text'] != user_settings[2]:
             cur.execute("Update UserSettings set KeyboardHotkey=? where KeyboardHotkey=?", [
-                        entry2.get(), user_settings[2]])
+                        entry2['text'], user_settings[2]])
             db.commit()
             print("Done")
-        if entry3.get() != user_settings[4]:
+        elif entry3.get() != user_settings[4]:
             cur.execute("Update UserSettings set CustomSoundLocation=? where CustomSoundLocation=?", [
                         entry3.get(), user_settings[4]])
             db.commit()
             print("Done")
-        if combo1.get() != user_settings[1]:
+        elif entry4['text'] != user_settings[-1]:
+            cur.execute("Update UserSettings set CodeBaseHotkey=? where CodeBaseHotkey=?", [
+                        entry4['text'], user_settings[-1]])
+            db.commit()
+            print("Done")
+        elif combo1.get() != user_settings[1]:
             cur.execute("Update UserSettings set InputVia=? where InputVia=?", [
                         combo1.get(), user_settings[1]])
             db.commit()
             print("Done")
-        if combo2.get() != user_settings[3]:
+        elif combo2.get() != user_settings[3]:
             cur.execute("Update UserSettings set ReminderAlert=? where ReminderAlert=?", [
                         combo2.get(), user_settings[3]])
             db.commit()
             print("Done")
+        else:
+            print("Error in saving data")
         os.execv(sys.executable, ['python']+['./Main_Startup.pyw'])
 
-    def function_click_on_entry(key):
+    def function_click_on_entry_1():
         list_in_function_click_on_entry = []
-        if key.char != '\x08':
-            list_in_function_click_on_entry.append(key.keysym)
-            print(list_in_function_click_on_entry)
-            entry1.insert(
-                END, str(list_in_function_click_on_entry[0]).split('\n')[0])
-            list_in_function_click_on_entry.clear()
+
+        def on_press_click_on_entry(key):
+            if len(list_in_function_click_on_entry) < 3:
+                list_in_function_click_on_entry.append(str(key))
+                print(key)
+            else:
+                listener_function_click_on_entry_1.stop()
+
+        with Listener(on_press=on_press_click_on_entry) as listener_function_click_on_entry_1:
+            listener_function_click_on_entry_1.join()
+
+        string_var = ""
+        string_var = string_var + list_in_function_click_on_entry[0]
+        list_in_function_click_on_entry.pop(0)
+        print(list_in_function_click_on_entry)
+        for i in list_in_function_click_on_entry:
+            if i == "Key.alt_l" or i == "Key.alt_gr":
+                string_var = string_var + "+" + "<alt>"
+            elif i == "Key.ctrl_l" or i == "Key.ctrl_r":
+                string_var = string_var + "+" + "<ctrl>"
+            elif i == "Key.shift" or i == "Key.shift_r":
+                string_var = string_var + "+" + "<shift>"
+            else:
+                string_var = string_var + "+" + i
+            print(string_var)
+        textvar_entry1.set(string_var)
+
+    def function_click_on_entry_2():
+        list_in_function_click_on_entry = []
+
+        def on_press_click_on_entry(key):
+            if len(list_in_function_click_on_entry) < 3:
+                list_in_function_click_on_entry.append(str(key))
+                print(key)
+            else:
+                listener_function_click_on_entry_2.stop()
+
+        with Listener(on_press=on_press_click_on_entry) as listener_function_click_on_entry_2:
+            listener_function_click_on_entry_2.join()
+
+        string_var = ""
+        string_var = string_var + list_in_function_click_on_entry[0]
+        list_in_function_click_on_entry.pop(0)
+        for i in list_in_function_click_on_entry:
+            if i == "Key.alt_l" or i == "Key.alt_gr":
+                string_var = string_var + "+" + "<alt>"
+            elif i == "Key.ctrl_l" or i == "Key.ctrl_r":
+                string_var = string_var + "+" + "<ctrl>"
+            elif i == "Key.shift" or i == "Key.shift_r":
+                string_var = string_var + "+" + "<shift>"
+            else:
+                string_var = string_var + "+" + i
+            print(string_var)
+        textvar_entry2.set(string_var)
+
+    def function_click_on_entry_4():
+        list_in_function_click_on_entry = []
+
+        def on_press_click_on_entry(key):
+            if len(list_in_function_click_on_entry) < 3:
+                list_in_function_click_on_entry.append(str(key))
+                print(key)
+            else:
+                listener_function_click_on_entry_4.stop()
+
+        with Listener(on_press=on_press_click_on_entry) as listener_function_click_on_entry_4:
+            listener_function_click_on_entry_4.join()
+
+        string_var = ""
+        string_var = string_var + list_in_function_click_on_entry[0]
+        list_in_function_click_on_entry.pop(0)
+        print(list_in_function_click_on_entry)
+        for i in list_in_function_click_on_entry:
+            if i == "Key.alt_l" or i == "Key.alt_gr":
+                string_var = string_var + "+" + "<alt>"
+            elif i == "Key.ctrl_l" or i == "Key.ctrl_r":
+                string_var = string_var + "+" + "<ctrl>"
+            elif i == "Key.shift" or i == "Key.shift_r":
+                string_var = string_var + "+" + "<shift>"
+            else:
+                string_var = string_var + "+" + i
+        textvar_entry4.set(string_var)
 
     root = tk.Tk()
     root.geometry("400x400")
@@ -72,7 +157,7 @@ def Settings_Gui():
 
     theme_list = []
 
-    if user_settings[-1] == "Dark":
+    if user_settings[5] == "Dark":
         theme_list.append("./Assets/Dark Theme.png")
         theme_list.append("./Assets/theme_button_dark.png")
         theme_list.append("#36393F")
@@ -89,7 +174,7 @@ def Settings_Gui():
     background_image.configure(image=img)
 
     button1 = Button(root, borderwidth="0", cursor="hand2")
-    button1.place(x=308, y=34, height=25, width=49)
+    button1.place(x=308, y=30, height=25, width=49)
     img2 = PhotoImage(file=theme_list[1])
     button1.configure(image=img2)
     button1.configure(command=lambda: theme_button_function())
@@ -108,15 +193,26 @@ def Settings_Gui():
     combostyle.theme_use('combostyle')
     root.option_add("*TCombobox*Listbox*Background", theme_list[2])
 
-    entry1 = Entry(root, bg=theme_list[2], relief="flat",
-                   width=15, fg="white", font=("Montserrat", 10, "bold"), justify='center')
-    entry2 = Entry(root, bg=theme_list[2], relief="flat",
-                   width=15, fg="white", font=("Montserrat", 10, "bold"), justify='center')
-    entry3 = Entry(root, bg=theme_list[2], relief="flat",
-                   width=15, fg="white", font=("Montserrat", 10, "bold"), justify='center')
-    combo1 = ttk.Combobox(root, values=["Voice", "Keyborad"], width=13,
+    textvar_entry1 = tk.StringVar()
+    textvar_entry2 = tk.StringVar()
+    textvar_entry3 = tk.StringVar()
+    textvar_entry4 = tk.StringVar()
+
+    entry1 = Button(root, textvariable=textvar_entry1, command=lambda: function_click_on_entry_1(), font=("Montserrat", 10, "bold"),
+                    width=13, bg=theme_list[2], activebackground=theme_list[2], relief="flat", overrelief="flat", fg="white", borderwidth="0", cursor="hand2")
+
+    entry2 = Button(root, textvariable=textvar_entry2, command=lambda: function_click_on_entry_2(), font=("Montserrat", 10, "bold"),
+                    width=13, bg=theme_list[2], activebackground=theme_list[2], relief="flat", overrelief="flat", fg="white", borderwidth="0", cursor="hand2")
+
+    entry3 = Entry(root, textvariable=textvar_entry3, font=("Montserrat", 10, "bold"),
+                   width=16, bg=theme_list[2], relief="flat", fg="white", borderwidth="0")
+
+    entry4 = Button(root, textvariable=textvar_entry4, command=lambda: function_click_on_entry_4(), font=("Montserrat", 10, "bold"),
+                    width=13, bg=theme_list[2], activebackground=theme_list[2], relief="flat", overrelief="flat", fg="white", borderwidth="0", cursor="hand2")
+
+    combo1 = ttk.Combobox(root, values=["Voice", "Keyborad"], width=14,
                           justify='center', state='readonly', font=("Montserrat", 10, "bold"))
-    combo2 = ttk.Combobox(root, values=["Sound", "Notification"], width=13,
+    combo2 = ttk.Combobox(root, values=["Sound", "Notification"], width=14,
                           justify='center', state='readonly', font=("Montserrat", 10, "bold"))
 
     button_save = Button(root, command=lambda: buttons_save_function(
@@ -125,19 +221,18 @@ def Settings_Gui():
     img3 = PhotoImage(file=theme_list[-1])
     button_save.configure(image=img3)
 
-    entry1.place(x=249, y=129)
-    entry2.place(x=249, y=209)
-    entry3.place(x=249, y=295)
-    combo1.place(x=250, y=169)
-    combo2.place(x=250, y=251)
+    entry1.place(x=251, y=90)
+    entry2.place(x=251, y=175)
+    entry3.place(x=251, y=300)
+    entry4.place(x=251, y=215)
+    combo1.place(x=250, y=136)
+    combo2.place(x=250, y=263)
     button_save.place(x=142, y=336, height=38, width=119)
 
-    entry1.insert(0, user_settings[0])
-    entry2.insert(0, user_settings[2])
-    entry3.insert(0, user_settings[4])
-
-    entry1.bind("<1>", lambda x: entry1.delete(0, "end"))
-    entry1.bind("<Key>", function_click_on_entry)
+    textvar_entry1.set(user_settings[0])
+    textvar_entry2.set(user_settings[2])
+    textvar_entry3.set(user_settings[4])
+    textvar_entry4.set(user_settings[-1])
 
     if user_settings[1] == "Voice":
         combo1.current(0)
@@ -155,8 +250,12 @@ def function_2():
     print('Function 2 activated')
 
 
+def code_base_gui():
+    print("Function 3 activated")
+
+
 def theme_button_function():
-    if user_settings[-1] == "Dark":
+    if user_settings[5] == "Dark":
         cur.execute(
             "Update UserSettings set ThemeMode='Light' where ThemeMode = 'Dark'")
         db.commit()
@@ -174,7 +273,8 @@ def theme_button_function():
 
 with keyboard.GlobalHotKeys({
         user_settings[0]: Settings_Gui,
-        user_settings[2]: function_2}) as h:
+        user_settings[2]: function_2,
+        user_settings[-1]: code_base_gui}) as h:
     h.join()
 
 
