@@ -74,13 +74,13 @@ QPushButton:pressed {
 ''')
         self.title_layout.addWidget(self.addcode_btn)
         self.verticalLayout.addLayout(self.title_layout)
-#-----------------code adding window------------------------------------------------
+#-----------------alarm adding window------------------------------------------------
         def add_alarm_window(txt):
             self.files_set_DialogWindow = QtWidgets.QDialog()
             self.files_set_DialogWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)
-            self.files_set_DialogWindow.resize(380, 300)
-            self.files_set_DialogWindow.setMinimumSize(QtCore.QSize(380, 300))
-            self.files_set_DialogWindow.setMaximumSize(QtCore.QSize(380, 300))
+            self.files_set_DialogWindow.resize(400, 300)
+            #self.files_set_DialogWindow.setMinimumSize(QtCore.QSize(480, 300))
+            #self.files_set_DialogWindow.setMaximumSize(QtCore.QSize(480, 300))
             self.files_set_DialogWindow.setStyleSheet("""
 QDialog {
 background-color: #36393f;
@@ -107,26 +107,112 @@ font-family: 'Cabin', sans-serif;
 font-size: 20px;
 border-radius: 5px;
 }
+QSpinBox {
+    color: #FFFFFF;
+	background-color: #2f3136;
+    font-size: 15px;
+	border-radius: 5px;
+	padding: 5px;
+	padding-left: 10px;
+}
+QSpinBox QAbstractItemView {
+	color: #FFFFFF;	
+	background-color: #2f3136;
+	padding: 10px;
+	selection-background-color: #40444b;
+}
+QComboBox{
+    color: #FFFFFF;
+	background-color: #2f3136;
+    font-size: 15px;
+	border-radius: 5px;
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox QAbstractItemView {
+	color: #FFFFFF;	
+	background-color: #2f3136;
+	padding: 10px;
+	selection-background-color: #40444b;
+}
 """)
-            self.dialog_ok_btn = QtWidgets.QPushButton(self.files_set_DialogWindow)
-            self.dialog_ok_btn.setGeometry(QtCore.QRect(15, 235, 151, 51))
+            self.alarm_add_layout = QtWidgets.QVBoxLayout(self.files_set_DialogWindow)
+            self.alarm_ok_layout = QtWidgets.QHBoxLayout()
+            self.dialog_ok_btn = QtWidgets.QPushButton(s)
             if txt == "Add":
                 self.dialog_ok_btn.setText("Add")
             else:
                 self.dialog_ok_btn.setText("Save")
-            self.dialog_cancel_btn = QtWidgets.QPushButton(self.files_set_DialogWindow)
-            self.dialog_cancel_btn.setGeometry(QtCore.QRect(175, 235, 151, 51))
+            self.dialog_cancel_btn = QtWidgets.QPushButton()
             self.dialog_cancel_btn.setText("Cancel")
-            self.dialog_cancel_btn.clicked.connect(self.files_set_DialogWindow.accept)
-            self.dialog_textEdit = QtWidgets.QTextEdit(self.files_set_DialogWindow)
-            self.dialog_textEdit.setGeometry(QtCore.QRect(20, 80, 291, 41))
+            self.dialog_cancel_btn.clicked.connect(lambda: self.files_set_DialogWindow.reject())
+            self.alarm_ok_layout.addWidget(self.dialog_ok_btn)
+            self.alarm_ok_layout.addWidget(self.dialog_cancel_btn)
+
+            self.dialog_textEdit = QtWidgets.QTextEdit()
             self.dialog_textEdit.setPlaceholderText("Name")
-            self.dialoggg_textEdit = QtWidgets.QTextEdit(self.files_set_DialogWindow)
-            self.dialoggg_textEdit.setGeometry(QtCore.QRect(20, 140, 350, 71))
-            self.dialoggg_textEdit.setPlaceholderText("Description")
-            self.dialog_label = QtWidgets.QLabel(self.files_set_DialogWindow)
-            self.dialog_label.setGeometry(QtCore.QRect(60, 20, 231, 41))
+            self.dialog_textEdit.setFixedHeight(50)
+            self.dialog_label = QtWidgets.QLabel()
             self.dialog_label.setText(f"{txt} your Alarm")
+
+            self.alarm_hour_add = QtWidgets.QSpinBox()
+            self.alarm_hour_add.setRange(1,12)
+            self.alarm_minute_add = QtWidgets.QSpinBox()
+            self.alarm_minute_add.setRange(0,59)
+
+            self.alarm_time_add_layout = QtWidgets.QHBoxLayout()
+            self.alarm_hour_layout = QtWidgets.QVBoxLayout()
+            self.alarm_minute_layout = QtWidgets.QVBoxLayout()
+
+            self.alarm_hour_label = QtWidgets.QLabel()
+            self.alarm_hour_label.setText("Hour")
+            self.alarm_hour_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+            self.alarm_minute_label = QtWidgets.QLabel()
+            self.alarm_minute_label.setText("Minute")
+            self.alarm_minute_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+            
+            self.alarm_hour_layout.addWidget(self.alarm_hour_label)
+            self.alarm_hour_layout.addWidget(self.alarm_hour_add)
+            self.alarm_minute_layout.addWidget(self.alarm_minute_label)
+            self.alarm_minute_layout.addWidget(self.alarm_minute_add)
+
+            self.alarm_mid_group = QtWidgets.QComboBox()
+            self.alarm_mid_group.addItems(["AM", "PM"])
+            
+
+            self.alarm_time_add_layout.addLayout(self.alarm_hour_layout)
+            self.alarm_time_add_layout.addLayout(self.alarm_minute_layout)
+            self.alarm_mid_group_layout = QtWidgets.QVBoxLayout()
+            self.alarm_mid_group_layout.addStretch(2)
+            self.alarm_mid_group_layout.addWidget(self.alarm_mid_group)
+            self.alarm_time_add_layout.addLayout(self.alarm_mid_group_layout)
+
+            self.alarm_other_layout = QtWidgets.QHBoxLayout()
+            self.alarm_repeats_label = QtWidgets.QLabel("Repeats")
+            self.alarm_repeats_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+            self.alarm_sound_label = QtWidgets.QLabel("Sound")
+            self.alarm_sound_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+            self.alarm_repeats_add = QtWidgets.QComboBox()
+            self.alarm_repeats_add.addItems(["Only Once", "Every day", "Every week", "Every Month"])
+            self.alarm_sound_add = QtWidgets.QComboBox()
+            self.alarm_sound_add.addItems(["sound A", "sound B", "sound C", "sound D", "sound E"])
+
+            self.alarm_repeats_layout = QtWidgets.QVBoxLayout()
+            self.alarm_repeats_layout.addWidget(self.alarm_repeats_label)
+            self.alarm_repeats_layout.addWidget(self.alarm_repeats_add)
+            self.alarm_sound_layout = QtWidgets.QVBoxLayout()
+            self.alarm_sound_layout.addWidget(self.alarm_sound_label)
+            self.alarm_sound_layout.addWidget(self.alarm_sound_add)
+
+            self.alarm_other_layout.addLayout(self.alarm_repeats_layout)
+            self.alarm_other_layout.addLayout(self.alarm_sound_layout)
+
+
+            self.alarm_add_layout.addWidget(self.dialog_label)
+            self.alarm_add_layout.addWidget(self.dialog_textEdit)
+            self.alarm_add_layout.addLayout(self.alarm_time_add_layout)
+            self.alarm_add_layout.addLayout(self.alarm_other_layout)
+            self.alarm_add_layout.addLayout(self.alarm_ok_layout)
 
             self.files_set_DialogWindow.exec_()
 
@@ -246,13 +332,15 @@ QPushButton:pressed {
             self.alarm_switch_btn = QtWidgets.QPushButton()
             create_alarm_btn(self.alarm_switch_btn, i, s)
             
-            main_btn = QtWidgets.QPushButton(files[i])
+            main_btn = QtWidgets.QLabel()
             main_btn.setFixedSize(240,60)
+            main_btn.setText(files[i])
+            main_btn.setAlignment(QtCore.Qt.AlignCenter)
             main_btn.setStyleSheet(
 '''
-QPushButton {
+QLabel {
     color: #FFFFFF;
-    background-color: #202225;
+    background-color: #37393D;
     font-family: 'Roboto Mono', monospace;
     font-size: 20px;
     border-top-left-radius: 10px;
@@ -260,13 +348,8 @@ QPushButton {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
 }
-QPushButton:hover {
-    background-color: #40444b;
-}
-QPushButton:pressed {
-    background-color: #18191c;
-}
 ''')
+
             edit_btn = QtWidgets.QPushButton()   #39DFA2
             edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
             edit_btn.setIconSize(QtCore.QSize(28, 28))
