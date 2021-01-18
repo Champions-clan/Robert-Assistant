@@ -77,7 +77,7 @@ QPushButton:pressed {
         def code_text(txt):
             self.files_set_DialogWindow = QtWidgets.QDialog()
             self.files_set_DialogWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)
-            self.files_set_DialogWindow.resize(400, 300)
+            self.files_set_DialogWindow.resize(380, 350)
             #self.files_set_DialogWindow.setMinimumSize(QtCore.QSize(480, 300))
             #self.files_set_DialogWindow.setMaximumSize(QtCore.QSize(480, 300))
             self.files_set_DialogWindow.setStyleSheet("""
@@ -148,68 +148,34 @@ QComboBox QAbstractItemView {
             self.task_ok_layout.addWidget(self.dialog_ok_btn)
             self.task_ok_layout.addWidget(self.dialog_cancel_btn)
 
-            self.dialog_textEdit = QtWidgets.QTextEdit()
-            self.dialog_textEdit.setPlaceholderText("Name")
-            self.dialog_textEdit.setFixedHeight(50)
             self.dialog_label = QtWidgets.QLabel()
             self.dialog_label.setText(f"{txt} your Alarm")
+            self.dialog_textEdit = QtWidgets.QTextEdit()
+            self.dialog_textEdit.setPlaceholderText("Name")
+            self.dialog_textEdit.setFixedHeight(40)
 
-            self.task_hour_add = QtWidgets.QSpinBox()
-            self.task_hour_add.setRange(1,12)
-            self.task_minute_add = QtWidgets.QSpinBox()
-            self.task_minute_add.setRange(0,59)
+            self.task_desc_add = QtWidgets.QTextEdit()
+            self.task_desc_add.setPlaceholderText("Description")
+            self.task_desc_add.setFixedHeight(75)
 
-            self.task_time_add_layout = QtWidgets.QHBoxLayout()
-            self.task_hour_layout = QtWidgets.QVBoxLayout()
-            self.task_minute_layout = QtWidgets.QVBoxLayout()
-
-            self.task_hour_label = QtWidgets.QLabel()
-            self.task_hour_label.setText("Hour")
-            self.task_hour_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
-            self.task_minute_label = QtWidgets.QLabel()
-            self.task_minute_label.setText("Minute")
-            self.task_minute_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
-            
-            self.task_hour_layout.addWidget(self.task_hour_label)
-            self.task_hour_layout.addWidget(self.task_hour_add)
-            self.task_minute_layout.addWidget(self.task_minute_label)
-            self.task_minute_layout.addWidget(self.task_minute_add)
-
-            self.task_mid_group = QtWidgets.QComboBox()
-            self.task_mid_group.addItems(["AM", "PM"])
-            
-
-            self.task_time_add_layout.addLayout(self.task_hour_layout)
-            self.task_time_add_layout.addLayout(self.task_minute_layout)
-            self.task_mid_group_layout = QtWidgets.QVBoxLayout()
-            self.task_mid_group_layout.addStretch(2)
-            self.task_mid_group_layout.addWidget(self.task_mid_group)
-            self.task_time_add_layout.addLayout(self.task_mid_group_layout)
 
             self.task_other_layout = QtWidgets.QHBoxLayout()
-            self.task_repeats_label = QtWidgets.QLabel("Repeats")
-            self.task_repeats_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
-            self.task_sound_label = QtWidgets.QLabel("Sound")
-            self.task_sound_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
-            self.task_repeats_add = QtWidgets.QComboBox()
-            self.task_repeats_add.addItems(["Only Once", "Every day", "Every week", "Every Month"])
-            self.task_sound_add = QtWidgets.QComboBox()
-            self.task_sound_add.addItems(["sound A", "sound B", "sound C", "sound D", "sound E"])
+            self.task_priority_label = QtWidgets.QLabel("Priority")
+            self.task_priority_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 20px;")
+            self.task_priority_add = QtWidgets.QComboBox()
+            self.task_priority_add.setFixedHeight(40)
+            self.task_priority_add.addItems(["1", "2", "3", "4", "5"])
 
-            self.task_repeats_layout = QtWidgets.QVBoxLayout()
-            self.task_repeats_layout.addWidget(self.task_repeats_label)
-            self.task_repeats_layout.addWidget(self.task_repeats_add)
-            self.task_sound_layout = QtWidgets.QVBoxLayout()
-            self.task_sound_layout.addWidget(self.task_sound_label)
-            self.task_sound_layout.addWidget(self.task_sound_add)
+            self.task_priority_layout = QtWidgets.QVBoxLayout()
+            self.task_priority_layout.addWidget(self.task_priority_label)
+            self.task_priority_layout.addWidget(self.task_priority_add)
 
-            self.task_other_layout.addLayout(self.task_repeats_layout)
-            self.task_other_layout.addLayout(self.task_sound_layout)
+            self.task_other_layout.addLayout(self.task_priority_layout)
 
 
             self.task_add_layout.addWidget(self.dialog_label)
             self.task_add_layout.addWidget(self.dialog_textEdit)
-            self.task_add_layout.addLayout(self.task_time_add_layout)
+            self.task_add_layout.addWidget(self.task_desc_add)
             self.task_add_layout.addLayout(self.task_other_layout)
             self.task_add_layout.addLayout(self.task_ok_layout)
 
@@ -221,7 +187,7 @@ QComboBox QAbstractItemView {
         self.top_horizontalLayout = QtWidgets.QHBoxLayout()
         self.verticalLayout.addLayout(self.horizontalLayout)
 
-        combobox_list = ["Newest", "Alphabet"]
+        combobox_list = ["Newest", "Priority", "Alphabet"]
 
         self.choice_group = QtWidgets.QComboBox()
         self.choice_group.setFixedSize(200,30)
