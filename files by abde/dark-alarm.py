@@ -367,6 +367,8 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
+            edit_btn.clicked.connect(lambda : add_alarm_window("Edit"))
+
             del_btn = QtWidgets.QPushButton()
             del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
             del_btn.setIconSize(QtCore.QSize(28, 28))
