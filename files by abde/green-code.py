@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QPushButton,QMainWindow, QTextEdit
 
 
 class Ui_MainWindow(object):
@@ -7,6 +7,7 @@ class Ui_MainWindow(object):
         self.files = files
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(430, 500)
+        #MainWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         MainWindow.setMinimumSize(QtCore.QSize(430, 500))
         MainWindow.setMaximumSize(QtCore.QSize(430, 500))
         MainWindow.setAutoFillBackground(False)
@@ -17,41 +18,24 @@ class Ui_MainWindow(object):
         QtGui.QFontDatabase.addApplicationFont("fonts\\Goldman-Bold.ttf")  
         QtGui.QFontDatabase.addApplicationFont("fonts\\PirataOne-Regular.ttf") 
 
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.green_code_centralwidget = QtWidgets.QWidget(MainWindow)
+        self.green_code_main_layout = QtWidgets.QVBoxLayout(self.green_code_centralwidget)
+        self.green_code_search_layout = QtWidgets.QHBoxLayout()
 
-        self.robert_label = QtWidgets.QLabel("             Robert")
-        self.robert_label.setStyleSheet(
+        self.green_code_title_label = QtWidgets.QLabel("    Robert codes")
+        self.green_code_title_label.setStyleSheet(
 '''
 QLabel {
     font-family: 'Titillium Web', sans-serif;
     font-size: 40px;
 }
 ''')
-        self.title_layout = QtWidgets.QHBoxLayout()
-        self.title_layout.addWidget(self.robert_label)
-        self.verticalLayout.addLayout(self.title_layout)
-
-        self.search_text = QtWidgets.QTextEdit()
-        self.search_text.setFixedSize(340,50)
-        self.search_text.setPlaceholderText("Search for snippets")
-        self.search_text.setStyleSheet(
-'''
-QTextEdit {
-    font-family: 'Cabin', sans-serif;
-    font-size: 22px;
-    background: #24E29D;
-    border-radius: 5px;
-}
-'''
-)
-
-        self.search_btn = QtWidgets.QPushButton()
-        self.search_btn.setIcon(QtGui.QIcon("icons\\search_icon"))
-        self.search_btn.setIconSize(QtCore.QSize(30, 30))
-        self.search_btn.setFixedSize(70,50)
-        self.search_btn.setStyleSheet(
+        self.green_code_title_layout = QtWidgets.QHBoxLayout()
+        self.green_code_home_btn = QtWidgets.QPushButton()
+        self.green_code_home_btn.setIcon(QtGui.QIcon("pic\\home"))
+        self.green_code_home_btn.setIconSize(QtCore.QSize(25, 25))
+        self.green_code_home_btn.setFixedSize(40,40)
+        self.green_code_home_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: #14B57A;
@@ -64,11 +48,46 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 ''')
-        self.addcode_btn = QtWidgets.QPushButton()
-        self.addcode_btn.setIcon(QtGui.QIcon("icons\\add_btn.png"))
-        self.addcode_btn.setIconSize(QtCore.QSize(40, 40))
-        self.addcode_btn.setFixedSize(70,50)
-        self.addcode_btn.setStyleSheet(
+        self.green_code_title_layout.addWidget(self.green_code_home_btn)
+        self.green_code_title_layout.addWidget(self.green_code_title_label)
+        self.green_code_main_layout.addLayout(self.green_code_title_layout)
+
+        self.green_code_search_textarea = QtWidgets.QTextEdit()
+        self.green_code_search_textarea.setFixedSize(340,50)
+        self.green_code_search_textarea.setPlaceholderText("Search for snippets")
+        self.green_code_search_textarea.setStyleSheet(
+'''
+QTextEdit {
+    font-family: 'Cabin', sans-serif;
+    font-size: 22px;
+    background: #24E29D;
+    border-radius: 5px;
+}
+'''
+)
+
+        self.green_code_search_btn = QtWidgets.QPushButton()
+        self.green_code_search_btn.setIcon(QtGui.QIcon("icons\\search_icon"))
+        self.green_code_search_btn.setIconSize(QtCore.QSize(30, 30))
+        self.green_code_search_btn.setFixedSize(70,50)
+        self.green_code_search_btn.setStyleSheet(
+'''
+QPushButton {
+    background-color: #14B57A;
+    border-radius: 10px;
+}
+QPushButton:hover {
+    background-color: #24E29D;
+}
+QPushButton:pressed {
+    background-color: #1A4E3B;
+}
+''')
+        self.green_code_addcode_btn = QtWidgets.QPushButton()
+        self.green_code_addcode_btn.setIcon(QtGui.QIcon("icons\\add_btn.png"))
+        self.green_code_addcode_btn.setIconSize(QtCore.QSize(40, 40))
+        self.green_code_addcode_btn.setFixedSize(70,50)
+        self.green_code_addcode_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: #14B57A;
@@ -82,7 +101,7 @@ QPushButton:pressed {
 }
 ''')
 #-----------------code adding window------------------------------------------------
-        def code_text():
+        def green_code_dialog_popup_func():
             import os.path
             user = os.path.expanduser('~')
             files_list = ['py', 'c++']
@@ -144,20 +163,20 @@ QTextEdit{
                 import sys
                 sys.exit(self.files_set_DialogWindow.exec_())
 
-#-----------------end of code adding--------------------------------------  
-        self.addcode_btn.clicked.connect(code_text)
-        self.top_horizontalLayout = QtWidgets.QHBoxLayout()
+#-----------------end of code adding--------------------------------------
 
-        self.horizontalLayout.addWidget(self.search_text)
-        self.horizontalLayout.addWidget(self.search_btn)
-        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.green_code_addcode_btn.clicked.connect(green_code_dialog_popup_func)
+
+        self.green_code_search_layout.addWidget(self.green_code_search_textarea)
+        self.green_code_search_layout.addWidget(self.green_code_search_btn)
+        self.green_code_main_layout.addLayout(self.green_code_search_layout)
 
         combobox_list = ["Most Used","Alphabet","Newest"]
 
-        self.choice_group = QtWidgets.QComboBox()
-        #self.choice_group.setFixedSize(200,35)
-        self.choice_group.addItems(combobox_list)
-        self.choice_group.setStyleSheet(
+        self.green_code_choice_group = QtWidgets.QComboBox()
+        #self.green_code_choice_group.setFixedSize(200,35)
+        self.green_code_choice_group.addItems(combobox_list)
+        self.green_code_choice_group.setStyleSheet(
 '''
 QComboBox{
 	background-color: #39DFA2;
@@ -177,10 +196,10 @@ QComboBox QAbstractItemView {
         lang_lst = ["All Languages","Python", "Java", "C++", "C#", "Golang", "Javascript", "Typescript",
                     "Html", "CSS", "PHP","Dart", "Scala", "Ruby", "R", "kotlin", "rust", "Lua",
                     "Haskel"]
-        self.trans_to_lang_combo = QtWidgets.QComboBox()
-        #self.trans_to_lang_combo.setFixedSize(200,35)
-        self.trans_to_lang_combo.addItems(lang_lst)
-        self.trans_to_lang_combo.setStyleSheet(
+        self.green_code_lang_choice = QtWidgets.QComboBox()
+        #self.green_code_lang_choice.setFixedSize(200,35)
+        self.green_code_lang_choice.addItems(lang_lst)
+        self.green_code_lang_choice.setStyleSheet(
 '''
 QComboBox{
 	background-color: #39DFA2;
@@ -197,28 +216,28 @@ QComboBox QAbstractItemView {
 }
 '''
 )
-        self.sort_label = QtWidgets.QLabel("Sort by")
-        self.sort_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
-        self.sort_layout = QtWidgets.QVBoxLayout()
-        self.sort_layout.addWidget(self.sort_label)
-        self.sort_layout.addWidget(self.choice_group)
+        self.green_code_sort_label = QtWidgets.QLabel("Sort by")
+        self.green_code_sort_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+        self.green_code_sort_layout = QtWidgets.QVBoxLayout()
+        self.green_code_sort_layout.addWidget(self.green_code_sort_label)
+        self.green_code_sort_layout.addWidget(self.green_code_choice_group)
 
-        self.lang_label = QtWidgets.QLabel("Choose Language")
-        self.lang_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
-        self.lang_layout = QtWidgets.QVBoxLayout()
-        self.lang_layout.addWidget(self.lang_label)
-        self.lang_layout.addWidget(self.trans_to_lang_combo)
-        #self.top_horizontalLayout.addStretch(1)
-        self.top_horizontalLayout.addLayout(self.lang_layout)
-        self.top_horizontalLayout.addLayout(self.sort_layout)
-        self.top_horizontalLayout.addWidget(self.addcode_btn)
+        self.green_code_lang_label = QtWidgets.QLabel("Choose Language")
+        self.green_code_lang_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+        self.green_code_lang_layout = QtWidgets.QVBoxLayout()
+        self.green_code_lang_layout.addWidget(self.green_code_lang_label)
+        self.green_code_lang_layout.addWidget(self.green_code_lang_choice)
+        self.green_code_choice_layout = QtWidgets.QHBoxLayout()
+        self.green_code_choice_layout.addLayout(self.green_code_lang_layout)
+        self.green_code_choice_layout.addLayout(self.green_code_sort_layout)
+        self.green_code_choice_layout.addWidget(self.green_code_addcode_btn)
         
 
-        self.verticalLayout.addLayout(self.top_horizontalLayout)
+        self.green_code_main_layout.addLayout(self.green_code_choice_layout)
 
 
-        self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
-        self.scrollArea.setWidgetResizable(True)
+        self.green_code_scrollArea = QtWidgets.QScrollArea(self.green_code_centralwidget)
+        self.green_code_scrollArea.setWidgetResizable(True)
         MainWindow.setStyleSheet(
 "QMainWindow {"
 "   background: #14B57A;"
@@ -290,15 +309,16 @@ QComboBox QAbstractItemView {
 "    background: none;"
 "}"
 )
-        self.scrollArea.setStyleSheet("background: #2ABF88; border-radius: 7px;")
-        self.scrollAreaWidgetContents = QtWidgets.QWidget(self.scrollArea)
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        
+        self.green_code_scrollArea.setStyleSheet("background: #2ABF88; border-radius: 7px;")
+        self.green_code_scrollAreaWidgetContents = QtWidgets.QWidget(self.green_code_scrollArea)
+        self.green_code_scrollArea.setWidget(self.green_code_scrollAreaWidgetContents)
 
-        self.verticalLayout.addWidget(self.scrollArea)
+        self.green_code_main_layout.addWidget(self.green_code_scrollArea)
 
-        MainWindow.setCentralWidget(self.centralwidget)
+        MainWindow.setCentralWidget(self.green_code_centralwidget)
 
-        self.formLayout = QtWidgets.QFormLayout(self.scrollAreaWidgetContents)
+        self.green_code_form_layout = QtWidgets.QFormLayout(self.green_code_scrollAreaWidgetContents)
 
 
         def copyed(txt):
@@ -309,10 +329,10 @@ QComboBox QAbstractItemView {
 
 
         for i,s in enumerate(files):
-            btn_horizontal = QtWidgets.QHBoxLayout()
-            main_btn = QPushButton(files[i])
-            main_btn.setFixedSize(300,60)
-            main_btn.setStyleSheet(
+            green_code_scroll_btns_layout = QtWidgets.QHBoxLayout()
+            green_code_scroll_main_btn = QPushButton(files[i])
+            green_code_scroll_main_btn.setFixedSize(300,60)
+            green_code_scroll_main_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: #39DFA2;
@@ -330,11 +350,11 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 ''')
-            edit_btn = QPushButton()   #39DFA2
-            edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
-            edit_btn.setIconSize(QtCore.QSize(28, 28))
-            edit_btn.setFixedSize(30,60)  
-            edit_btn.setStyleSheet(
+            green_code_scroll_edit_btn = QPushButton()   #39DFA2
+            green_code_scroll_edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
+            green_code_scroll_edit_btn.setIconSize(QtCore.QSize(28, 28))
+            green_code_scroll_edit_btn.setFixedSize(30,60)  
+            green_code_scroll_edit_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
@@ -347,11 +367,11 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 ''')
-            del_btn = QPushButton()
-            del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
-            del_btn.setIconSize(QtCore.QSize(28, 28))
-            del_btn.setFixedSize(30,60)   #39DFA2
-            del_btn.setStyleSheet(
+            green_code_scroll_del_btn = QPushButton()
+            green_code_scroll_del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
+            green_code_scroll_del_btn.setIconSize(QtCore.QSize(28, 28))
+            green_code_scroll_del_btn.setFixedSize(30,60)   #39DFA2
+            green_code_scroll_del_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
@@ -367,15 +387,15 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 ''')
-            btn_horizontal.addWidget(main_btn)
-            btn_horizontal.addWidget(edit_btn)
-            btn_horizontal.addWidget(del_btn)
-            self.formLayout.addRow(btn_horizontal)
+            green_code_scroll_btns_layout.addWidget(green_code_scroll_main_btn)
+            green_code_scroll_btns_layout.addWidget(green_code_scroll_edit_btn)
+            green_code_scroll_btns_layout.addWidget(green_code_scroll_del_btn)
+            self.green_code_form_layout.addRow(green_code_scroll_btns_layout)
 
         def combo(index):
             global files
-            print(self.choice_group.itemText(index))
-            #i = self.choice_group.itemText(index)
+            print(self.green_code_choice_group.itemText(index))
+            #i = self.green_code_choice_group.itemText(index)
             if index == 0:
                 files = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p']
             if index == 1:
@@ -383,16 +403,16 @@ QPushButton:pressed {
             elif index == 2:
                 files = ["Newest","Newest","Newest","Newest","Newest"]
 
-            self.scrollAreaWidgetContents.deleteLater()
-            self.scrollAreaWidgetContents = QtWidgets.QWidget(self.scrollArea)
-            self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-            self.formLayout = QtWidgets.QFormLayout(self.scrollAreaWidgetContents)
+            self.green_code_scrollAreaWidgetContents.deleteLater()
+            self.green_code_scrollAreaWidgetContents = QtWidgets.QWidget(self.green_code_scrollArea)
+            self.green_code_scrollArea.setWidget(self.green_code_scrollAreaWidgetContents)
+            self.green_code_form_layout = QtWidgets.QFormLayout(self.green_code_scrollAreaWidgetContents)
 
             for i,s in enumerate(files):
-                btn_horizontal = QtWidgets.QHBoxLayout()
-                main_btn = QPushButton(files[i])
-                main_btn.setFixedSize(300,60)
-                main_btn.setStyleSheet(
+                green_code_scroll_btns_layout = QtWidgets.QHBoxLayout()
+                green_code_scroll_main_btn = QPushButton(files[i])
+                green_code_scroll_main_btn.setFixedSize(300,60)
+                green_code_scroll_main_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: #39DFA2;
@@ -410,11 +430,11 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 ''')
-                edit_btn = QPushButton()   #39DFA2
-                edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
-                edit_btn.setIconSize(QtCore.QSize(28, 28))
-                edit_btn.setFixedSize(30,60)  
-                edit_btn.setStyleSheet(
+                green_code_scroll_edit_btn = QPushButton()   #39DFA2
+                green_code_scroll_edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
+                green_code_scroll_edit_btn.setIconSize(QtCore.QSize(28, 28))
+                green_code_scroll_edit_btn.setFixedSize(30,60)  
+                green_code_scroll_edit_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
@@ -427,11 +447,11 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 ''')
-                del_btn = QPushButton()
-                del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
-                del_btn.setIconSize(QtCore.QSize(28, 28))
-                del_btn.setFixedSize(30,60)   #39DFA2
-                del_btn.setStyleSheet(
+                green_code_scroll_del_btn = QPushButton()
+                green_code_scroll_del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
+                green_code_scroll_del_btn.setIconSize(QtCore.QSize(28, 28))
+                green_code_scroll_del_btn.setFixedSize(30,60)   #39DFA2
+                green_code_scroll_del_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
@@ -447,13 +467,11 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 ''')
-                btn_horizontal.addWidget(main_btn)
-                btn_horizontal.addWidget(edit_btn)
-                btn_horizontal.addWidget(del_btn)
-                self.formLayout.addRow(btn_horizontal)
-
-
-        self.choice_group.activated.connect(combo)
+                green_code_scroll_btns_layout.addWidget(green_code_scroll_main_btn)
+                green_code_scroll_btns_layout.addWidget(green_code_scroll_edit_btn)
+                green_code_scroll_btns_layout.addWidget(green_code_scroll_del_btn)
+                self.green_code_form_layout.addRow(green_code_scroll_btns_layout)
+        self.green_code_choice_group.activated.connect(combo)
         
 
         self.retranslateUi(MainWindow)

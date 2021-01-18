@@ -18,12 +18,12 @@ class Ui_MainWindow(object):
         QtGui.QFontDatabase.addApplicationFont("fonts\\Goldman-Bold.ttf")  
         QtGui.QFontDatabase.addApplicationFont("fonts\\PirataOne-Regular.ttf") 
 
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.dark_code_centralwidget = QtWidgets.QWidget(MainWindow)
+        self.dark_code_main_layout = QtWidgets.QVBoxLayout(self.dark_code_centralwidget)
+        self.dark_code_search_layout = QtWidgets.QHBoxLayout()
 
-        self.robert_label = QtWidgets.QLabel("             Robert")
-        self.robert_label.setStyleSheet(
+        self.dark_code_title_label = QtWidgets.QLabel("    Robert codes")
+        self.dark_code_title_label.setStyleSheet(
 '''
 QLabel {
     color: #FFFFFF;
@@ -31,30 +31,12 @@ QLabel {
     font-size: 40px;
 }
 ''')
-        self.title_layout = QtWidgets.QHBoxLayout()
-        self.title_layout.addWidget(self.robert_label)
-        self.verticalLayout.addLayout(self.title_layout)
-
-        self.search_text = QtWidgets.QTextEdit()
-        self.search_text.setFixedSize(340,50)
-        self.search_text.setPlaceholderText("Search for snippets")
-        self.search_text.setStyleSheet(
-'''
-QTextEdit {
-    color: #FFFFFF;
-    font-family: 'Cabin', sans-serif;
-    font-size: 22px;
-    background: #40444b;
-    border-radius: 5px;
-}
-'''
-)
-
-        self.search_btn = QtWidgets.QPushButton()
-        self.search_btn.setIcon(QtGui.QIcon("icons\\search_icon"))
-        self.search_btn.setIconSize(QtCore.QSize(30, 30))
-        self.search_btn.setFixedSize(70,50)
-        self.search_btn.setStyleSheet(
+        self.dark_code_title_layout = QtWidgets.QHBoxLayout()
+        self.dark_code_home_btn = QtWidgets.QPushButton()
+        self.dark_code_home_btn.setIcon(QtGui.QIcon("pic\\home"))
+        self.dark_code_home_btn.setIconSize(QtCore.QSize(25, 25))
+        self.dark_code_home_btn.setFixedSize(40,40)
+        self.dark_code_home_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
@@ -67,11 +49,47 @@ QPushButton:pressed {
     background-color: #202225;
 }
 ''')
-        self.addcode_btn = QtWidgets.QPushButton()
-        self.addcode_btn.setIcon(QtGui.QIcon("icons\\add_btn.png"))
-        self.addcode_btn.setIconSize(QtCore.QSize(40, 40))
-        self.addcode_btn.setFixedSize(70,50)
-        self.addcode_btn.setStyleSheet(
+        self.dark_code_title_layout.addWidget(self.dark_code_home_btn)
+        self.dark_code_title_layout.addWidget(self.dark_code_title_label)
+        self.dark_code_main_layout.addLayout(self.dark_code_title_layout)
+
+        self.dark_code_search_textarea = QtWidgets.QTextEdit()
+        self.dark_code_search_textarea.setFixedSize(340,50)
+        self.dark_code_search_textarea.setPlaceholderText("Search for snippets")
+        self.dark_code_search_textarea.setStyleSheet(
+'''
+QTextEdit {
+    color: #FFFFFF;
+    font-family: 'Cabin', sans-serif;
+    font-size: 22px;
+    background: #40444b;
+    border-radius: 5px;
+}
+'''
+)
+
+        self.dark_code_search_btn = QtWidgets.QPushButton()
+        self.dark_code_search_btn.setIcon(QtGui.QIcon("icons\\search_icon"))
+        self.dark_code_search_btn.setIconSize(QtCore.QSize(30, 30))
+        self.dark_code_search_btn.setFixedSize(70,50)
+        self.dark_code_search_btn.setStyleSheet(
+'''
+QPushButton {
+    background-color: transparent;
+    border-radius: 10px;
+}
+QPushButton:hover {
+    background-color: #40444b;
+}
+QPushButton:pressed {
+    background-color: #202225;
+}
+''')
+        self.dark_code_addcode_btn = QtWidgets.QPushButton()
+        self.dark_code_addcode_btn.setIcon(QtGui.QIcon("icons\\add_btn.png"))
+        self.dark_code_addcode_btn.setIconSize(QtCore.QSize(40, 40))
+        self.dark_code_addcode_btn.setFixedSize(70,50)
+        self.dark_code_addcode_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
@@ -85,7 +103,7 @@ QPushButton:pressed {
 }
 ''')
 #-----------------code adding window------------------------------------------------
-        def code_text():
+        def dark_code_dialog_popup_func():
             import os.path
             user = os.path.expanduser('~')
             files_list = ['py', 'c++']
@@ -149,19 +167,18 @@ QTextEdit{
 
 #-----------------end of code adding--------------------------------------
 
-        self.addcode_btn.clicked.connect(code_text)
-        self.top_horizontalLayout = QtWidgets.QHBoxLayout()
+        self.dark_code_addcode_btn.clicked.connect(dark_code_dialog_popup_func)
 
-        self.horizontalLayout.addWidget(self.search_text)
-        self.horizontalLayout.addWidget(self.search_btn)
-        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.dark_code_search_layout.addWidget(self.dark_code_search_textarea)
+        self.dark_code_search_layout.addWidget(self.dark_code_search_btn)
+        self.dark_code_main_layout.addLayout(self.dark_code_search_layout)
 
         combobox_list = ["Most Used","Alphabet","Newest"]
 
-        self.choice_group = QtWidgets.QComboBox()
-        #self.choice_group.setFixedSize(200,35)
-        self.choice_group.addItems(combobox_list)
-        self.choice_group.setStyleSheet(
+        self.dark_code_choice_group = QtWidgets.QComboBox()
+        #self.dark_code_choice_group.setFixedSize(200,35)
+        self.dark_code_choice_group.addItems(combobox_list)
+        self.dark_code_choice_group.setStyleSheet(
 '''
 QComboBox{
     color: #FFFFFF;
@@ -182,10 +199,10 @@ QComboBox QAbstractItemView {
         lang_lst = ["All Languages","Python", "Java", "C++", "C#", "Golang", "Javascript", "Typescript",
                     "Html", "CSS", "PHP","Dart", "Scala", "Ruby", "R", "kotlin", "rust", "Lua",
                     "Haskel"]
-        self.lang_group = QtWidgets.QComboBox()
-        #self.lang_group.setFixedSize(200,35)
-        self.lang_group.addItems(lang_lst)
-        self.lang_group.setStyleSheet(
+        self.dark_code_lang_choice = QtWidgets.QComboBox()
+        #self.dark_code_lang_choice.setFixedSize(200,35)
+        self.dark_code_lang_choice.addItems(lang_lst)
+        self.dark_code_lang_choice.setStyleSheet(
 '''
 QComboBox{
     color: #FFFFFF;
@@ -203,27 +220,28 @@ QComboBox QAbstractItemView {
 }
 '''
 )
-        self.sort_label = QtWidgets.QLabel("Sort by")
-        self.sort_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
-        self.sort_layout = QtWidgets.QVBoxLayout()
-        self.sort_layout.addWidget(self.sort_label)
-        self.sort_layout.addWidget(self.choice_group)
+        self.dark_code_sort_label = QtWidgets.QLabel("Sort by")
+        self.dark_code_sort_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+        self.dark_code_sort_layout = QtWidgets.QVBoxLayout()
+        self.dark_code_sort_layout.addWidget(self.dark_code_sort_label)
+        self.dark_code_sort_layout.addWidget(self.dark_code_choice_group)
 
-        self.lang_label = QtWidgets.QLabel("Choose Language")
-        self.lang_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
-        self.lang_layout = QtWidgets.QVBoxLayout()
-        self.lang_layout.addWidget(self.lang_label)
-        self.lang_layout.addWidget(self.lang_group)
-        self.top_horizontalLayout.addLayout(self.lang_layout)
-        self.top_horizontalLayout.addLayout(self.sort_layout)
-        self.top_horizontalLayout.addWidget(self.addcode_btn)
+        self.dark_code_lang_label = QtWidgets.QLabel("Choose Language")
+        self.dark_code_lang_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+        self.dark_code_lang_layout = QtWidgets.QVBoxLayout()
+        self.dark_code_lang_layout.addWidget(self.dark_code_lang_label)
+        self.dark_code_lang_layout.addWidget(self.dark_code_lang_choice)
+        self.dark_code_choice_layout = QtWidgets.QHBoxLayout()
+        self.dark_code_choice_layout.addLayout(self.dark_code_lang_layout)
+        self.dark_code_choice_layout.addLayout(self.dark_code_sort_layout)
+        self.dark_code_choice_layout.addWidget(self.dark_code_addcode_btn)
         
 
-        self.verticalLayout.addLayout(self.top_horizontalLayout)
+        self.dark_code_main_layout.addLayout(self.dark_code_choice_layout)
 
 
-        self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
-        self.scrollArea.setWidgetResizable(True)
+        self.dark_code_scrollArea = QtWidgets.QScrollArea(self.dark_code_centralwidget)
+        self.dark_code_scrollArea.setWidgetResizable(True)
         MainWindow.setStyleSheet(
 "QMainWindow {"
 "   background-color: #36393f;"
@@ -295,15 +313,15 @@ QComboBox QAbstractItemView {
 "    background: none;"
 "}"
 )
-        self.scrollArea.setStyleSheet("background: #2f3136; border-radius: 7px;")
-        self.scrollAreaWidgetContents = QtWidgets.QWidget(self.scrollArea)
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.dark_code_scrollArea.setStyleSheet("background: #2f3136; border-radius: 7px;")
+        self.dark_code_scrollAreaWidgetContents = QtWidgets.QWidget(self.dark_code_scrollArea)
+        self.dark_code_scrollArea.setWidget(self.dark_code_scrollAreaWidgetContents)
 
-        self.verticalLayout.addWidget(self.scrollArea)
+        self.dark_code_main_layout.addWidget(self.dark_code_scrollArea)
 
-        MainWindow.setCentralWidget(self.centralwidget)
+        MainWindow.setCentralWidget(self.dark_code_centralwidget)
 
-        self.formLayout = QtWidgets.QFormLayout(self.scrollAreaWidgetContents)
+        self.dark_code_form_layout = QtWidgets.QFormLayout(self.dark_code_scrollAreaWidgetContents)
 
 
         def copyed(txt):
@@ -314,10 +332,10 @@ QComboBox QAbstractItemView {
 
 
         for i,s in enumerate(files):
-            btn_horizontal = QtWidgets.QHBoxLayout()
-            main_btn = QPushButton(files[i])
-            main_btn.setFixedSize(300,60)
-            main_btn.setStyleSheet(
+            dark_code_scroll_btns_layout = QtWidgets.QHBoxLayout()
+            dark_code_scroll_main_btn = QPushButton(files[i])
+            dark_code_scroll_main_btn.setFixedSize(300,60)
+            dark_code_scroll_main_btn.setStyleSheet(
 '''
 QPushButton {
     color: #FFFFFF;
@@ -336,11 +354,11 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
-            edit_btn = QPushButton()   #39DFA2
-            edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
-            edit_btn.setIconSize(QtCore.QSize(28, 28))
-            edit_btn.setFixedSize(30,60)  
-            edit_btn.setStyleSheet(
+            dark_code_scroll_edit_btn = QPushButton()   #39DFA2
+            dark_code_scroll_edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
+            dark_code_scroll_edit_btn.setIconSize(QtCore.QSize(28, 28))
+            dark_code_scroll_edit_btn.setFixedSize(30,60)  
+            dark_code_scroll_edit_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
@@ -353,11 +371,11 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
-            del_btn = QPushButton()
-            del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
-            del_btn.setIconSize(QtCore.QSize(28, 28))
-            del_btn.setFixedSize(30,60)   #39DFA2
-            del_btn.setStyleSheet(
+            dark_code_scroll_del_btn = QPushButton()
+            dark_code_scroll_del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
+            dark_code_scroll_del_btn.setIconSize(QtCore.QSize(28, 28))
+            dark_code_scroll_del_btn.setFixedSize(30,60)   #39DFA2
+            dark_code_scroll_del_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
@@ -373,15 +391,15 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
-            btn_horizontal.addWidget(main_btn)
-            btn_horizontal.addWidget(edit_btn)
-            btn_horizontal.addWidget(del_btn)
-            self.formLayout.addRow(btn_horizontal)
+            dark_code_scroll_btns_layout.addWidget(dark_code_scroll_main_btn)
+            dark_code_scroll_btns_layout.addWidget(dark_code_scroll_edit_btn)
+            dark_code_scroll_btns_layout.addWidget(dark_code_scroll_del_btn)
+            self.dark_code_form_layout.addRow(dark_code_scroll_btns_layout)
 
         def combo(index):
             global files
-            print(self.choice_group.itemText(index))
-            #i = self.choice_group.itemText(index)
+            print(self.dark_code_choice_group.itemText(index))
+            #i = self.dark_code_choice_group.itemText(index)
             if index == 0:
                 files = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p']
             if index == 1:
@@ -389,16 +407,16 @@ QPushButton:pressed {
             elif index == 2:
                 files = ["Newest","Newest","Newest","Newest","Newest"]
 
-            self.scrollAreaWidgetContents.deleteLater()
-            self.scrollAreaWidgetContents = QtWidgets.QWidget(self.scrollArea)
-            self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-            self.formLayout = QtWidgets.QFormLayout(self.scrollAreaWidgetContents)
+            self.dark_code_scrollAreaWidgetContents.deleteLater()
+            self.dark_code_scrollAreaWidgetContents = QtWidgets.QWidget(self.dark_code_scrollArea)
+            self.dark_code_scrollArea.setWidget(self.dark_code_scrollAreaWidgetContents)
+            self.dark_code_form_layout = QtWidgets.QFormLayout(self.dark_code_scrollAreaWidgetContents)
 
             for i,s in enumerate(files):
-                btn_horizontal = QtWidgets.QHBoxLayout()
-                main_btn = QPushButton(files[i])
-                main_btn.setFixedSize(300,60)
-                main_btn.setStyleSheet(
+                dark_code_scroll_btns_layout = QtWidgets.QHBoxLayout()
+                dark_code_scroll_main_btn = QPushButton(files[i])
+                dark_code_scroll_main_btn.setFixedSize(300,60)
+                dark_code_scroll_main_btn.setStyleSheet(
 '''
 QPushButton {
     color: #FFFFFF;
@@ -417,11 +435,11 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
-                edit_btn = QPushButton()   #39DFA2
-                edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
-                edit_btn.setIconSize(QtCore.QSize(28, 28))
-                edit_btn.setFixedSize(30,60)  
-                edit_btn.setStyleSheet(
+                dark_code_scroll_edit_btn = QPushButton()   #39DFA2
+                dark_code_scroll_edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
+                dark_code_scroll_edit_btn.setIconSize(QtCore.QSize(28, 28))
+                dark_code_scroll_edit_btn.setFixedSize(30,60)  
+                dark_code_scroll_edit_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
@@ -434,11 +452,11 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
-                del_btn = QPushButton()
-                del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
-                del_btn.setIconSize(QtCore.QSize(28, 28))
-                del_btn.setFixedSize(30,60)   #39DFA2
-                del_btn.setStyleSheet(
+                dark_code_scroll_del_btn = QPushButton()
+                dark_code_scroll_del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
+                dark_code_scroll_del_btn.setIconSize(QtCore.QSize(28, 28))
+                dark_code_scroll_del_btn.setFixedSize(30,60)   #39DFA2
+                dark_code_scroll_del_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
@@ -454,11 +472,11 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
-                btn_horizontal.addWidget(main_btn)
-                btn_horizontal.addWidget(edit_btn)
-                btn_horizontal.addWidget(del_btn)
-                self.formLayout.addRow(btn_horizontal)
-        self.choice_group.activated.connect(combo)
+                dark_code_scroll_btns_layout.addWidget(dark_code_scroll_main_btn)
+                dark_code_scroll_btns_layout.addWidget(dark_code_scroll_edit_btn)
+                dark_code_scroll_btns_layout.addWidget(dark_code_scroll_del_btn)
+                self.dark_code_form_layout.addRow(dark_code_scroll_btns_layout)
+        self.dark_code_choice_group.activated.connect(combo)
         
 
         self.retranslateUi(MainWindow)
