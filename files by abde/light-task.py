@@ -18,117 +18,101 @@ class Ui_MainWindow(object):
         QtGui.QFontDatabase.addApplicationFont("fonts\\Goldman-Bold.ttf")  
         QtGui.QFontDatabase.addApplicationFont("fonts\\PirataOne-Regular.ttf") 
 
-        self.dark_task_centralwidget = QtWidgets.QWidget(MainWindow)
-        self.dark_task_verticalLayout = QtWidgets.QVBoxLayout(self.dark_task_centralwidget)
-        self.dark_task_title_layout = QtWidgets.QHBoxLayout()
+        self.light_task_centralwidget = QtWidgets.QWidget(MainWindow)
+        self.light_task_verticalLayout = QtWidgets.QVBoxLayout(self.light_task_centralwidget)
+        self.light_task_title_layout = QtWidgets.QHBoxLayout()
 
-        self.dark_task_home_btn = QtWidgets.QPushButton()
-        self.dark_task_home_btn.setIcon(QtGui.QIcon("pic\\home"))
-        self.dark_task_home_btn.setIconSize(QtCore.QSize(25, 25))
-        self.dark_task_home_btn.setFixedSize(40,40)
-        self.dark_task_home_btn.setStyleSheet(
+        self.light_task_home_btn = QtWidgets.QPushButton()
+        self.light_task_home_btn.setIcon(QtGui.QIcon("pic\\home"))
+        self.light_task_home_btn.setIconSize(QtCore.QSize(25, 25))
+        self.light_task_home_btn.setFixedSize(40,40)
+        self.light_task_home_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 QPushButton:hover {
-    background-color: #40444b;
+    background-color: #e3e5e8;
 }
 QPushButton:pressed {
-    background-color: #202225;
+    background-color: #A2A2A2;
 }
 ''')
 
-        self.dark_task_title_label = QtWidgets.QLabel("      Robert Task")
-        self.dark_task_title_label.setStyleSheet(
+        self.light_task_title_label = QtWidgets.QLabel("      Robert Task")
+        self.light_task_title_label.setStyleSheet(
 '''
 QLabel {
-    color: #FFFFFF;
     font-family: 'Titillium Web', sans-serif;
     font-size: 40px;
 }
 ''')
-        self.dark_task_title_layout = QtWidgets.QHBoxLayout()
-        self.dark_task_title_layout.addWidget(self.dark_task_home_btn)
-        self.dark_task_title_layout.addWidget(self.dark_task_title_label)
+        self.light_task_title_layout = QtWidgets.QHBoxLayout()
+        self.light_task_title_layout.addWidget(self.light_task_home_btn)
+        self.light_task_title_layout.addWidget(self.light_task_title_label)
 
-        self.dark_task_task_addcode_btn = QtWidgets.QPushButton()
-        self.dark_task_task_addcode_btn.setIcon(QtGui.QIcon("icons\\add_btn.png"))
-        self.dark_task_task_addcode_btn.setIconSize(QtCore.QSize(40, 40))
-        self.dark_task_task_addcode_btn.setFixedSize(70,50)
-        self.dark_task_task_addcode_btn.setStyleSheet(
+        self.light_task_task_addcode_btn = QtWidgets.QPushButton()
+        self.light_task_task_addcode_btn.setIcon(QtGui.QIcon("icons\\add_btn.png"))
+        self.light_task_task_addcode_btn.setIconSize(QtCore.QSize(40, 40))
+        self.light_task_task_addcode_btn.setFixedSize(70,50)
+        self.light_task_task_addcode_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
     border-radius: 12px;
 }
 QPushButton:hover {
-    background-color: #40444b;
+    background-color: #e3e5e8;
 }
 QPushButton:pressed {
-    background-color: #202225;
+    background-color: #A2A2A2;
 }
 ''')
-        self.dark_task_verticalLayout.addLayout(self.dark_task_title_layout)
+        self.light_task_verticalLayout.addLayout(self.light_task_title_layout)
 #-----------------code adding window------------------------------------------------
-        def dark_task_task_add_func(txt):
+        def light_task_task_add_func(txt):
             self.files_set_DialogWindow = QtWidgets.QDialog()
             self.files_set_DialogWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)
             self.files_set_DialogWindow.resize(380, 350)
             self.files_set_DialogWindow.setStyleSheet("""
 QDialog {
-background-color: #36393f;
+    background-color: #ffffff;
 }
 QLabel {
-font-family: 'Titillium Web', sans-serif;
-font-size: 30px;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 30px;
 }
 QPushButton {
-background-color: #202225;
-border-radius: 5px;
-font-family: 'Roboto Mono', monospace;
-font-size: 20px;
+    background-color: #e3e5e8;
+    border-radius: 5px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 20px;
 }
 QPushButton:hover {
-background-color: #40444b;
+    background-color: #C9C9C9;
 }
 QPushButton:pressed {
-background-color: #18191c;
+    background-color: #A2A2A2;
 }
 QTextEdit{
-background-color: #40444b;
-font-family: 'Cabin', sans-serif;
-font-size: 20px;
-border-radius: 5px;
-}
-QSpinBox {
-    color: #FFFFFF;
-	background-color: #2f3136;
-    font-size: 15px;
-	border-radius: 5px;
-	padding: 5px;
-	padding-left: 10px;
-}
-QSpinBox QAbstractItemView {
-	color: #FFFFFF;	
-	background-color: #2f3136;
-	padding: 10px;
-	selection-background-color: #40444b;
+    background-color: #ebedef;
+    font-family: 'Cabin', sans-serif;
+    font-size: 20px;
+    border-radius: 5px;
 }
 QComboBox{
-    color: #FFFFFF;
-	background-color: #2f3136;
+	background-color: #e3e5e8;
     font-size: 15px;
 	border-radius: 5px;
 	padding: 5px;
 	padding-left: 10px;
 }
 QComboBox QAbstractItemView {
-	color: #FFFFFF;	
-	background-color: #2f3136;
+	color: #000000;	
+	background-color: #e3e5e8;
 	padding: 10px;
-	selection-background-color: #40444b;
+	selection-background-color: #e3e5e8;
 }
 """)
             self.task_add_layout = QtWidgets.QVBoxLayout(self.files_set_DialogWindow)
@@ -179,58 +163,57 @@ QComboBox QAbstractItemView {
 
 #-----------------end of code adding--------------------------------------
 
-        self.dark_task_task_addcode_btn.clicked.connect(lambda checked, t="Add":dark_task_task_add_func(t))
-        self.dark_task_second_layout = QtWidgets.QHBoxLayout()
+        self.light_task_task_addcode_btn.clicked.connect(lambda checked, t="Add":light_task_task_add_func(t))
+        self.light_task_second_layout = QtWidgets.QHBoxLayout()
 
         task_sort_combo_lst = ["Newest", "Priority", "Alphabet"]
 
-        self.dark_task_sort_combo = QtWidgets.QComboBox()
-        self.dark_task_sort_combo.setFixedSize(200,30)
-        self.dark_task_sort_combo.addItems(task_sort_combo_lst)
-        self.dark_task_sort_combo.setStyleSheet(
+        self.light_task_sort_combo = QtWidgets.QComboBox()
+        self.light_task_sort_combo.setFixedSize(200,30)
+        self.light_task_sort_combo.addItems(task_sort_combo_lst)
+        self.light_task_sort_combo.setStyleSheet(
 '''
 QComboBox{
-    color: #FFFFFF;
-	background-color: #2f3136;
+	background-color: #e3e5e8;
     font-size: 15px;
 	border-radius: 5px;
 	padding: 5px;
 	padding-left: 10px;
 }
 QComboBox QAbstractItemView {
-	color: #FFFFFF;	
-	background-color: #2f3136;
+	color: #000000;	
+	background-color: #e3e5e8;
 	padding: 10px;
-	selection-background-color: #40444b;
+	selection-background-color: #e3e5e8;
 }
 '''
 )
-        self.dark_task_sort_label = QtWidgets.QLabel("Sort by")
-        self.dark_task_sort_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
-        self.dark_task_sort_layout = QtWidgets.QVBoxLayout()
-        self.dark_task_sort_layout.addWidget(self.dark_task_sort_label)
-        self.dark_task_sort_layout.addWidget(self.dark_task_sort_combo)
-        self.dark_task_second_layout.addLayout(self.dark_task_sort_layout)
-        self.dark_task_second_layout.addStretch(20)
-        self.dark_task_second_layout.addWidget(self.dark_task_task_addcode_btn)
+        self.light_task_sort_label = QtWidgets.QLabel("Sort by")
+        self.light_task_sort_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+        self.light_task_sort_layout = QtWidgets.QVBoxLayout()
+        self.light_task_sort_layout.addWidget(self.light_task_sort_label)
+        self.light_task_sort_layout.addWidget(self.light_task_sort_combo)
+        self.light_task_second_layout.addLayout(self.light_task_sort_layout)
+        self.light_task_second_layout.addStretch(20)
+        self.light_task_second_layout.addWidget(self.light_task_task_addcode_btn)
         
 
-        self.dark_task_verticalLayout.addLayout(self.dark_task_second_layout)
+        self.light_task_verticalLayout.addLayout(self.light_task_second_layout)
 
 
-        self.dark_task_scrollArea = QtWidgets.QScrollArea(self.dark_task_centralwidget)
-        self.dark_task_scrollArea.setWidgetResizable(True)
+        self.light_task_scrollArea = QtWidgets.QScrollArea(self.light_task_centralwidget)
+        self.light_task_scrollArea.setWidgetResizable(True)
         MainWindow.setStyleSheet(
 "QMainWindow {"
-"   background-color: #36393f;"
+"   background: #ffffff;"
 "}"
 "QScrollArea {"
-"background-color: #2ABF88"
+"background-color: #f2f3f5"
 "}"        
 "/* VERTICAL SCROLLBAR */"
 " QScrollBar:vertical {"
 "    border: none;"
-"    background: #2f3136;"
+"    background: #e3e5e8;"
 "    width: 14px;"
 "    margin: 15px 0 15px 0;"
 "    "
@@ -238,21 +221,21 @@ QComboBox QAbstractItemView {
 ""
 "/*  HANDLE BAR VERTICAL */"
 "QScrollBar::handle:vertical {    "
-"    background-color: #202225;"
+"    background-color: #D0D0D0;"
 "    min-height: 30px;"
 "    "
 "}"
 "QScrollBar::handle:vertical:hover{    "
-"    background-color: #40444b;"
+"    background-color: #B7B7B7;"
 "}"
 "QScrollBar::handle:vertical:pressed {    "
-"    background-color: #18191c;"
+"    background-color: #A9A9A9;"
 "}"
 ""
 "/* BTN TOP - SCROLLBAR */"
 "QScrollBar::sub-line:vertical {"
 "    border: none;"
-"    background-color: #202225;"
+"    background-color: #D0D0D0;"
 "    height: 15px;"
 "    border-top-left-radius: 7px;"
 "    border-top-right-radius: 7px;"
@@ -260,16 +243,16 @@ QComboBox QAbstractItemView {
 "    subcontrol-origin: margin;"
 "}"
 "QScrollBar::sub-line:vertical:hover {    "
-"    background-color: #40444b;"
+"    background-color: #B7B7B7;"
 "}"
 "QScrollBar::sub-line:vertical:pressed {    "
-"    background-color: #18191c;"
+"    background-color: #A9A9A9;"
 "}"
 ""
 "/* BTN BOTTOM - SCROLLBAR */"
 "QScrollBar::add-line:vertical {"
 "    border: none;"
-"    background-color: #202225;"
+"    background-color: #D0D0D0;"
 "    height: 15px;"
 "    border-bottom-left-radius: 7px;"
 "    border-bottom-right-radius: 7px;"
@@ -277,10 +260,10 @@ QComboBox QAbstractItemView {
 "    subcontrol-origin: margin;"
 "}"
 "QScrollBar::add-line:vertical:hover {    "
-"    background-color: #40444b;"
+"    background-color: #B7B7B7;"
 "}"
 "QScrollBar::add-line:vertical:pressed {    "
-"    background-color: #18191c;"
+"    background-color: #A9A9A9;"
 "}"
 ""
 "/* RESET ARROW */"
@@ -291,7 +274,7 @@ QComboBox QAbstractItemView {
 "    background: none;"
 "}"
 )
-        def dark_task_show_des_func(btn_info):
+        def light_task_show_des_func(btn_info):
             self.task_show_widget = QtWidgets.QDialog()
             self.task_show_widget.setWindowFlag(QtCore.Qt.FramelessWindowHint)
             self.task_show_widget.resize(350, 220)
@@ -299,29 +282,23 @@ QComboBox QAbstractItemView {
             self.task_show_widget.setMaximumSize(QtCore.QSize(350, 220))
             self.task_show_widget.setStyleSheet("""
 QDialog {
-background-color: #36393f;
+    background-color: #ffffff;
 }
 QLabel {
-font-family: 'Titillium Web', sans-serif;
-font-size: 30px;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 30px;
 }
 QPushButton {
-background-color: transparent;
-border-radius: 5px;
-font-family: 'Roboto Mono', monospace;
-font-size: 20px;
+    background-color: #e3e5e8;
+    border-radius: 5px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 20px;
 }
 QPushButton:hover {
-background-color: #40444b;
+    background-color: #C9C9C9;
 }
 QPushButton:pressed {
-background-color: #18191c;
-}
-QTextEdit{
-background-color: #40444b;
-font-family: 'Cabin', sans-serif;
-font-size: 20px;
-border-radius: 5px;
+    background-color: #A2A2A2;
 }
 """)
             self.exit_btn = QtWidgets.QPushButton(self.task_show_widget)
@@ -337,22 +314,22 @@ border-radius: 5px;
 
             self.task_show_widget.exec_()
 
-        self.dark_task_scrollArea.setStyleSheet("background-color: #2f3136; border-radius: 7px;")
-        self.dark_task_scrollAreaWidgetContents = QtWidgets.QWidget(self.dark_task_scrollArea)
-        self.dark_task_scrollArea.setWidget(self.dark_task_scrollAreaWidgetContents)
+        self.light_task_scrollArea.setStyleSheet("background-color: #f2f3f5; border-radius: 7px;")
+        self.light_task_scrollAreaWidgetContents = QtWidgets.QWidget(self.light_task_scrollArea)
+        self.light_task_scrollArea.setWidget(self.light_task_scrollAreaWidgetContents)
 
-        self.dark_task_verticalLayout.addWidget(self.dark_task_scrollArea)
+        self.light_task_verticalLayout.addWidget(self.light_task_scrollArea)
 
-        MainWindow.setCentralWidget(self.dark_task_centralwidget)
+        MainWindow.setCentralWidget(self.light_task_centralwidget)
 
-        self.dark_task_form_layout = QtWidgets.QFormLayout(self.dark_task_scrollAreaWidgetContents)
-        self.dark_task_cond_lst = ["icons\\unchecked.png", "icons\\checked.png"]
-        self.dark_task_cond = {}
+        self.light_task_form_layout = QtWidgets.QFormLayout(self.light_task_scrollAreaWidgetContents)
+        self.light_task_cond_lst = ["icons\\unchecked.png", "icons\\checked.png"]
+        self.light_task_cond = {}
         
-        def dark_task_create_task_btn_func(btn, i, s):
-            self.dark_task_cond[btn] = 0
+        def light_task_create_task_btn_func(btn, i, s):
+            self.light_task_cond[btn] = 0
             btn.setFixedSize(25,25)
-            btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[self.dark_task_cond[btn]]))
+            btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[self.light_task_cond[btn]]))
             btn.setIconSize(QtCore.QSize(25,25))
             btn.setStyleSheet("""
 QPushButton {
@@ -360,31 +337,30 @@ QPushButton {
     font-size: 12px;
 }
 QPushButton:hover {
-    background-color: #202225;
+    background-color: #e3e5e8;
 }
 QPushButton:pressed {
-    background-color: #18191c;
+    background-color: #A2A2A2;
 }
 """)
             def task_switch():
-                self.dark_task_cond[btn] = not self.dark_task_cond[btn]
-                btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[self.dark_task_cond[btn]]))
+                self.light_task_cond[btn] = not self.light_task_cond[btn]
+                btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[self.light_task_cond[btn]]))
             btn.clicked.connect(lambda: task_switch())
 
         for i,s in enumerate(files):
-            dark_task_scroll_btn_layout = QtWidgets.QHBoxLayout()
-            dark_task_checked_btn = QtWidgets.QPushButton()
-            dark_task_create_task_btn_func(dark_task_checked_btn, i, s)
-            dark_task_scroll_btn_layout.addWidget(dark_task_checked_btn)
+            light_task_scroll_btn_layout = QtWidgets.QHBoxLayout()
+            light_task_checked_btn = QtWidgets.QPushButton()
+            light_task_create_task_btn_func(light_task_checked_btn, i, s)
+            light_task_scroll_btn_layout.addWidget(light_task_checked_btn)
 
 
-            dark_task_main_btn = QtWidgets.QPushButton(files[i])
-            dark_task_main_btn.setFixedSize(260,60)
-            dark_task_main_btn.setStyleSheet(
+            light_task_main_btn = QtWidgets.QPushButton(files[i])
+            light_task_main_btn.setFixedSize(260,60)
+            light_task_main_btn.setStyleSheet(
 '''
 QPushButton {
-    color: #FFFFFF;
-    background-color: #202225;
+    background-color: #e3e5e8;
     font-family: 'Roboto Mono', monospace;
     font-size: 20px;
     border-top-left-radius: 10px;
@@ -393,37 +369,37 @@ QPushButton {
     border-bottom-right-radius: 0px;
 }
 QPushButton:hover {
-    background-color: #40444b;
+    background-color: #C9C9C9;
 }
 QPushButton:pressed {
-    background-color: #18191c;
+    background-color: #A2A2A2;
 }
 ''')
-            dark_task_main_btn.clicked.connect(lambda checked, btn_text=s:dark_task_show_des_func(btn_text))
+            light_task_main_btn.clicked.connect(lambda checked, btn_text=s:light_task_show_des_func(btn_text))
     
-            dark_task_edit_btn = QPushButton()   #39DFA2
-            dark_task_edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
-            dark_task_edit_btn.setIconSize(QtCore.QSize(28, 28))
-            dark_task_edit_btn.setFixedSize(30,60)  
-            dark_task_edit_btn.setStyleSheet(
+            light_task_edit_btn = QPushButton()   #39DFA2
+            light_task_edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
+            light_task_edit_btn.setIconSize(QtCore.QSize(28, 28))
+            light_task_edit_btn.setFixedSize(30,60)  
+            light_task_edit_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
     border-radius: 0px;
 }
 QPushButton:hover {
-    background-color: #202225;
+    background-color: #e3e5e8;
 }
 QPushButton:pressed {
-    background-color: #18191c;
+    background-color: #A2A2A2;
 }
 ''')
-            dark_task_edit_btn.clicked.connect(lambda checked, t="Edit":dark_task_task_add_func(t))
-            dark_task_del_btn = QPushButton()
-            dark_task_del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
-            dark_task_del_btn.setIconSize(QtCore.QSize(28, 28))
-            dark_task_del_btn.setFixedSize(30,60)   #39DFA2
-            dark_task_del_btn.setStyleSheet(
+            light_task_edit_btn.clicked.connect(lambda checked, t="Edit":light_task_task_add_func(t))
+            light_task_del_btn = QPushButton()
+            light_task_del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
+            light_task_del_btn.setIconSize(QtCore.QSize(28, 28))
+            light_task_del_btn.setFixedSize(30,60)   #39DFA2
+            light_task_del_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
@@ -433,20 +409,20 @@ QPushButton {
     border-bottom-right-radius: 10px;
 }
 QPushButton:hover {
-    background-color: #202225;
+    background-color: #e3e5e8;
 }
 QPushButton:pressed {
-    background-color: #18191c;
+    background-color: #A2A2A2;
 }
 ''')
-            dark_task_scroll_btn_layout.addWidget(dark_task_main_btn)
-            dark_task_scroll_btn_layout.addWidget(dark_task_edit_btn)
-            dark_task_scroll_btn_layout.addWidget(dark_task_del_btn)
-            self.dark_task_form_layout.addRow(dark_task_scroll_btn_layout)
+            light_task_scroll_btn_layout.addWidget(light_task_main_btn)
+            light_task_scroll_btn_layout.addWidget(light_task_edit_btn)
+            light_task_scroll_btn_layout.addWidget(light_task_del_btn)
+            self.light_task_form_layout.addRow(light_task_scroll_btn_layout)
 
         def combo(index):
             global files
-            #i = self.dark_task_sort_combo.itemText(index)
+            #i = self.light_task_sort_combo.itemText(index)
             if index == 0:
                 files = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p']
             if index == 1:
@@ -454,23 +430,22 @@ QPushButton:pressed {
             elif index == 2:
                 files = ["Newest","Newest","Newest","Newest","Newest"]
 
-            self.dark_task_scrollAreaWidgetContents.deleteLater()
-            self.dark_task_scrollAreaWidgetContents = QtWidgets.QWidget(self.dark_task_scrollArea)
-            self.dark_task_scrollArea.setWidget(self.dark_task_scrollAreaWidgetContents)
-            self.dark_task_form_layout = QtWidgets.QFormLayout(self.dark_task_scrollAreaWidgetContents)
+            self.light_task_scrollAreaWidgetContents.deleteLater()
+            self.light_task_scrollAreaWidgetContents = QtWidgets.QWidget(self.light_task_scrollArea)
+            self.light_task_scrollArea.setWidget(self.light_task_scrollAreaWidgetContents)
+            self.light_task_form_layout = QtWidgets.QFormLayout(self.light_task_scrollAreaWidgetContents)
 
             for i,s in enumerate(files):
-                dark_task_scroll_btn_layout = QtWidgets.QHBoxLayout()
-                dark_task_checked_btn = QtWidgets.QPushButton()
-                dark_task_create_task_btn_func(dark_task_checked_btn, i, s)
-                dark_task_scroll_btn_layout.addWidget(dark_task_checked_btn)
-                dark_task_main_btn = QPushButton(files[i])
-                dark_task_main_btn.setFixedSize(250,60)
-                dark_task_main_btn.setStyleSheet(
+                light_task_scroll_btn_layout = QtWidgets.QHBoxLayout()
+                light_task_checked_btn = QtWidgets.QPushButton()
+                light_task_create_task_btn_func(light_task_checked_btn, i, s)
+                light_task_scroll_btn_layout.addWidget(light_task_checked_btn)
+                light_task_main_btn = QPushButton(files[i])
+                light_task_main_btn.setFixedSize(250,60)
+                light_task_main_btn.setStyleSheet(
 '''
 QPushButton {
-    color: #FFFFFF;
-    background-color: #202225;
+    background-color: #e3e5e8;
     font-family: 'Roboto Mono', monospace;
     font-size: 20px;
     border-top-left-radius: 10px;
@@ -479,35 +454,35 @@ QPushButton {
     border-bottom-right-radius: 0px;
 }
 QPushButton:hover {
-    background-color: #40444b;
+    background-color: #C9C9C9;
 }
 QPushButton:pressed {
-    background-color: #18191c;
+    background-color: #A2A2A2;
 }
 ''')
-                dark_task_main_btn.clicked.connect(lambda checked, btn_text=s:dark_task_show_des_func(btn_text))
-                dark_task_edit_btn = QPushButton()   #39DFA2
-                dark_task_edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
-                dark_task_edit_btn.setIconSize(QtCore.QSize(28, 28))
-                dark_task_edit_btn.setFixedSize(30,60)  
-                dark_task_edit_btn.setStyleSheet(
+                light_task_main_btn.clicked.connect(lambda checked, btn_text=s:light_task_show_des_func(btn_text))
+                light_task_edit_btn = QPushButton()   #39DFA2
+                light_task_edit_btn.setIcon(QtGui.QIcon("icons\\edit_icon.png"))
+                light_task_edit_btn.setIconSize(QtCore.QSize(28, 28))
+                light_task_edit_btn.setFixedSize(30,60)  
+                light_task_edit_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
     border-radius: 0px;
 }
 QPushButton:hover {
-    background-color: #202225;
+    background-color: #e3e5e8;
 }
 QPushButton:pressed {
-    background-color: #18191c;
+    background-color: #A2A2A2;
 }
 ''')
-                dark_task_del_btn = QPushButton()
-                dark_task_del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
-                dark_task_del_btn.setIconSize(QtCore.QSize(28, 28))
-                dark_task_del_btn.setFixedSize(30,60)   #39DFA2
-                dark_task_del_btn.setStyleSheet(
+                light_task_del_btn = QPushButton()
+                light_task_del_btn.setIcon(QtGui.QIcon("icons/del_icon.png"))
+                light_task_del_btn.setIconSize(QtCore.QSize(28, 28))
+                light_task_del_btn.setFixedSize(30,60)   #39DFA2
+                light_task_del_btn.setStyleSheet(
 '''
 QPushButton {
     background-color: transparent;
@@ -517,17 +492,17 @@ QPushButton {
     border-bottom-right-radius: 10px;
 }
 QPushButton:hover {
-    background-color: #202225;
+    background-color: #e3e5e8;
 }
 QPushButton:pressed {
-    background-color: #18191c;
+    background-color: #A2A2A2;
 }
 ''')
-                dark_task_scroll_btn_layout.addWidget(dark_task_main_btn)
-                dark_task_scroll_btn_layout.addWidget(dark_task_edit_btn)
-                dark_task_scroll_btn_layout.addWidget(dark_task_del_btn)
-                self.dark_task_form_layout.addRow(dark_task_scroll_btn_layout)
-        self.dark_task_sort_combo.activated.connect(combo)
+                light_task_scroll_btn_layout.addWidget(light_task_main_btn)
+                light_task_scroll_btn_layout.addWidget(light_task_edit_btn)
+                light_task_scroll_btn_layout.addWidget(light_task_del_btn)
+                self.light_task_form_layout.addRow(light_task_scroll_btn_layout)
+        self.light_task_sort_combo.activated.connect(combo)
         
 
         self.retranslateUi(MainWindow)

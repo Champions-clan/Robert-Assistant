@@ -1,1 +1,1 @@
-light_code
+green_alarm

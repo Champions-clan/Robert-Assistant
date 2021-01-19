@@ -6,8 +6,6 @@ class Ui_MainWindow(object):
         MainWindow.resize(430, 500)
         MainWindow.setMinimumSize(430, 500)
         MainWindow.setMaximumSize(430, 500)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         QtGui.QFontDatabase.addApplicationFont("fonts\\RobotoMono-Regular.ttf")
         QtGui.QFontDatabase.addApplicationFont("fonts\\TitilliumWeb-Bold.ttf")
         QtGui.QFontDatabase.addApplicationFont("fonts\\Cabin-Medium.ttf")
@@ -28,10 +26,24 @@ QPushButton:hover {
 QPushButton:pressed {
     background-color: #202225;
 }
+QToolButton {
+    background-color: #2f3136;
+    border-radius: 20px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 35px;
+}
+QToolButton:hover {
+    background-color: #40444b;
+}
+QToolButton:pressed {
+    background-color: #202225;
+}
 """)
+        self.dark_main_central_widget= QtWidgets.QWidget(MainWindow)
+        self.dark_main_main_layout = QtWidgets.QVBoxLayout(self.dark_main_central_widget)
 #-------------------------title area------------------------------------------
-        self.title_label = QtWidgets.QLabel("           My Robert")
-        self.title_label.setStyleSheet(
+        self.dark_main_title_label = QtWidgets.QLabel("           My Robert")
+        self.dark_main_title_label.setStyleSheet(
 """
 QLabel {
     color: #FFFFFF;
@@ -39,162 +51,109 @@ QLabel {
     font-size: 40px;
 }        
 """)    
-        self.setting_btn = QtWidgets.QPushButton()
-        self.setting_btn.setShortcut("s")
-        self.setting_btn.setFixedSize(40, 40)
-        self.setting_btn.setIcon(QtGui.QIcon("pic\\setting"))
-        self.setting_btn.setIconSize(QtCore.QSize(30, 30))
+        self.dark_main_setting_btn = QtWidgets.QPushButton()
+        self.dark_main_setting_btn.setShortcut("s")
+        self.dark_main_setting_btn.setFixedSize(40, 40)
+        self.dark_main_setting_btn.setIcon(QtGui.QIcon("pic\\setting"))
+        self.dark_main_setting_btn.setIconSize(QtCore.QSize(30, 30))
 
 
-        self.title_layout = QtWidgets.QHBoxLayout()
-        self.title_layout.addWidget(self.title_label)
-        self.title_layout.addWidget(self.setting_btn)
-        self.verticalLayout.addLayout(self.title_layout)
+        self.dark_main_title_layout = QtWidgets.QHBoxLayout()
+        self.dark_main_title_layout.addWidget(self.dark_main_title_label)
+        self.dark_main_title_layout.addWidget(self.dark_main_setting_btn)
+        self.dark_main_main_layout.addLayout(self.dark_main_title_layout)
 
-        self.btn_layout = QtWidgets.QHBoxLayout()
+        self.dark_main_horizontal_layout = QtWidgets.QHBoxLayout()
 
-        self.left_scroll_btn = QtWidgets.QPushButton()
-        self.left_scroll_btn.setShortcut("Left")
-        self.left_scroll_btn.setFixedSize(30,50)
-        self.left_scroll_btn.setIcon(QtGui.QIcon("pic\\left_arrow"))
-        self.left_scroll_btn.setIconSize(QtCore.QSize(30, 50))
+        self.dark_main_left_scroll_btn = QtWidgets.QPushButton()
+        self.dark_main_left_scroll_btn.setShortcut("Left")
+        self.dark_main_left_scroll_btn.setFixedSize(30,50)
+        self.dark_main_left_scroll_btn.setIcon(QtGui.QIcon("pic\\left_arrow"))
+        self.dark_main_left_scroll_btn.setIconSize(QtCore.QSize(30, 50))
 
-        self.code_btn = QtWidgets.QToolButton()
-        self.code_btn.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
-        self.code_btn .setFixedSize(330,420)
-        self.code_btn.setText("Code Snippets")
-        self.code_btn.setIcon(QtGui.QIcon("pic\\copying"))
+        self.dark_main_code_page = QtWidgets.QToolButton()
+        self.dark_main_code_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
+        self.dark_main_code_page .setFixedSize(330,420)
+        self.dark_main_code_page.setText("Code Snippets")
+        self.dark_main_code_page.setIcon(QtGui.QIcon("pic\\copying"))
         
-        self.code_btn.setIconSize(QtCore.QSize(300, 400))
-        self.code_btn.setStyleSheet("""
-QToolButton {
-    background-color: #2f3136;
-    border-radius: 20px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 35px;
-}
-QToolButton:hover {
-    background-color: #40444b;
-}
-QToolButton:pressed {
-    background-color: #202225;
-}
-""")
-
-        self.trans_btn = QtWidgets.QToolButton()
-        self.trans_btn.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
-        self.trans_btn .setFixedSize(330,420)
-        self.trans_btn.setText("Translation")
-        self.trans_btn.setIcon(QtGui.QIcon("pic\\translation"))
+        self.dark_main_code_page.setIconSize(QtCore.QSize(300, 400))
         
-        self.trans_btn.setIconSize(QtCore.QSize(300, 400))
-        self.trans_btn.setStyleSheet("""
-QToolButton {
-    background-color: #2f3136;
-    border-radius: 20px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 35px;
-}
-QToolButton:hover {
-    background-color: #40444b;
-}
-QToolButton:pressed {
-    background-color: #202225;
-}
-""")
+
+        self.dark_main_trans_page = QtWidgets.QToolButton()
+        self.dark_main_trans_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
+        self.dark_main_trans_page .setFixedSize(330,420)
+        self.dark_main_trans_page.setText("Translation")
+        self.dark_main_trans_page.setIcon(QtGui.QIcon("pic\\translation"))
+        
+        self.dark_main_trans_page.setIconSize(QtCore.QSize(300, 400))
+        
     
-        self.task_btn = QtWidgets.QToolButton()
-        self.task_btn.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
-        self.task_btn .setFixedSize(330,420)
-        self.task_btn.setText("Task Manager")
-        self.task_btn.setIcon(QtGui.QIcon("pic\\task"))
+        self.dark_main_task_page = QtWidgets.QToolButton()
+        self.dark_main_task_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
+        self.dark_main_task_page .setFixedSize(330,420)
+        self.dark_main_task_page.setText("Task Manager")
+        self.dark_main_task_page.setIcon(QtGui.QIcon("pic\\task"))
         
-        self.task_btn.setIconSize(QtCore.QSize(300, 400))
-        self.task_btn.setStyleSheet("""
-QToolButton {
-    background-color: #2f3136;
-    border-radius: 20px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 35px;
-}
-QToolButton:hover {
-    background-color: #40444b;
-}
-QToolButton:pressed {
-    background-color: #202225;
-}
-""")
-
-        self.alarm_btn = QtWidgets.QToolButton()
-        self.alarm_btn.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
-        self.alarm_btn .setFixedSize(330,420)
-        self.alarm_btn.setText("Reminder")
-        self.alarm_btn.setIcon(QtGui.QIcon("pic\\alarm"))
+        self.dark_main_task_page.setIconSize(QtCore.QSize(300, 400))
         
-        self.alarm_btn.setIconSize(QtCore.QSize(300, 400))
-        self.alarm_btn.setStyleSheet("""
-QToolButton {
-    background-color: #2f3136;
-    border-radius: 20px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 35px;
-}
-QToolButton:hover {
-    background-color: #40444b;
-}
-QToolButton:pressed {
-    background-color: #202225;
-}
-""")
 
-        self.right_scroll_btn = QtWidgets.QPushButton()
-        self.right_scroll_btn.setShortcut("Right")
-        self.right_scroll_btn.setFixedSize(30,50)
-        self.right_scroll_btn.setIcon(QtGui.QIcon("pic\\right_arrow"))
-        self.right_scroll_btn.setIconSize(QtCore.QSize(30, 50))
+        self.dark_main_alarm_page = QtWidgets.QToolButton()
+        self.dark_main_alarm_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
+        self.dark_main_alarm_page .setFixedSize(330,420)
+        self.dark_main_alarm_page.setText("Reminder")
+        self.dark_main_alarm_page.setIcon(QtGui.QIcon("pic\\alarm"))
+        
+        self.dark_main_alarm_page.setIconSize(QtCore.QSize(300, 400))
+
+        self.dark_main_right_scroll_btn = QtWidgets.QPushButton()
+        self.dark_main_right_scroll_btn.setShortcut("Right")
+        self.dark_main_right_scroll_btn.setFixedSize(30,50)
+        self.dark_main_right_scroll_btn.setIcon(QtGui.QIcon("pic\\right_arrow"))
+        self.dark_main_right_scroll_btn.setIconSize(QtCore.QSize(30, 50))
 
 
-        self.btn_layout.addWidget(self.left_scroll_btn)
-        self.left_scroll_btn.hide()
-        self.btn_layout.addWidget(self.code_btn)
-        self.btn_layout.addWidget(self.trans_btn)
-        self.btn_layout.addWidget(self.task_btn)
-        self.btn_layout.addWidget(self.alarm_btn)
+        self.dark_main_horizontal_layout.addWidget(self.dark_main_left_scroll_btn)
+        self.dark_main_left_scroll_btn.hide()
+        self.dark_main_horizontal_layout.addWidget(self.dark_main_code_page)
+        self.dark_main_horizontal_layout.addWidget(self.dark_main_trans_page)
+        self.dark_main_horizontal_layout.addWidget(self.dark_main_task_page)
+        self.dark_main_horizontal_layout.addWidget(self.dark_main_alarm_page)
         self.i = 0
-        self.serv_lst = [self.code_btn, self.trans_btn, self.task_btn, self.alarm_btn]
-        for page in self.serv_lst[1:]:
+        self.dark_main_serv_lst = [self.dark_main_code_page, self.dark_main_trans_page, self.dark_main_task_page, self.dark_main_alarm_page]
+        for page in self.dark_main_serv_lst[1:]:
             page.hide()
-        self.btn_layout.addWidget(self.right_scroll_btn)
-        self.verticalLayout.addLayout(self.btn_layout)
+        self.dark_main_horizontal_layout.addWidget(self.dark_main_right_scroll_btn)
+        self.dark_main_main_layout.addLayout(self.dark_main_horizontal_layout)
 
-        def switch(sw):
-            self.serv_lst[self.i].hide()
+        def dark_main_switch_func(sw):
+            self.dark_main_serv_lst[self.i].hide()
             if sw == "right":
                 self.i += 1
-                self.serv_lst[self.i].show()
+                self.dark_main_serv_lst[self.i].show()
                 if self.i == 0:
-                    self.left_scroll_btn.hide()
+                    self.dark_main_left_scroll_btn.hide()
                 elif self.i == 3:
-                    self.right_scroll_btn.hide()
+                    self.dark_main_right_scroll_btn.hide()
                 else:
-                    self.left_scroll_btn.show()
-                    self.right_scroll_btn.show()
+                    self.dark_main_left_scroll_btn.show()
+                    self.dark_main_right_scroll_btn.show()
 
             else:
                 self.i -= 1
-                self.serv_lst[self.i].show()
+                self.dark_main_serv_lst[self.i].show()
                 if self.i == 0:
-                    self.left_scroll_btn.hide()
+                    self.dark_main_left_scroll_btn.hide()
                 elif self.i == 3:
-                    self.right_scroll_btn.hide()
+                    self.dark_main_right_scroll_btn.hide()
                 else:
-                    self.left_scroll_btn.show()
-                    self.right_scroll_btn.show()
+                    self.dark_main_left_scroll_btn.show()
+                    self.dark_main_right_scroll_btn.show()
 
-        self.left_scroll_btn.clicked.connect(lambda: switch("left"))
-        self.right_scroll_btn.clicked.connect(lambda: switch("right"))
+        self.dark_main_left_scroll_btn.clicked.connect(lambda: dark_main_switch_func("left"))
+        self.dark_main_right_scroll_btn.clicked.connect(lambda: dark_main_switch_func("right"))
 
-        MainWindow.setCentralWidget(self.centralwidget)
+        MainWindow.setCentralWidget(self.dark_main_central_widget)
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
