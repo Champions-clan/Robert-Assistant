@@ -9,7 +9,7 @@ def function_1():
 
 def function_2():
     print("function_2")
-    os.system('python ./App/Robert.py')
+    os.system('python ./App/Robert.pyw')
 
 
 with keyboard.GlobalHotKeys({

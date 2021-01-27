@@ -1,4 +1,3 @@
-from typing import NamedTuple
 import pyttsx3
 import speech_recognition as sr
 import datetime
@@ -13,9 +12,7 @@ import matplotlib.pyplot as plt
 from playsound import playsound
 from win10toast import ToastNotifier
 from PIL import ImageGrab
-from colored import fg, attr
 from googletrans import Translator
-from getpass import getpass
 
 def speak(audio):
     engine = pyttsx3.init()

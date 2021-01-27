@@ -12,11 +12,11 @@ class Ui_MainWindow(object):
         MainWindow.resize(430, 500)
         MainWindow.setMinimumSize(430, 500)
         MainWindow.setMaximumSize(430, 500)
-        QtGui.QFontDatabase.addApplicationFont(r".\Asserts\fonts\RobotoMono-Regular.ttf")
-        QtGui.QFontDatabase.addApplicationFont(r".\Asserts\fonts\TitilliumWeb-Bold.ttf")
-        QtGui.QFontDatabase.addApplicationFont(r".\Asserts\fonts\Cabin-Medium.ttf")
-        QtGui.QFontDatabase.addApplicationFont(r".\Asserts\fonts\Goldman-Bold.ttf")
-        QtGui.QFontDatabase.addApplicationFont(r".\Asserts\fonts\PirataOne-Regular.ttf")
+        QtGui.QFontDatabase.addApplicationFont(r".\Assets\fonts\RobotoMono-Regular.ttf")
+        QtGui.QFontDatabase.addApplicationFont(r".\Assets\fonts\TitilliumWeb-Bold.ttf")
+        QtGui.QFontDatabase.addApplicationFont(r".\Assets\fonts\Cabin-Medium.ttf")
+        QtGui.QFontDatabase.addApplicationFont(r".\Assets\fonts\Goldman-Bold.ttf")
+        QtGui.QFontDatabase.addApplicationFont(r".\Assets\fonts\PirataOne-Regular.ttf")
 
         self.dark_main_central_widget= QtWidgets.QWidget(MainWindow)
         self.dark_main_central_widget.setFixedSize(430, 500)
@@ -61,7 +61,7 @@ QLabel {
         self.dark_main_setting_btn = QtWidgets.QPushButton()
         self.dark_main_setting_btn.setShortcut("s")
         self.dark_main_setting_btn.setFixedSize(40, 40)
-        self.dark_main_setting_btn.setIcon(QtGui.QIcon(r".\Asserts\images\setting"))
+        self.dark_main_setting_btn.setIcon(QtGui.QIcon(r".\Assets\images\setting"))
         self.dark_main_setting_btn.setIconSize(QtCore.QSize(30, 30))
 
 
@@ -75,14 +75,14 @@ QLabel {
         self.dark_main_left_scroll_btn = QtWidgets.QPushButton()
         self.dark_main_left_scroll_btn.setShortcut("Left")
         self.dark_main_left_scroll_btn.setFixedSize(30,50)
-        self.dark_main_left_scroll_btn.setIcon(QtGui.QIcon(r".\Asserts\images\left_arrow"))
+        self.dark_main_left_scroll_btn.setIcon(QtGui.QIcon(r".\Assets\images\left_arrow"))
         self.dark_main_left_scroll_btn.setIconSize(QtCore.QSize(30, 50))
 
         self.dark_main_code_page = QtWidgets.QToolButton()
         self.dark_main_code_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.dark_main_code_page .setFixedSize(330,420)
         self.dark_main_code_page.setText("Code Snippets")
-        self.dark_main_code_page.setIcon(QtGui.QIcon(r".\Asserts\images\copying"))
+        self.dark_main_code_page.setIcon(QtGui.QIcon(r".\Assets\images\copying"))
 
         self.dark_main_code_page.setIconSize(QtCore.QSize(300, 400))
 
@@ -91,7 +91,7 @@ QLabel {
         self.dark_main_trans_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.dark_main_trans_page .setFixedSize(330,420)
         self.dark_main_trans_page.setText("Translation")
-        self.dark_main_trans_page.setIcon(QtGui.QIcon(r".\Asserts\images\translation"))
+        self.dark_main_trans_page.setIcon(QtGui.QIcon(r".\Assets\images\translation"))
 
         self.dark_main_trans_page.setIconSize(QtCore.QSize(300, 400))
 
@@ -100,7 +100,7 @@ QLabel {
         self.dark_main_task_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.dark_main_task_page .setFixedSize(330,420)
         self.dark_main_task_page.setText("Task Manager")
-        self.dark_main_task_page.setIcon(QtGui.QIcon(r".\Asserts\images\task"))
+        self.dark_main_task_page.setIcon(QtGui.QIcon(r".\Assets\images\task"))
 
         self.dark_main_task_page.setIconSize(QtCore.QSize(300, 400))
 
@@ -109,14 +109,14 @@ QLabel {
         self.dark_main_alarm_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.dark_main_alarm_page .setFixedSize(330,420)
         self.dark_main_alarm_page.setText("Reminder")
-        self.dark_main_alarm_page.setIcon(QtGui.QIcon(r".\Asserts\images\alarm"))
+        self.dark_main_alarm_page.setIcon(QtGui.QIcon(r".\Assets\images\alarm"))
 
         self.dark_main_alarm_page.setIconSize(QtCore.QSize(300, 400))
 
         self.dark_main_right_scroll_btn = QtWidgets.QPushButton()
         self.dark_main_right_scroll_btn.setShortcut("Right")
         self.dark_main_right_scroll_btn.setFixedSize(30,50)
-        self.dark_main_right_scroll_btn.setIcon(QtGui.QIcon(r".\Asserts\images\right_arrow"))
+        self.dark_main_right_scroll_btn.setIcon(QtGui.QIcon(r".\Assets\images\right_arrow"))
         self.dark_main_right_scroll_btn.setIconSize(QtCore.QSize(30, 50))
 
 
@@ -204,7 +204,7 @@ QLabel {
         self.light_main_setting_btn = QtWidgets.QPushButton()
         self.light_main_setting_btn.setShortcut("s")
         self.light_main_setting_btn.setFixedSize(40, 40)
-        self.light_main_setting_btn.setIcon(QtGui.QIcon(r".\Asserts\images\setting"))
+        self.light_main_setting_btn.setIcon(QtGui.QIcon(r".\Assets\images\setting"))
         self.light_main_setting_btn.setIconSize(QtCore.QSize(30, 30))
 
 
@@ -218,14 +218,14 @@ QLabel {
         self.light_main_left_scroll_btn = QtWidgets.QPushButton()
         self.light_main_left_scroll_btn.setShortcut("Left")
         self.light_main_left_scroll_btn.setFixedSize(30,50)
-        self.light_main_left_scroll_btn.setIcon(QtGui.QIcon(r".\Asserts\images\left_arrow"))
+        self.light_main_left_scroll_btn.setIcon(QtGui.QIcon(r".\Assets\images\left_arrow"))
         self.light_main_left_scroll_btn.setIconSize(QtCore.QSize(30, 50))
 
         self.light_main_code_page = QtWidgets.QToolButton()
         self.light_main_code_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.light_main_code_page .setFixedSize(330,420)
         self.light_main_code_page.setText("Code Snippets")
-        self.light_main_code_page.setIcon(QtGui.QIcon(r".\Asserts\images\copying"))
+        self.light_main_code_page.setIcon(QtGui.QIcon(r".\Assets\images\copying"))
 
         self.light_main_code_page.setIconSize(QtCore.QSize(300, 400))
 
@@ -234,7 +234,7 @@ QLabel {
         self.light_main_trans_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.light_main_trans_page .setFixedSize(330,420)
         self.light_main_trans_page.setText("Translation")
-        self.light_main_trans_page.setIcon(QtGui.QIcon(r".\Asserts\images\translation"))
+        self.light_main_trans_page.setIcon(QtGui.QIcon(r".\Assets\images\translation"))
 
         self.light_main_trans_page.setIconSize(QtCore.QSize(300, 400))
 
@@ -242,7 +242,7 @@ QLabel {
         self.light_main_task_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.light_main_task_page .setFixedSize(330,420)
         self.light_main_task_page.setText("Task Manager")
-        self.light_main_task_page.setIcon(QtGui.QIcon(r".\Asserts\images\task"))
+        self.light_main_task_page.setIcon(QtGui.QIcon(r".\Assets\images\task"))
 
         self.light_main_task_page.setIconSize(QtCore.QSize(300, 400))
 
@@ -250,14 +250,14 @@ QLabel {
         self.light_main_alarm_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.light_main_alarm_page .setFixedSize(330,420)
         self.light_main_alarm_page.setText("Reminder")
-        self.light_main_alarm_page.setIcon(QtGui.QIcon(r".\Asserts\images\alarm"))
+        self.light_main_alarm_page.setIcon(QtGui.QIcon(r".\Assets\images\alarm"))
 
         self.light_main_alarm_page.setIconSize(QtCore.QSize(300, 400))
 
         self.light_main_right_scroll_btn = QtWidgets.QPushButton()
         self.light_main_right_scroll_btn.setShortcut("Right")
         self.light_main_right_scroll_btn.setFixedSize(30,50)
-        self.light_main_right_scroll_btn.setIcon(QtGui.QIcon(r".\Asserts\images\right_arrow"))
+        self.light_main_right_scroll_btn.setIcon(QtGui.QIcon(r".\Assets\images\right_arrow"))
         self.light_main_right_scroll_btn.setIconSize(QtCore.QSize(30, 50))
 
 
@@ -343,7 +343,7 @@ QLabel {
         self.green_main_setting_btn = QtWidgets.QPushButton()
         self.green_main_setting_btn.setShortcut("s")
         self.green_main_setting_btn.setFixedSize(40, 40)
-        self.green_main_setting_btn.setIcon(QtGui.QIcon(r".\Asserts\images\setting"))
+        self.green_main_setting_btn.setIcon(QtGui.QIcon(r".\Assets\images\setting"))
         self.green_main_setting_btn.setIconSize(QtCore.QSize(30, 30))
 
 
@@ -357,14 +357,14 @@ QLabel {
         self.green_main_left_scroll_btn = QtWidgets.QPushButton()
         self.green_main_left_scroll_btn.setShortcut("Left")
         self.green_main_left_scroll_btn.setFixedSize(30,50)
-        self.green_main_left_scroll_btn.setIcon(QtGui.QIcon(r".\Asserts\images\left_arrow"))
+        self.green_main_left_scroll_btn.setIcon(QtGui.QIcon(r".\Assets\images\left_arrow"))
         self.green_main_left_scroll_btn.setIconSize(QtCore.QSize(30, 50))
 
         self.green_main_code_page = QtWidgets.QToolButton()
         self.green_main_code_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.green_main_code_page .setFixedSize(330,420)
         self.green_main_code_page.setText("Code Snippets")
-        self.green_main_code_page.setIcon(QtGui.QIcon(r".\Asserts\images\copying"))
+        self.green_main_code_page.setIcon(QtGui.QIcon(r".\Assets\images\copying"))
 
         self.green_main_code_page.setIconSize(QtCore.QSize(300, 400))
 
@@ -373,7 +373,7 @@ QLabel {
         self.green_main_trans_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.green_main_trans_page .setFixedSize(330,420)
         self.green_main_trans_page.setText("Translation")
-        self.green_main_trans_page.setIcon(QtGui.QIcon(r".\Asserts\images\translation"))
+        self.green_main_trans_page.setIcon(QtGui.QIcon(r".\Assets\images\translation"))
 
         self.green_main_trans_page.setIconSize(QtCore.QSize(300, 400))
 
@@ -382,7 +382,7 @@ QLabel {
         self.green_main_task_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.green_main_task_page .setFixedSize(330,420)
         self.green_main_task_page.setText("Task Manager")
-        self.green_main_task_page.setIcon(QtGui.QIcon(r".\Asserts\images\task"))
+        self.green_main_task_page.setIcon(QtGui.QIcon(r".\Assets\images\task"))
 
         self.green_main_task_page.setIconSize(QtCore.QSize(300, 400))
 
@@ -391,14 +391,14 @@ QLabel {
         self.green_main_alarm_page.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.green_main_alarm_page .setFixedSize(330,420)
         self.green_main_alarm_page.setText("Reminder")
-        self.green_main_alarm_page.setIcon(QtGui.QIcon(r".\Asserts\images\alarm"))
+        self.green_main_alarm_page.setIcon(QtGui.QIcon(r".\Assets\images\alarm"))
 
         self.green_main_alarm_page.setIconSize(QtCore.QSize(300, 400))
 
         self.green_main_right_scroll_btn = QtWidgets.QPushButton()
         self.green_main_right_scroll_btn.setShortcut("Right")
         self.green_main_right_scroll_btn.setFixedSize(30,50)
-        self.green_main_right_scroll_btn.setIcon(QtGui.QIcon(r".\Asserts\images\right_arrow"))
+        self.green_main_right_scroll_btn.setIcon(QtGui.QIcon(r".\Assets\images\right_arrow"))
         self.green_main_right_scroll_btn.setIconSize(QtCore.QSize(30, 50))
 
 
@@ -463,7 +463,7 @@ QFrame {
         self.dark_setting_title_layout = QtWidgets.QHBoxLayout()
 
         self.dark_setting_home_btn = QtWidgets.QPushButton()
-        self.dark_setting_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.dark_setting_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.dark_setting_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.dark_setting_home_btn.setFixedSize(40,40)
         self.dark_setting_home_btn.setStyleSheet(
@@ -590,7 +590,7 @@ QFrame {
         self.light_setting_title_layout = QtWidgets.QHBoxLayout()
 
         self.light_setting_home_btn = QtWidgets.QPushButton()
-        self.light_setting_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.light_setting_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.light_setting_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.light_setting_home_btn.setFixedSize(40,40)
         self.light_setting_home_btn.setStyleSheet(
@@ -714,7 +714,7 @@ QFrame {
         self.green_setting_title_layout = QtWidgets.QHBoxLayout()
 
         self.green_setting_home_btn = QtWidgets.QPushButton()
-        self.green_setting_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.green_setting_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.green_setting_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.green_setting_home_btn.setFixedSize(40,40)
         self.green_setting_home_btn.setStyleSheet(
@@ -886,7 +886,7 @@ QPushButton:pressed {
 }
 ''')
                 dark_code_scroll_edit_btn = QPushButton()
-                dark_code_scroll_edit_btn.setIcon(QtGui.QIcon(r".\Asserts\images\edit_icon.png"))
+                dark_code_scroll_edit_btn.setIcon(QtGui.QIcon(r".\Assets\images\edit_icon.png"))
                 dark_code_scroll_edit_btn.setIconSize(QtCore.QSize(28, 28))
                 dark_code_scroll_edit_btn.setFixedSize(30,60)
                 dark_code_scroll_edit_btn.clicked.connect(lambda checked, i= s: dark_code_edit_popup_func(i))
@@ -904,7 +904,7 @@ QPushButton:pressed {
 }
 ''')
                 dark_code_scroll_del_btn = QPushButton()
-                dark_code_scroll_del_btn.setIcon(QtGui.QIcon(r".\Asserts\images\del_icon.png"))
+                dark_code_scroll_del_btn.setIcon(QtGui.QIcon(r".\Assets\images\del_icon.png"))
                 dark_code_scroll_del_btn.setIconSize(QtCore.QSize(28, 28))
                 dark_code_scroll_del_btn.setFixedSize(30,60)
                 dark_code_scroll_del_btn.clicked.connect(lambda checked, txt=s:dark_code_delete_action(txt))
@@ -942,7 +942,7 @@ QLabel {
 ''')
         self.dark_code_title_layout = QtWidgets.QHBoxLayout()
         self.dark_code_home_btn = QtWidgets.QPushButton()
-        self.dark_code_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.dark_code_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.dark_code_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.dark_code_home_btn.setFixedSize(40,40)
         self.dark_code_home_btn.setStyleSheet(
@@ -977,7 +977,7 @@ QTextEdit {
 '''
 )
         self.dark_code_search_btn = QtWidgets.QPushButton()
-        self.dark_code_search_btn.setIcon(QtGui.QIcon(r".\Asserts\images\search_icon"))
+        self.dark_code_search_btn.setIcon(QtGui.QIcon(r".\Assets\images\search_icon"))
         self.dark_code_search_btn.setIconSize(QtCore.QSize(30, 30))
         self.dark_code_search_btn.setFixedSize(70,50)
         self.dark_code_search_btn.setStyleSheet(
@@ -994,7 +994,7 @@ QPushButton:pressed {
 }
 ''')
         self.dark_code_addcode_btn = QtWidgets.QPushButton()
-        self.dark_code_addcode_btn.setIcon(QtGui.QIcon(r".\Asserts\images\add_btn.png"))
+        self.dark_code_addcode_btn.setIcon(QtGui.QIcon(r".\Assets\images\add_btn.png"))
         self.dark_code_addcode_btn.setIconSize(QtCore.QSize(40, 40))
         self.dark_code_addcode_btn.setFixedSize(70,50)
         self.dark_code_addcode_btn.setStyleSheet(
@@ -1325,7 +1325,7 @@ QPushButton:pressed {
 }
 ''')
                 light_code_scroll_edit_btn = QPushButton()
-                light_code_scroll_edit_btn.setIcon(QtGui.QIcon(r".\Asserts\images\edit_icon.png"))
+                light_code_scroll_edit_btn.setIcon(QtGui.QIcon(r".\Assets\images\edit_icon.png"))
                 light_code_scroll_edit_btn.setIconSize(QtCore.QSize(28, 28))
                 light_code_scroll_edit_btn.setFixedSize(30,60)
                 light_code_scroll_edit_btn.clicked.connect(lambda checked, i= s: light_code_edit_popup_func(i))
@@ -1343,7 +1343,7 @@ QPushButton:pressed {
 }
 ''')
                 light_code_scroll_del_btn = QPushButton()
-                light_code_scroll_del_btn.setIcon(QtGui.QIcon(r".\Asserts\images\del_icon.png"))
+                light_code_scroll_del_btn.setIcon(QtGui.QIcon(r".\Assets\images\del_icon.png"))
                 light_code_scroll_del_btn.setIconSize(QtCore.QSize(28, 28))
                 light_code_scroll_del_btn.setFixedSize(30,60)
                 light_code_scroll_del_btn.clicked.connect(lambda checked, txt=s:light_code_delete_action(txt))
@@ -1380,7 +1380,7 @@ QLabel {
 ''')
         self.light_code_title_layout = QtWidgets.QHBoxLayout()
         self.light_code_home_btn = QtWidgets.QPushButton()
-        self.light_code_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.light_code_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.light_code_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.light_code_home_btn.setFixedSize(40,40)
         self.light_code_home_btn.setStyleSheet(
@@ -1414,7 +1414,7 @@ QTextEdit {
 '''
 )
         self.light_code_search_btn = QtWidgets.QPushButton()
-        self.light_code_search_btn.setIcon(QtGui.QIcon(r".\Asserts\images\search_icon"))
+        self.light_code_search_btn.setIcon(QtGui.QIcon(r".\Assets\images\search_icon"))
         self.light_code_search_btn.setIconSize(QtCore.QSize(30, 30))
         self.light_code_search_btn.setFixedSize(70,50)
         self.light_code_search_btn.setStyleSheet(
@@ -1431,7 +1431,7 @@ QPushButton:pressed {
 }
 ''')
         self.light_code_addcode_btn = QtWidgets.QPushButton()
-        self.light_code_addcode_btn.setIcon(QtGui.QIcon(r".\Asserts\images\add_btn.png"))
+        self.light_code_addcode_btn.setIcon(QtGui.QIcon(r".\Assets\images\add_btn.png"))
         self.light_code_addcode_btn.setIconSize(QtCore.QSize(40, 40))
         self.light_code_addcode_btn.setFixedSize(70,50)
         self.light_code_addcode_btn.setStyleSheet(
@@ -1759,7 +1759,7 @@ QPushButton:pressed {
 }
 ''')
                 green_code_scroll_edit_btn = QPushButton()
-                green_code_scroll_edit_btn.setIcon(QtGui.QIcon(r".\Asserts\images\edit_icon.png"))
+                green_code_scroll_edit_btn.setIcon(QtGui.QIcon(r".\Assets\images\edit_icon.png"))
                 green_code_scroll_edit_btn.setIconSize(QtCore.QSize(28, 28))
                 green_code_scroll_edit_btn.setFixedSize(30,60)
                 green_code_scroll_edit_btn.clicked.connect(lambda checked, i= s: green_code_edit_popup_func(i))
@@ -1777,7 +1777,7 @@ QPushButton:pressed {
 }
 ''')
                 green_code_scroll_del_btn = QPushButton()
-                green_code_scroll_del_btn.setIcon(QtGui.QIcon(r".\Asserts\images\del_icon.png"))
+                green_code_scroll_del_btn.setIcon(QtGui.QIcon(r".\Assets\images\del_icon.png"))
                 green_code_scroll_del_btn.setIconSize(QtCore.QSize(28, 28))
                 green_code_scroll_del_btn.setFixedSize(30,60)
                 green_code_scroll_del_btn.clicked.connect(lambda checked, txt=s:green_code_delete_action(txt))
@@ -1814,7 +1814,7 @@ QLabel {
 ''')
         self.green_code_title_layout = QtWidgets.QHBoxLayout()
         self.green_code_home_btn = QtWidgets.QPushButton()
-        self.green_code_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.green_code_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.green_code_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.green_code_home_btn.setFixedSize(40,40)
         self.green_code_home_btn.setStyleSheet(
@@ -1848,7 +1848,7 @@ QTextEdit {
 '''
 )
         self.green_code_search_btn = QtWidgets.QPushButton()
-        self.green_code_search_btn.setIcon(QtGui.QIcon(r".\Asserts\images\search_icon"))
+        self.green_code_search_btn.setIcon(QtGui.QIcon(r".\Assets\images\search_icon"))
         self.green_code_search_btn.setIconSize(QtCore.QSize(30, 30))
         self.green_code_search_btn.setFixedSize(70,50)
         self.green_code_search_btn.setStyleSheet(
@@ -1865,7 +1865,7 @@ QPushButton:pressed {
 }
 ''')
         self.green_code_addcode_btn = QtWidgets.QPushButton()
-        self.green_code_addcode_btn.setIcon(QtGui.QIcon(r".\Asserts\images\add_btn.png"))
+        self.green_code_addcode_btn.setIcon(QtGui.QIcon(r".\Assets\images\add_btn.png"))
         self.green_code_addcode_btn.setIconSize(QtCore.QSize(40, 40))
         self.green_code_addcode_btn.setFixedSize(70,50)
         self.green_code_addcode_btn.setStyleSheet(
@@ -2230,7 +2230,7 @@ QTextEdit {
 '''
 )
         self.dark_trans_translate_btn = QtWidgets.QPushButton()
-        self.dark_trans_translate_btn.setIcon(QtGui.QIcon(r".\Asserts\images\translate"))
+        self.dark_trans_translate_btn.setIcon(QtGui.QIcon(r".\Assets\images\translate"))
         self.dark_trans_translate_btn.setIconSize(QtCore.QSize(30, 30))
         self.dark_trans_translate_btn.setFixedSize(120,40)
         self.dark_trans_translate_btn.setStyleSheet(
@@ -2322,7 +2322,7 @@ QComboBox QAbstractItemView {
 }
 """)
         self.light_trans_home_btn = QtWidgets.QPushButton()
-        self.light_trans_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.light_trans_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.light_trans_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.light_trans_home_btn.setFixedSize(40,40)
         self.light_trans_home_btn.setStyleSheet(
@@ -2375,7 +2375,7 @@ QTextEdit {
 '''
 )
         self.light_trans_translate_btn = QtWidgets.QPushButton()
-        self.light_trans_translate_btn.setIcon(QtGui.QIcon(r".\Asserts\images\translate"))
+        self.light_trans_translate_btn.setIcon(QtGui.QIcon(r".\Assets\images\translate"))
         self.light_trans_translate_btn.setIconSize(QtCore.QSize(30, 30))
         self.light_trans_translate_btn.setFixedSize(120,40)
         self.light_trans_translate_btn.setStyleSheet(
@@ -2465,7 +2465,7 @@ QComboBox QAbstractItemView {
 }
 """)
         self.green_trans_home_btn = QtWidgets.QPushButton()
-        self.green_trans_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.green_trans_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.green_trans_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.green_trans_home_btn.setFixedSize(40,40)
         self.green_trans_home_btn.setStyleSheet(
@@ -2519,7 +2519,7 @@ QTextEdit {
 '''
 )
         self.green_trans_translate_btn = QtWidgets.QPushButton()
-        self.green_trans_translate_btn.setIcon(QtGui.QIcon(r".\Asserts\images\translate"))
+        self.green_trans_translate_btn.setIcon(QtGui.QIcon(r".\Assets\images\translate"))
         self.green_trans_translate_btn.setIconSize(QtCore.QSize(30, 30))
         self.green_trans_translate_btn.setFixedSize(120,40)
         self.green_trans_translate_btn.setStyleSheet(
@@ -2764,7 +2764,7 @@ QPushButton:pressed {
 ''')
                 green_task_main_btn.clicked.connect(lambda checked, btn_text=s:green_task_show_des_func(btn_text))
                 green_task_edit_btn = QPushButton()   #39DFA2
-                green_task_edit_btn.setIcon(QtGui.QIcon(r".\Asserts\images\edit_icon.png"))
+                green_task_edit_btn.setIcon(QtGui.QIcon(r".\Assets\images\edit_icon.png"))
                 green_task_edit_btn.setIconSize(QtCore.QSize(28, 28))
                 green_task_edit_btn.setFixedSize(30,60)
                 green_task_edit_btn.clicked.connect(lambda checked, s=s: green_task_task_add_func("Edit",s))
@@ -2782,7 +2782,7 @@ QPushButton:pressed {
 }
 ''')
                 green_task_del_btn = QPushButton()
-                green_task_del_btn.setIcon(QtGui.QIcon(r".\Asserts\images/del_icon.png"))
+                green_task_del_btn.setIcon(QtGui.QIcon(r".\Assets\images/del_icon.png"))
                 green_task_del_btn.setIconSize(QtCore.QSize(28, 28))
                 green_task_del_btn.setFixedSize(30,60)
                 green_task_del_btn.clicked.connect(lambda checked, s=s: green_task_delete_action(s))
@@ -2809,7 +2809,7 @@ QPushButton:pressed {
 
 
         self.green_task_home_btn = QtWidgets.QPushButton()
-        self.green_task_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.green_task_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.green_task_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.green_task_home_btn.setFixedSize(40,40)
         self.green_task_home_btn.setStyleSheet(
@@ -2839,7 +2839,7 @@ QLabel {
         self.green_task_title_layout.addWidget(self.green_task_title_label)
 
         self.green_task_task_addcode_btn = QtWidgets.QPushButton()
-        self.green_task_task_addcode_btn.setIcon(QtGui.QIcon(r".\Asserts\images\add_btn.png"))
+        self.green_task_task_addcode_btn.setIcon(QtGui.QIcon(r".\Assets\images\add_btn.png"))
         self.green_task_task_addcode_btn.setIconSize(QtCore.QSize(40, 40))
         self.green_task_task_addcode_btn.setFixedSize(70,50)
         self.green_task_task_addcode_btn.setStyleSheet(
@@ -3008,7 +3008,7 @@ QPushButton:pressed {
             self.exit_lay = QtWidgets.QHBoxLayout()
             self.exit_lay.addStretch(1)
             self.exit_lay.addWidget(self.exit_btn)
-            self.exit_btn.setIcon(QtGui.QIcon(r".\Asserts\images\exit_icon"))
+            self.exit_btn.setIcon(QtGui.QIcon(r".\Assets\images\exit_icon"))
             self.exit_btn.setIconSize(QtCore.QSize(20, 20))
             self.exit_btn.setGeometry(QtCore.QRect(315, 5, 25, 25))
             self.exit_btn.clicked.connect(self.task_show_widget.accept)
@@ -3028,7 +3028,7 @@ QPushButton:pressed {
         self.green_task_verticalLayout.addWidget(self.green_task_scrollArea)
 
         self.green_task_form_layout = QtWidgets.QFormLayout(self.green_task_scrollAreaWidgetContents)
-        self.green_task_cond_lst = [r".\Asserts\images\unchecked.png", r".\Asserts\images\checked.png"]
+        self.green_task_cond_lst = [r".\Assets\images\unchecked.png", r".\Assets\images\checked.png"]
         self.green_task_cond = {}
 
         def green_task_create_task_btn_func(btn, i, s):
@@ -3246,7 +3246,7 @@ QPushButton:pressed {
 ''')
                 dark_task_main_btn.clicked.connect(lambda checked, btn_text=s:dark_task_show_des_func(btn_text))
                 dark_task_edit_btn = QPushButton()   #39DFA2
-                dark_task_edit_btn.setIcon(QtGui.QIcon(r".\Asserts\images\edit_icon.png"))
+                dark_task_edit_btn.setIcon(QtGui.QIcon(r".\Assets\images\edit_icon.png"))
                 dark_task_edit_btn.setIconSize(QtCore.QSize(28, 28))
                 dark_task_edit_btn.setFixedSize(30,60)
                 dark_task_edit_btn.clicked.connect(lambda checked, s=s: dark_task_task_add_func("Edit",s))
@@ -3264,7 +3264,7 @@ QPushButton:pressed {
 }
 ''')
                 dark_task_del_btn = QPushButton()
-                dark_task_del_btn.setIcon(QtGui.QIcon(r".\Asserts\images/del_icon.png"))
+                dark_task_del_btn.setIcon(QtGui.QIcon(r".\Assets\images/del_icon.png"))
                 dark_task_del_btn.setIconSize(QtCore.QSize(28, 28))
                 dark_task_del_btn.setFixedSize(30,60)
                 dark_task_del_btn.clicked.connect(lambda checked, s=s: dark_task_delete_action(s))
@@ -3290,7 +3290,7 @@ QPushButton:pressed {
                 self.dark_task_form_layout.addRow(dark_task_scroll_btn_layout)
 
         self.dark_task_home_btn = QtWidgets.QPushButton()
-        self.dark_task_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.dark_task_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.dark_task_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.dark_task_home_btn.setFixedSize(40,40)
         self.dark_task_home_btn.setStyleSheet(
@@ -3321,7 +3321,7 @@ QLabel {
         self.dark_task_title_layout.addWidget(self.dark_task_title_label)
 
         self.dark_task_task_addcode_btn = QtWidgets.QPushButton()
-        self.dark_task_task_addcode_btn.setIcon(QtGui.QIcon(r".\Asserts\images\add_btn.png"))
+        self.dark_task_task_addcode_btn.setIcon(QtGui.QIcon(r".\Assets\images\add_btn.png"))
         self.dark_task_task_addcode_btn.setIconSize(QtCore.QSize(40, 40))
         self.dark_task_task_addcode_btn.setFixedSize(70,50)
         self.dark_task_task_addcode_btn.setStyleSheet(
@@ -3496,7 +3496,7 @@ border-radius: 5px;
             self.exit_lay = QtWidgets.QHBoxLayout()
             self.exit_lay.addStretch(1)
             self.exit_lay.addWidget(self.exit_btn)
-            self.exit_btn.setIcon(QtGui.QIcon(r".\Asserts\images\exit_icon"))
+            self.exit_btn.setIcon(QtGui.QIcon(r".\Assets\images\exit_icon"))
             self.exit_btn.setIconSize(QtCore.QSize(20, 20))
             self.exit_btn.setGeometry(QtCore.QRect(315, 5, 25, 25))
             self.exit_btn.clicked.connect(self.task_show_widget.accept)
@@ -3516,7 +3516,7 @@ border-radius: 5px;
         self.dark_task_verticalLayout.addWidget(self.dark_task_scrollArea)
 
         self.dark_task_form_layout = QtWidgets.QFormLayout(self.dark_task_scrollAreaWidgetContents)
-        self.dark_task_cond_lst = [r".\Asserts\images\unchecked.png", r".\Asserts\images\checked.png"]
+        self.dark_task_cond_lst = [r".\Assets\images\unchecked.png", r".\Assets\images\checked.png"]
         self.dark_task_cond = {}
 
         def dark_task_create_task_btn_func(btn, i, s):
@@ -3719,7 +3719,7 @@ QPushButton:pressed {
 ''')
                 light_task_main_btn.clicked.connect(lambda checked, btn_text=s:light_task_show_des_func(btn_text))
                 light_task_edit_btn = QPushButton()   #39DFA2
-                light_task_edit_btn.setIcon(QtGui.QIcon(r".\Asserts\images\edit_icon.png"))
+                light_task_edit_btn.setIcon(QtGui.QIcon(r".\Assets\images\edit_icon.png"))
                 light_task_edit_btn.setIconSize(QtCore.QSize(28, 28))
                 light_task_edit_btn.setFixedSize(30,60)
                 light_task_edit_btn.clicked.connect(lambda checked, s=s: light_task_task_add_func("Edit",s))
@@ -3737,7 +3737,7 @@ QPushButton:pressed {
 }
 ''')
                 light_task_del_btn = QPushButton()
-                light_task_del_btn.setIcon(QtGui.QIcon(r".\Asserts\images/del_icon.png"))
+                light_task_del_btn.setIcon(QtGui.QIcon(r".\Assets\images/del_icon.png"))
                 light_task_del_btn.setIconSize(QtCore.QSize(28, 28))
                 light_task_del_btn.setFixedSize(30,60)
                 light_task_del_btn.clicked.connect(lambda checked, s=s: light_task_delete_action(s))
@@ -3762,7 +3762,7 @@ QPushButton:pressed {
                 light_task_scroll_btn_layout.addWidget(light_task_del_btn)
                 self.light_task_form_layout.addRow(light_task_scroll_btn_layout)
         self.light_task_home_btn = QtWidgets.QPushButton()
-        self.light_task_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.light_task_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.light_task_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.light_task_home_btn.setFixedSize(40,40)
         self.light_task_home_btn.setStyleSheet(
@@ -3792,7 +3792,7 @@ QLabel {
         self.light_task_title_layout.addWidget(self.light_task_title_label)
 
         self.light_task_task_addcode_btn = QtWidgets.QPushButton()
-        self.light_task_task_addcode_btn.setIcon(QtGui.QIcon(r".\Asserts\images\add_btn.png"))
+        self.light_task_task_addcode_btn.setIcon(QtGui.QIcon(r".\Assets\images\add_btn.png"))
         self.light_task_task_addcode_btn.setIconSize(QtCore.QSize(40, 40))
         self.light_task_task_addcode_btn.setFixedSize(70,50)
         self.light_task_task_addcode_btn.setStyleSheet(
@@ -3960,7 +3960,7 @@ QPushButton:pressed {
             self.exit_lay = QtWidgets.QHBoxLayout()
             self.exit_lay.addStretch(1)
             self.exit_lay.addWidget(self.exit_btn)
-            self.exit_btn.setIcon(QtGui.QIcon(r".\Asserts\images\exit_icon"))
+            self.exit_btn.setIcon(QtGui.QIcon(r".\Assets\images\exit_icon"))
             self.exit_btn.setIconSize(QtCore.QSize(20, 20))
             self.exit_btn.setGeometry(QtCore.QRect(315, 5, 25, 25))
             self.exit_btn.clicked.connect(self.task_show_widget.accept)
@@ -3980,7 +3980,7 @@ QPushButton:pressed {
         self.light_task_verticalLayout.addWidget(self.light_task_scrollArea)
 
         self.light_task_form_layout = QtWidgets.QFormLayout(self.light_task_scrollAreaWidgetContents)
-        self.light_task_cond_lst = [r".\Asserts\images\unchecked.png", r".\Asserts\images\checked.png"]
+        self.light_task_cond_lst = [r".\Assets\images\unchecked.png", r".\Assets\images\checked.png"]
         self.light_task_cond = {}
 
         def light_task_create_task_btn_func(btn, i, s):
@@ -4018,7 +4018,7 @@ QPushButton:pressed {
         self.dark_alarm_verticalLayout = QtWidgets.QVBoxLayout(self.dark_alarm_centralwidget)
 
         self.dark_alarm_home_btn = QtWidgets.QPushButton()
-        self.dark_alarm_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.dark_alarm_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.dark_alarm_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.dark_alarm_home_btn.setFixedSize(40,40)
         self.dark_alarm_home_btn.setStyleSheet(
@@ -4050,7 +4050,7 @@ QLabel {
 
 
         self.dark_alarm_addcode_btn = QtWidgets.QPushButton()
-        self.dark_alarm_addcode_btn.setIcon(QtGui.QIcon(r".\Asserts\images\add_btn.png"))
+        self.dark_alarm_addcode_btn.setIcon(QtGui.QIcon(r".\Assets\images\add_btn.png"))
         self.dark_alarm_addcode_btn.setIconSize(QtCore.QSize(40, 40))
         self.dark_alarm_addcode_btn.setFixedSize(70,50)
         self.dark_alarm_addcode_btn.setStyleSheet(
@@ -4292,7 +4292,7 @@ QComboBox QAbstractItemView {
         self.dark_alarm_verticalLayout.addWidget(self.dark_alarm_scroll_Area)
 
         self.dark_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(self.dark_alarm_scroll_AreaWidgetContents)
-        self.dark_alarm_cond_lst = [r".\Asserts\images\off.png", r".\Asserts\images\on.png"]
+        self.dark_alarm_cond_lst = [r".\Assets\images\off.png", r".\Assets\images\on.png"]
         self.dark_alarm_cond_text = ["Off", "On"]
         self.dark_alarm_cond = {}
         def dark_alarm_create_alarm_btn(btn, i, s):
@@ -4343,7 +4343,7 @@ QLabel {
 ''')
 
             dark_alarm_edit_btn = QtWidgets.QPushButton()   #39DFA2
-            dark_alarm_edit_btn.setIcon(QtGui.QIcon(r".\Asserts\images\edit_icon.png"))
+            dark_alarm_edit_btn.setIcon(QtGui.QIcon(r".\Assets\images\edit_icon.png"))
             dark_alarm_edit_btn.setIconSize(QtCore.QSize(28, 28))
             dark_alarm_edit_btn.setFixedSize(30,60)
             dark_alarm_edit_btn.setStyleSheet(
@@ -4362,7 +4362,7 @@ QPushButton:pressed {
             dark_alarm_edit_btn.clicked.connect(lambda : dark_alarm_add_window("Edit"))
 
             dark_alarm_del_btn = QtWidgets.QPushButton()
-            dark_alarm_del_btn.setIcon(QtGui.QIcon(r".\Asserts\images\del_icon.png"))
+            dark_alarm_del_btn.setIcon(QtGui.QIcon(r".\Assets\images\del_icon.png"))
             dark_alarm_del_btn.setIconSize(QtCore.QSize(28, 28))
             dark_alarm_del_btn.setFixedSize(30,60)   #39DFA2
             dark_alarm_del_btn.setStyleSheet(
@@ -4394,7 +4394,7 @@ QPushButton:pressed {
         self.light_alarm_verticalLayout = QtWidgets.QVBoxLayout(self.light_alarm_centralwidget)
 
         self.light_alarm_home_btn = QtWidgets.QPushButton()
-        self.light_alarm_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.light_alarm_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.light_alarm_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.light_alarm_home_btn.setFixedSize(40,40)
         self.light_alarm_home_btn.setStyleSheet(
@@ -4425,7 +4425,7 @@ QLabel {
 
 
         self.light_alarm_addcode_btn = QtWidgets.QPushButton()
-        self.light_alarm_addcode_btn.setIcon(QtGui.QIcon(r".\Asserts\images\add_btn.png"))
+        self.light_alarm_addcode_btn.setIcon(QtGui.QIcon(r".\Assets\images\add_btn.png"))
         self.light_alarm_addcode_btn.setIconSize(QtCore.QSize(40, 40))
         self.light_alarm_addcode_btn.setFixedSize(70,50)
         self.light_alarm_addcode_btn.setStyleSheet(
@@ -4665,7 +4665,7 @@ QComboBox QAbstractItemView {
         self.light_alarm_verticalLayout.addWidget(self.light_alarm_scroll_Area)
 
         self.light_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(self.light_alarm_scroll_AreaWidgetContents)
-        self.light_alarm_cond_lst = [r".\Asserts\images\off.png", r".\Asserts\images\on.png"]
+        self.light_alarm_cond_lst = [r".\Assets\images\off.png", r".\Assets\images\on.png"]
         self.light_alarm_cond_text = ["Off", "On"]
         self.light_alarm_cond = {}
         def light_alarm_create_alarm_btn(btn, i, s):
@@ -4720,7 +4720,7 @@ QPushButton:pressed {
 ''')
 
             light_alarm_edit_btn = QtWidgets.QPushButton()   #39DFA2
-            light_alarm_edit_btn.setIcon(QtGui.QIcon(r".\Asserts\images\edit_icon.png"))
+            light_alarm_edit_btn.setIcon(QtGui.QIcon(r".\Assets\images\edit_icon.png"))
             light_alarm_edit_btn.setIconSize(QtCore.QSize(28, 28))
             light_alarm_edit_btn.setFixedSize(30,60)
             light_alarm_edit_btn.setStyleSheet(
@@ -4739,7 +4739,7 @@ QPushButton:pressed {
             light_alarm_edit_btn.clicked.connect(lambda : light_alarm_add_window("Edit"))
 
             light_alarm_del_btn = QtWidgets.QPushButton()
-            light_alarm_del_btn.setIcon(QtGui.QIcon(r".\Asserts\images/del_icon.png"))
+            light_alarm_del_btn.setIcon(QtGui.QIcon(r".\Assets\images/del_icon.png"))
             light_alarm_del_btn.setIconSize(QtCore.QSize(28, 28))
             light_alarm_del_btn.setFixedSize(30,60)   #39DFA2
             light_alarm_del_btn.setStyleSheet(
@@ -4771,7 +4771,7 @@ QPushButton:pressed {
         self.green_alarm_verticalLayout = QtWidgets.QVBoxLayout(self.green_alarm_centralwidget)
 
         self.green_alarm_home_btn = QtWidgets.QPushButton()
-        self.green_alarm_home_btn.setIcon(QtGui.QIcon(r".\Asserts\images\home"))
+        self.green_alarm_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.green_alarm_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.green_alarm_home_btn.setFixedSize(40,40)
         self.green_alarm_home_btn.setStyleSheet(
@@ -4802,7 +4802,7 @@ QLabel {
 
 
         self.green_alarm_addcode_btn = QtWidgets.QPushButton()
-        self.green_alarm_addcode_btn.setIcon(QtGui.QIcon(r".\Asserts\images\add_btn.png"))
+        self.green_alarm_addcode_btn.setIcon(QtGui.QIcon(r".\Assets\images\add_btn.png"))
         self.green_alarm_addcode_btn.setIconSize(QtCore.QSize(40, 40))
         self.green_alarm_addcode_btn.setFixedSize(70,50)
         self.green_alarm_addcode_btn.setStyleSheet(
@@ -5042,7 +5042,7 @@ QComboBox QAbstractItemView {
         self.green_alarm_verticalLayout.addWidget(self.green_alarm_scroll_Area)
 
         self.green_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(self.green_alarm_scroll_AreaWidgetContents)
-        self.green_alarm_cond_lst = [r".\Asserts\images\off.png", r".\Asserts\images\on.png"]
+        self.green_alarm_cond_lst = [r".\Assets\images\off.png", r".\Assets\images\on.png"]
         self.green_alarm_cond_text = ["Off", "On"]
         self.green_alarm_cond = {}
         def green_alarm_create_alarm_btn(btn, i, s):
@@ -5098,7 +5098,7 @@ QPushButton:pressed {
 ''')
 
             green_alarm_edit_btn = QtWidgets.QPushButton()   #39DFA2
-            green_alarm_edit_btn.setIcon(QtGui.QIcon(r".\Asserts\images\edit_icon.png"))
+            green_alarm_edit_btn.setIcon(QtGui.QIcon(r".\Assets\images\edit_icon.png"))
             green_alarm_edit_btn.setIconSize(QtCore.QSize(28, 28))
             green_alarm_edit_btn.setFixedSize(30,60)
             green_alarm_edit_btn.setStyleSheet(
@@ -5117,7 +5117,7 @@ QPushButton:pressed {
             green_alarm_edit_btn.clicked.connect(lambda : green_alarm_add_window("Edit"))
 
             green_alarm_del_btn = QtWidgets.QPushButton()
-            green_alarm_del_btn.setIcon(QtGui.QIcon(r".\Asserts\images/del_icon.png"))
+            green_alarm_del_btn.setIcon(QtGui.QIcon(r".\Assets\images/del_icon.png"))
             green_alarm_del_btn.setIconSize(QtCore.QSize(28, 28))
             green_alarm_del_btn.setFixedSize(30,60)   #39DFA2
             green_alarm_del_btn.setStyleSheet(
