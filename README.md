@@ -122,9 +122,3 @@ Champions Clan - championsclan101@gmail.com
 
 Project Link: [https://github.com/Champions-clan/Robert-Assistant)
 
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[product-screenshot]: https://drive.google.com/file/d/1xybAHHsLmtI2AoSwezpwk8EbNnBTOsxh/view?usp=sharing
