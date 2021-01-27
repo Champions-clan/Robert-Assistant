@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="./Asserts/Robert.gif" alt="Logo">
+    <img src="./Assets/Robert.gif" alt="Logo">
   </a>
 
   <h3 align="center">ROBERT VIRTUAL ASSISTANT</h3>
