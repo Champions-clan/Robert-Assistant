@@ -211,6 +211,10 @@ class Alarms(DbWorker):
 #         assert priority_level < 0
 #         self.cursor.execute("INSERT INTO tasks (task)")
 
+class PriorityLevelNotRight:
+    pass
+
+
 
 class SettingsManager:
     def get_settings(self):
@@ -237,14 +241,18 @@ class TaskManager(DbWorker):
         self.conn, self.cursor = super().set_up_db()
 
     def check_priority_level(self, priority_level):
-        assert priority_level < 0
-        assert priority_level > 5
+        if priority_level < 0 and priority_level > 6:
+            pass
+        else:
+            raise PriorityLevelNotRight()
+
+        pass
 
     def insert_task(self, task_name, task_description, priority_level):
         try:
             self.check_priority_level(priority_level)
-            self.cursor.execute("INSERT INTO tasks (task_number,task_name, task_description, priority, time_created, ) VALUES (?,?, ?, ?, ?)",
-                                (None, task_name, task_description, priority_level, time.time(),))
+            self.cursor.execute("INSERT INTO tasks (task_number,task_name, task_description, priority, time_created) VALUES (?,?, ?, ?, ?)",
+                            (None, task_name, task_description, priority_level, time.time(),))
             self.conn.commit()
             return True
         except:
