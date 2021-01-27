@@ -1,0 +1,13 @@
+PyAudio==0.2.11
+pyttsx3==2.90
+matplotlib==3.3.3
+wolframalpha==4.1.1
+wikipedia==1.4.0
+opencv_python==4.5.1.48
+SpeechRecognition==3.8.1
+pynput==1.7.2
+clipboard==0.0.4
+colored==1.4.2
+googletrans==3.1.0a0
+Pillow==8.1.0
+PyQt5==5.15.2

@@ -1,0 +1,277 @@
+import sqlite3
+import time
+import datetime
+import json
+
+
+class DbWorker:
+    def __init__(self):
+        conn, cursor = self.set_up_db()
+        settings = self.set_up_settings_file()
+
+    def set_up_db(self):
+        conn = sqlite3.connect('./Database/RobertStorage.db', timeout=30.0)
+        cursor = conn.cursor()
+        cursor.execute("CREATE TABLE IF NOT EXISTS snippets (snippet_number INTEGER PRIMARY KEY, snippet TEXT, snippet_language TEXT,snippet_name TEXT, date_created REAL, times_used INTEGER)")
+        cursor.execute(
+            "CREATE TABLE IF NOT EXISTS  alarms (alarm_number INTEGER PRIMARY KEY,alarm_time INTEGER)")
+        cursor.execute(
+            "CREATE TABLE IF NOT EXISTS tasks (task_number INTEGER PRIMARY KEY,task_name TEXT, task_description TEXT, priority INT,time_created REAL)")
+        conn.commit()
+        return conn, cursor
+
+
+# print(query_snippets_by_name('UNIX'))
+
+# db = DbWorker()
+
+# snippets = db.Snippets()
+
+# print(snippets.insert_snippet('print("hello world")', 'Python', "Hello world in python", "print hello world in python"))
+
+
+class Snippets(DbWorker):
+    def __init__(self):
+        self.conn, self.cursor = super().set_up_db()
+
+    def insert_snippet(self, snippet, snippet_language, snippet_name):
+        """
+        Inserts snippets
+
+        Arguments required
+        - snippet
+        - snippet_language
+        - snippet_name
+
+        Returns true if query is successful, False if not
+        """
+        try:
+
+            self.cursor.execute("INSERT INTO snippets (snippet_number, snippet, snippet_language, snippet_name, date_created, times_used) VALUES (?, ?, ?,?, ?, ?)",
+                                (None, snippet, snippet_language, snippet_name, str(time.time()), 0))
+            self.conn.commit()
+            return True
+        except:
+            return False
+
+    def list_snippets(self):
+        self.cursor.execute("SELECT * FROM snippets")
+        return self.cursor.fetchall()
+
+    def snippet_used(self, snippet_number):
+        """
+        This number keeps the record whenever snippets are used
+
+        it must be called whenever the snippet is used
+
+        takes the argument of the snippet number
+        """
+        self.cursor.execute(
+            'SELECT * FROM snippets WHERE snippet_number=?', (snippet_number, ))
+        res = self.cursor.fetchone()
+        self.cursor.execute('UPDATE snippets SET times_used=? WHERE snippet_number=?', (int(
+            res[5]) + 1, snippet_number,))
+        self.conn.commit()
+
+    def delete_snippet(self, snippet_number):
+        """
+        This deletes snippet
+
+        deletes the snippet when supplied by the snippet number
+
+        """
+        try:
+
+            self.cursor.execute("DELETE FROM snippets WHERE snippet_number=?",
+                                (snippet_number, ))
+
+            self.conn.commit()
+            return True
+        except:
+            return False
+
+    def query_snippets_by_name(self, snippet_name):
+        query_res = self.cursor.execute(
+            f"SELECT * FROM snippets WHERE snippet_name LIKE '{snippet_name}%'")
+        return self.cursor.fetchall()
+
+    def sort_by_usage(self, most=True):
+        if most:
+            self.cursor.execute(
+                "SELECT * FROM snippets ORDER BY times_used ASC")
+        else:
+            self.cursor.execute(
+                "SELECT * FROM snippets ORDER BY times_used DESC")
+        return self.cursor.fetchall()
+
+    def sort_by_date_created(self, ascending=True):
+        if ascending:
+            self.cursor.execute(
+                "SELECT * FROM snippets ORDER BY date_created ASC")
+        else:
+            self.cursor.execute(
+                "SELECT * FROM snippets ORDER BY date_created DESC")
+        return self.cursor.fetchall()
+
+    def edit_snippet(self, snippet_number_to_update, new_snippet, new_snippet_language, new_snippet_name,):
+        try:
+            self.cursor.execute("UPDATE snippets SET snippet=?, snippet_language=?, snippet_name=? WHERE snippet_number=?", (new_snippet, new_snippet_language, new_snippet_name, snippet_number_to_update))
+            self.conn.commit()
+            return True
+        except:
+            return False
+
+
+    def parse_snippet(self, snippet):
+        return {
+            "snippet_number": snippet[0],
+            "snippet": snippet[1],
+            "snippet_language": snippet[2],
+            "snippet_name": snippet[3],
+            "date_created": snippet[4],
+            "times_used": snippet[5]
+        }
+
+# snippets = Snippets()
+
+# print(snippets.insert_snippet('print("hello world")', 'Python', "Hello world in python", "print hello world in python"))
+
+
+class Alarms(DbWorker):
+    def __init__(self):
+        self.conn, self.cursor = super().set_up_db()
+
+    def __convert_to_minutes_from_midnight(self, hours, minutes):
+        assert minutes <= 59
+        assert hours <= 23
+        return (hours * 60) + minutes
+
+    def __back_to_hours_and_minutes(self, minutes_from_midnight):
+        return minutes_from_midnight // 60, minutes_from_midnight % 60
+
+    def insert_alarm(self, alarm_hour: int, alarm_minutes: int):
+        try:
+            mins_frm_midnight = self.__convert_to_minutes_from_midnight(
+                alarm_hour, alarm_minutes)
+            self.cursor.execute(
+                "INSERT INTO alarms (alarm_number, alarm_time) VALUES (?, ?)", (None, mins_frm_midnight, ))
+            self.conn.commit()
+            return True
+        except:
+            return False
+        # except:
+        #     return False
+
+    def delete_alarm(self, alarm_number):
+        try:
+            self.cursor.execute(
+                "DELETE FROM alarms WHERE alarm_number=?", (alarm_number, ))
+            self.conn.commit()
+            return True
+        except:
+            return False
+        #     return True
+        # except:
+        #     return False
+
+    def list_alarms(self):
+        try:
+            self.cursor.execute("SELECT * FROM alarms")
+            return self.cursor.fetchall()
+        except:
+            return False
+
+    def listen_for_alarms(self, callback_func):
+        day_of_the_week = datetime.datetime.today().weekday() + 1
+        timm = self.__convert_to_minutes_from_midnight(
+            datetime.datetime.now().hour, datetime.datetime.now().minute)
+        self.cursor.execute("SELECT * FROM alarms")
+        data = self.cursor.fetchall()
+        for i in data:
+            if i[1] == timm:
+                callback_func(i)
+                self.delete_alarm(i[0])
+
+    def parse_alarms(self, alarm):
+        hour, minute = self.__back_to_hours_and_minutes(alarm[1])
+        return {
+            "alarm_number": alarm[0],
+            "alarm_hour": hour,
+            "alarm_minute": minute,
+            "alarm_repeat": alarm[2]
+        }
+
+
+# class TaskManager(DbWorker):
+#     def __init__(self):
+#         conn, cursor = super().set_up_db()
+
+#     def insert_tasks(self, task_name, task_description, priority_level):
+#         assert priority_level > 5
+#         assert priority_level < 0
+#         self.cursor.execute("INSERT INTO tasks (task)")
+
+
+class SettingsManager:
+    def get_settings(self):
+        with open('robert_settings.json') as file:
+            jason = file.read()
+            parsed_json = json.loads(jason)
+            return parsed_json
+
+    def change_settings(self, new_settings):
+        print(new_settings)
+        with open('robert_settings.json', 'w+') as file:
+            json.dump(new_settings, file, indent=6)
+            # file.write()
+
+# settings = SettingsManager()
+
+
+# settt = settings.get_settings()
+# settt['settings hotkey'] = 'loo=jkhhhhhhhhhhhhhhhhhhhhhhhhhk'
+# settings.change_settings(settt)
+
+class TaskManager(DbWorker):
+    def __init__(self):
+        self.conn, self.cursor = super().set_up_db()
+
+    def check_priority_level(self, priority_level):
+        assert priority_level < 0
+        assert priority_level > 5
+
+    def insert_task(self, task_name, task_description, priority_level):
+        try:
+            self.check_priority_level(priority_level)
+            self.cursor.execute("INSERT INTO tasks (task_number,task_name, task_description, priority, time_created, ) VALUES (?,?, ?, ?, ?)",
+                                (None, task_name, task_description, priority_level, time.time(),))
+            self.conn.commit()
+            return True
+        except:
+            return False
+
+    def delete_task(self, task_number):
+        try:
+            self.cursor.execute(
+                "DELETE * FROM tasks WHERE task_number=?", (task_number,))
+            self.conn.commit()
+            return True
+        except:
+            return False
+
+
+    def list_tasks(self, sort_by_priority=False):
+        if sort_by_priority:
+            self.cursor.execute("SELECT * FROM tasks ORDER BY priority DESC")
+            return self.cursor.fetchall()
+
+        else:
+            self.cursor.execute("SELECT * FROM tasks ORDER BY time_created DESC")
+            return self.cursor.fetchall()
+
+# task_name TEXT, task_description TEXT, priority INT,time_created REAL
+
+
+# task = TaskManager()
+
+# task.
