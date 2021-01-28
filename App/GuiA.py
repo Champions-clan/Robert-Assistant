@@ -3023,9 +3023,9 @@ QComboBox QAbstractItemView {
                 else:
                     task = TaskManager()
                     if self.txt == "Add":
-                        task.insert_task(name, desc, self.i)
+                        print(task.insert_task(name, desc, self.i))
                     else:
-                        task.edit_tasks(self.s[0], name, desc, self.i)
+                        print(task.edit_tasks(self.s[0], name, desc, self.i))
                     green_task_scroll_files()
                     self.files_set_DialogWindow.accept()
 
@@ -3034,7 +3034,7 @@ QComboBox QAbstractItemView {
             def combo_switch(index):
                 self.i = index
                 self.i += 1
-                self.i
+                print(self.i)
             self.task_priority_add.activated.connect(combo_switch)
 
             self.files_set_DialogWindow.exec_()
@@ -3053,8 +3053,8 @@ QComboBox QAbstractItemView {
             else:
                 self.files = [[i[0], i[4], i[1].lower(), i[2]]
                               for i in task.list_tasks()]
-                self.files
-                self.files = sorted(self.files, key=lambda x: x[2])
+                print(self.files)
+                self.files = sorted(self.files, key=lambda x: x[1])
                 self.files = [[i[0], i[4], i[1].capitalize(), i[2]]
                               for i in self.files]
 
@@ -3535,9 +3535,9 @@ QComboBox QAbstractItemView {
                 else:
                     task = TaskManager()
                     if self.txt == "Add":
-                        task.insert_task(name, desc, self.i)
+                        print(task.insert_task(name, desc, self.i))
                     else:
-                        task.edit_tasks(self.s[0], name, desc, self.i)
+                        print(task.edit_tasks(self.s[0], name, desc, self.i))
                     dark_task_scroll_files()
                     self.files_set_DialogWindow.accept()
 
@@ -3546,6 +3546,7 @@ QComboBox QAbstractItemView {
             def combo_switch(index):
                 self.i = index
                 self.i += 1
+                print(self.i)
             self.task_priority_add.activated.connect(combo_switch)
 
             self.files_set_DialogWindow.exec_()
@@ -3553,17 +3554,20 @@ QComboBox QAbstractItemView {
         def dark_task_scroll_files():
             task = TaskManager()
             if self.task_sort == 0:
-                self.files = [[i[0],i[4],i[1].capitalize(), i[2]]
+                self.files = [[i[0], i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.reverse()
             elif self.task_sort == 1:
-                self.files = [[i[3], i[4], i[1].capitalize(), i[2]]for i in task.list_tasks()]
+                self.files = [[i[3], i[1].capitalize(), i[2]]
+                              for i in task.list_tasks()]
                 self.files.sort()
                 self.files.reverse()
             else:
-                self.files = [[i[0], i[4], i[1].lower(), i[2]]for i in task.list_tasks()]
-                self.files = sorted(self.files, key=lambda x: x[2])
-                self.files = [[i[0], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0], i[1].lower(), i[2]]
+                              for i in task.list_tasks()]
+                print(self.files)
+                self.files = sorted(self.files, key=lambda x: x[1])
+                self.files = [[i[0], i[1].capitalize(), i[2]]
                               for i in self.files]
 
             self.dark_task_scrollAreaWidgetContents.deleteLater()
@@ -3579,7 +3583,7 @@ QComboBox QAbstractItemView {
                 dark_task_checked_btn = QtWidgets.QPushButton()
                 dark_task_create_task_btn_func(dark_task_checked_btn, i, s)
                 dark_task_scroll_btn_layout.addWidget(dark_task_checked_btn)
-                dark_task_main_btn = QPushButton(self.files[i][2])
+                dark_task_main_btn = QPushButton(self.files[i][1])
                 dark_task_main_btn.setFixedSize(250, 60)
                 dark_task_main_btn.setStyleSheet(
                     '''
@@ -3892,7 +3896,8 @@ border-radius: 5px;
         def dark_task_create_task_btn_func(btn, i, s):
             self.dark_task_cond[btn] = 0
             btn.setFixedSize(25, 25)
-            btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[self.dark_task_cond[btn]]))
+            btn.setIcon(QtGui.QIcon(
+                self.dark_task_cond_lst[self.dark_task_cond[btn]]))
             btn.setIconSize(QtCore.QSize(25, 25))
             btn.setStyleSheet("""
 QPushButton {
@@ -3906,21 +3911,12 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 """)
-            if s[1] == 0:
-                btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[0]))
-            else:
-                btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[1]))
 
-            def task_switch(s):
+            def task_switch():
                 self.dark_task_cond[btn] = not self.dark_task_cond[btn]
-                task_sw = TaskManager()
-                if self.dark_task_cond[btn] == True:
-                    btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[1]))
-                    task_sw.check_task(s[0])
-                else:
-                    btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[0]))
-                    task_sw.uncheck_task(s[0])
-            btn.clicked.connect(lambda checked, s=s: task_switch(s))
+                btn.setIcon(QtGui.QIcon(
+                    self.dark_task_cond_lst[self.dark_task_cond[btn]]))
+            btn.clicked.connect(lambda: task_switch())
 
         dark_task_scroll_files()
 
@@ -4044,9 +4040,9 @@ QComboBox QAbstractItemView {
                 else:
                     task = TaskManager()
                     if self.txt == "Add":
-                        task.insert_task(name, desc, self.i)
+                        print(task.insert_task(name, desc, self.i))
                     else:
-                        task.edit_tasks(self.s[0], name, desc, self.i))
+                        print(task.edit_tasks(self.s[0], name, desc, self.i))
                     light_task_scroll_files()
                     self.files_set_DialogWindow.accept()
 
@@ -4055,6 +4051,7 @@ QComboBox QAbstractItemView {
             def combo_switch(index):
                 self.i = index
                 self.i += 1
+                print(self.i)
             self.task_priority_add.activated.connect(combo_switch)
 
             self.files_set_DialogWindow.exec_()
@@ -4062,18 +4059,21 @@ QComboBox QAbstractItemView {
         def light_task_scroll_files():
             task = TaskManager()
             if self.task_sort == 0:
-                self.files = [[i[0], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0], i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.reverse()
             elif self.task_sort == 1:
-                self.files = [[i[3],i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[3], i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.sort()
                 self.files.reverse()
             else:
-                self.files = [[i[0],i[4], i[1].lower(), i[2]] for i in task.list_tasks()]
-                self.files = sorted(self.files, key=lambda x: x[2])
-                self.files = [[i[0],i[4], i[1].capitalize(), i[2]] for i in self.files]
+                self.files = [[i[0], i[1].lower(), i[2]]
+                              for i in task.list_tasks()]
+                print(self.files)
+                self.files = sorted(self.files, key=lambda x: x[1])
+                self.files = [[i[0], i[1].capitalize(), i[2]]
+                              for i in self.files]
 
             self.light_task_scrollAreaWidgetContents.deleteLater()
             self.light_task_scrollAreaWidgetContents = QtWidgets.QWidget(
@@ -4088,7 +4088,7 @@ QComboBox QAbstractItemView {
                 light_task_checked_btn = QtWidgets.QPushButton()
                 light_task_create_task_btn_func(light_task_checked_btn, i, s)
                 light_task_scroll_btn_layout.addWidget(light_task_checked_btn)
-                light_task_main_btn = QPushButton(self.files[i][2])
+                light_task_main_btn = QPushButton(self.files[i][1])
                 light_task_main_btn.setFixedSize(250, 60)
                 light_task_main_btn.setStyleSheet(
                     '''
@@ -4131,7 +4131,8 @@ QPushButton:pressed {
 }
 ''')
                 light_task_del_btn = QPushButton()
-                light_task_del_btn.setIcon(QtGui.QIcon(r".\Assets\images/del_icon.png"))
+                light_task_del_btn.setIcon(
+                    QtGui.QIcon(r".\Assets\images/del_icon.png"))
                 light_task_del_btn.setIconSize(QtCore.QSize(28, 28))
                 light_task_del_btn.setFixedSize(30, 60)
                 light_task_del_btn.clicked.connect(
@@ -4155,7 +4156,8 @@ QPushButton:pressed {
                 light_task_scroll_btn_layout.addWidget(light_task_main_btn)
                 light_task_scroll_btn_layout.addWidget(light_task_edit_btn)
                 light_task_scroll_btn_layout.addWidget(light_task_del_btn)
-                self.light_task_form_layout.addRow(light_task_scroll_btn_layout)
+                self.light_task_form_layout.addRow(
+                    light_task_scroll_btn_layout)
         self.light_task_home_btn = QtWidgets.QPushButton()
         self.light_task_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.light_task_home_btn.setIconSize(QtCore.QSize(25, 25))
@@ -4205,7 +4207,8 @@ QPushButton:pressed {
 }
 ''')
         self.light_task_verticalLayout.addLayout(self.light_task_title_layout)
-        self.light_task_task_addcode_btn.clicked.connect(lambda checked, t="Add", s="J": light_task_task_add_func(t, s))
+        self.light_task_task_addcode_btn.clicked.connect(
+            lambda checked, t="Add", s="J": light_task_task_add_func(t, s))
         self.light_task_second_layout = QtWidgets.QHBoxLayout()
 
         task_sort_combo_lst = ["Newest", "Priority", "Alphabet"]
@@ -4231,16 +4234,19 @@ QComboBox QAbstractItemView {
 '''
         )
         self.light_task_sort_label = QtWidgets.QLabel("Sort by")
-        self.light_task_sort_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+        self.light_task_sort_label.setStyleSheet(
+            "font-family: 'Cabin', sans-serif;font-size: 15px;")
         self.light_task_sort_layout = QtWidgets.QVBoxLayout()
         self.light_task_sort_layout.addWidget(self.light_task_sort_label)
         self.light_task_sort_layout.addWidget(self.light_task_sort_combo)
         self.light_task_second_layout.addLayout(self.light_task_sort_layout)
         self.light_task_second_layout.addStretch(20)
-        self.light_task_second_layout.addWidget(self.light_task_task_addcode_btn)
+        self.light_task_second_layout.addWidget(
+            self.light_task_task_addcode_btn)
 
         self.light_task_verticalLayout.addLayout(self.light_task_second_layout)
-        self.light_task_scrollArea = QtWidgets.QScrollArea(self.light_task_centralwidget)
+        self.light_task_scrollArea = QtWidgets.QScrollArea(
+            self.light_task_centralwidget)
         self.light_task_scrollArea.setWidgetResizable(True)
         self.light_task_centralwidget.setStyleSheet(
             "QWidget {"
@@ -4403,21 +4409,12 @@ QPushButton:pressed {
     background-color: #A2A2A2;
 }
 """)
-            if s[1] == 0:
-                btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[0]))
-            else:
-                btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[1]))
 
-            def task_switch(s):
+            def task_switch():
                 self.light_task_cond[btn] = not self.light_task_cond[btn]
-                task_sw = TaskManager()
-                if self.light_task_cond[btn] == True:
-                    btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[1]))
-                    task_sw.check_task(s[0])
-                else:
-                    btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[0]))
-                    task_sw.uncheck_task(s[0])
-            btn.clicked.connect(lambda checked, s=s: task_switch(s))
+                btn.setIcon(QtGui.QIcon(
+                    self.light_task_cond_lst[self.light_task_cond[btn]]))
+            btn.clicked.connect(lambda: task_switch())
 
         light_task_scroll_files()
 
@@ -4632,6 +4629,7 @@ QPushButton:pressed {
 
         def dark_alarm_add_window(txt,s):
             self.s = s
+            print(self.s)
             self.txt = txt
             self.files_set_DialogWindow = QtWidgets.QDialog()
             self.files_set_DialogWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -5103,6 +5101,7 @@ QPushButton:pressed {
 
         def light_alarm_add_window(txt,s):
             self.s = s
+            print(self.s)
             self.txt = txt
             self.files_set_DialogWindow = QtWidgets.QDialog()
             self.files_set_DialogWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -5574,6 +5573,7 @@ QPushButton:pressed {
 
         def green_alarm_add_window(txt,s):
             self.s = s
+            print(self.s)
             self.txt = txt
             self.files_set_DialogWindow = QtWidgets.QDialog()
             self.files_set_DialogWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)

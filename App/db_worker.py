@@ -292,7 +292,7 @@ class TaskManager(DbWorker):
     def delete_task(self, task_number):
         try:
             self.cursor.execute(
-                "DELETE * FROM tasks WHERE task_number=?", (task_number,))
+                "DELETE FROM tasks WHERE task_number=?", (task_number))
             self.conn.commit()
             return True
         except:
