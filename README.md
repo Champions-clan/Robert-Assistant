@@ -55,15 +55,15 @@ Function:
 * Translator - Translate a sentence to another language.
 * Beautiful GUI - Our Robert is having a beautiful and High Quality GUI with different themes like Dark, Light, Green.
 * Task Manager - To aware about your task and finish it in the correct time.
-* Launch any Apps - Our Robert can launch Apps like Notepad, Code editor etc.
-* Wikipedia - Our Robert can Search on Wikipedia and Get the results.
+* Code Snippets - Our Robert can copy the code from the GUI.
+* Programming Langugae - It can sort the code according to the programming language in the Code Snippets.
 
 Requirements
 Robert is built with many Python Libraries: 
 * Pyqt5               - Used to make our Beautiful High Quality GUI.
 * Pyttsx3             - Used to add the functionality to our Robert to speak.
 * Speech Recogntion   - Used to get the user input from speech.
-* Wikipedia           - Used to get result from wikipedia from the user's input.
+* Clipboard           - Used to copy the code from the GUI.
 * Playsound           - Used to play the alarm sound.
 * Win10Toast          - Used to display the Desktop Notification.
 * Google Trans        - Used to translate sentence to different language.
@@ -93,7 +93,7 @@ Use pip install to install the Python Libraries.
   pip install playsound
   pip install datetime
   pip install speech_recogntion
-  pip install wikipedia
+  pip install clipboard
   pip install wolframalpha
   ```
    ```
