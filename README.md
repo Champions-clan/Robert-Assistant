@@ -89,7 +89,7 @@ Use pip install to install the Python Libraries.
   pip install PyQt5
   pip install win10toast
   pip install pyttsx3
-  pip install googletrans
+  pip install googletrans (For python3.8 (googletrans==3.1.0a0)
   pip install playsound
   pip install datetime
   pip install speech_recogntion
