@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QPushButton, QMainWindow, QTextEdit
 from googletrans import Translator
-from db_worker import Snippets, TaskManager
+from db_worker import Snippets, TaskManager, Alarms
 
 
 class Ui_MainWindow(object):
@@ -4426,17 +4426,15 @@ QPushButton:pressed {
         self.light_task_sort_combo.activated.connect(light_task_combo)
 # <<<<<<<<<<<<<<<dark alarm Window
         self.dark_alarm_centralwidget = QtWidgets.QWidget(MainWindow)
-        self.dark_alarm_centralwidget.setFixedSize(430, 500)
-        self.dark_alarm_verticalLayout = QtWidgets.QVBoxLayout(
-            self.dark_alarm_centralwidget)
+        self.dark_alarm_centralwidget.setFixedSize(430,500)
+        self.dark_alarm_verticalLayout = QtWidgets.QVBoxLayout(self.dark_alarm_centralwidget)
 
         self.dark_alarm_home_btn = QtWidgets.QPushButton()
-        self.dark_alarm_home_btn.setIcon(
-            QtGui.QIcon(".\\Assets\\images\\home"))
+        self.dark_alarm_home_btn.setIcon(QtGui.QIcon(".\Assets\\images\\home"))
         self.dark_alarm_home_btn.setIconSize(QtCore.QSize(25, 25))
-        self.dark_alarm_home_btn.setFixedSize(40, 40)
+        self.dark_alarm_home_btn.setFixedSize(40,40)
         self.dark_alarm_home_btn.setStyleSheet(
-            '''
+'''
 QPushButton {
     background-color: transparent;
     border-radius: 10px;
@@ -4451,7 +4449,7 @@ QPushButton:pressed {
 
         self.dark_alarm_title_label = QtWidgets.QLabel(" Robert Alarm")
         self.dark_alarm_title_label.setStyleSheet(
-            '''
+'''
 QLabel {
     color: #FFFFFF;
     font-family: 'Titillium Web', sans-serif;
@@ -4461,14 +4459,14 @@ QLabel {
         self.dark_alarm_title_layout = QtWidgets.QHBoxLayout()
         self.dark_alarm_title_layout.addWidget(self.dark_alarm_home_btn)
         self.dark_alarm_title_layout.addWidget(self.dark_alarm_title_label)
+        
 
         self.dark_alarm_addcode_btn = QtWidgets.QPushButton()
-        self.dark_alarm_addcode_btn.setIcon(
-            QtGui.QIcon(".\\Assets\\images\\add_btn.png"))
+        self.dark_alarm_addcode_btn.setIcon(QtGui.QIcon(".\Assets\\images\\add_btn.png"))
         self.dark_alarm_addcode_btn.setIconSize(QtCore.QSize(40, 40))
-        self.dark_alarm_addcode_btn.setFixedSize(70, 50)
+        self.dark_alarm_addcode_btn.setFixedSize(70,50)
         self.dark_alarm_addcode_btn.setStyleSheet(
-            '''
+'''
 QPushButton {
     background-color: transparent;
     border-radius: 12px;
@@ -4483,14 +4481,19 @@ QPushButton:pressed {
         self.dark_alarm_title_layout.addWidget(self.dark_alarm_addcode_btn)
         self.dark_alarm_verticalLayout.addLayout(self.dark_alarm_title_layout)
 
+        def dark_alarm_delete_action(s):
+            del_alarm = Alarms()
+            del_alarm.delete_alarm(s[0])
+            dark_alarm_scroll_files()
+
         def dark_alarm_scroll_files():
+            alarm = Alarms()
+            self.files = [[i[0],i[1],i[2]] for i in alarm.list_alarms()]
+
             self.dark_alarm_scroll_AreaWidgetContents.deleteLater()
-            self.dark_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(
-                self.dark_alarm_scroll_Area)
-            self.dark_alarm_scroll_Area.setWidget(
-                self.dark_alarm_scroll_AreaWidgetContents)
-            self.dark_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(
-                self.dark_alarm_scroll_AreaWidgetContents)
+            self.dark_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(self.dark_alarm_scroll_Area)
+            self.dark_alarm_scroll_Area.setWidget(self.dark_alarm_scroll_AreaWidgetContents)
+            self.dark_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(self.dark_alarm_scroll_AreaWidgetContents)
 
             def main_clicked(s):
                 self.task_show_widget = QtWidgets.QDialog()
@@ -4499,12 +4502,11 @@ QPushButton:pressed {
                 scroll_area.setWidgetResizable(True)
                 scroll_area_content = QtWidgets.QWidget(scroll_area)
                 scroll_area.setWidget(scroll_area_content)
-                scroll_area.setStyleSheet(
-                    "background: #2f3136; border-radius: 7px;")
+                scroll_area.setStyleSheet("background: #2f3136; border-radius: 7px;")
                 form_lay = QtWidgets.QHBoxLayout(scroll_area_content)
 
-                self.task_show_widget.setWindowFlag(
-                    QtCore.Qt.FramelessWindowHint)
+
+                self.task_show_widget.setWindowFlag(QtCore.Qt.FramelessWindowHint)
                 self.task_show_widget.resize(300, 180)
                 self.task_show_widget.setMinimumSize(QtCore.QSize(300, 180))
                 self.task_show_widget.setMaximumSize(QtCore.QSize(300, 180))
@@ -4514,13 +4516,11 @@ background-color: #36393f;
 }
 QLabel {
 font-family: 'Titillium Web', sans-serif;
-font-size: 30px;
+font-size: 25px;
 }
 QPushButton {
 background-color: transparent;
 border-radius: 5px;
-font-family: 'Roboto Mono', monospace;
-font-size: 20px;
 }
 QPushButton:hover {
 background-color: #40444b;
@@ -4528,19 +4528,12 @@ background-color: #40444b;
 QPushButton:pressed {
 background-color: #18191c;
 }
-QTextEdit{
-background-color: #40444b;
-font-family: 'Cabin', sans-serif;
-font-size: 20px;
-border-radius: 5px;
-}
 """)
                 self.exit_btn = QtWidgets.QPushButton()
                 self.exit_lay = QtWidgets.QHBoxLayout()
                 self.exit_lay.addStretch(1)
                 self.exit_lay.addWidget(self.exit_btn)
-                self.exit_btn.setIcon(QtGui.QIcon(
-                    ".\\Assets\\images\\exit_icon"))
+                self.exit_btn.setIcon(QtGui.QIcon(".\Assets\\images\\exit_icon"))
                 self.exit_btn.setIconSize(QtCore.QSize(20, 20))
                 self.exit_btn.setGeometry(QtCore.QRect(315, 5, 25, 25))
                 self.exit_btn.clicked.connect(self.task_show_widget.accept)
@@ -4550,21 +4543,24 @@ border-radius: 5px;
 
                 self.des_label = QtWidgets.QLabel()
                 form_lay.addWidget(self.des_label)
-                self.des_label.setText(f"12:30 AM")
+                w_alarm = Alarms()
+                w_a = [i[3] for i in w_alarm.list_alarms() if i[0] == s[0]]
+
+                self.des_label.setText(f"Time Left: {w_a} Minutes")
                 self.des_label.setGeometry(QtCore.QRect(10, 10, 300, 180))
 
                 self.task_show_widget.exec_()
 
-            for i, s in enumerate(self.files):
+            for i,s in enumerate(self.files):
                 dark_alarm_create_scroll_btn_layout = QtWidgets.QHBoxLayout()
                 dark_alarm_switch_btn = QtWidgets.QPushButton()
                 dark_alarm_create_alarm_btn(dark_alarm_switch_btn, i, s)
-
+                
                 dark_alarm_main_btn = QtWidgets.QPushButton()
-                dark_alarm_main_btn.setFixedSize(240, 60)
-                dark_alarm_main_btn.setText(files[i])
+                dark_alarm_main_btn.setFixedSize(240,60)
+                dark_alarm_main_btn.setText(self.files[i][1])
                 dark_alarm_main_btn.setStyleSheet(
-                    '''
+'''
 QPushButton {
     color: #FFFFFF;
     background-color: #202225;
@@ -4582,16 +4578,14 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
-                dark_alarm_main_btn.clicked.connect(
-                    lambda checked, s=s: main_clicked(s))
+                dark_alarm_main_btn.clicked.connect(lambda checked, s=s: main_clicked(s))
 
-                dark_alarm_edit_btn = QtWidgets.QPushButton()  # 39DFA2
-                dark_alarm_edit_btn.setIcon(QtGui.QIcon(
-                    ".\\Assets\\images\\edit_icon.png"))
+                dark_alarm_edit_btn = QtWidgets.QPushButton()   #39DFA2
+                dark_alarm_edit_btn.setIcon(QtGui.QIcon(".\Assets\\images\\edit_icon.png"))
                 dark_alarm_edit_btn.setIconSize(QtCore.QSize(28, 28))
-                dark_alarm_edit_btn.setFixedSize(30, 60)
+                dark_alarm_edit_btn.setFixedSize(30,60) 
                 dark_alarm_edit_btn.setStyleSheet(
-                    '''
+'''
 QPushButton {
     background-color: transparent;
     border-radius: 0px;
@@ -4603,16 +4597,15 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
-                dark_alarm_edit_btn.clicked.connect(
-                    lambda: dark_alarm_add_window("Edit"))
+                dark_alarm_edit_btn.clicked.connect(lambda checked,s=s : dark_alarm_add_window("Edit",s))
 
                 dark_alarm_del_btn = QtWidgets.QPushButton()
-                dark_alarm_del_btn.setIcon(QtGui.QIcon(
-                    ".\\Assets\\images\\del_icon.png"))
+                dark_alarm_del_btn.setIcon(QtGui.QIcon(".\Assets\\images\\del_icon.png"))
                 dark_alarm_del_btn.setIconSize(QtCore.QSize(28, 28))
-                dark_alarm_del_btn.setFixedSize(30, 60)  # 39DFA2
+                dark_alarm_del_btn.setFixedSize(30,60)   #39DFA2
+                dark_alarm_del_btn.clicked.connect(lambda checked, s=s: dark_alarm_delete_action(s))
                 dark_alarm_del_btn.setStyleSheet(
-                    '''
+'''
 QPushButton {
     background-color: transparent;
     border-top-left-radius: 0;
@@ -4627,22 +4620,21 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 ''')
-                dark_alarm_create_scroll_btn_layout.addWidget(
-                    dark_alarm_switch_btn)
-                dark_alarm_create_scroll_btn_layout.addWidget(
-                    dark_alarm_main_btn)
-                dark_alarm_create_scroll_btn_layout.addWidget(
-                    dark_alarm_edit_btn)
-                dark_alarm_create_scroll_btn_layout.addWidget(
-                    dark_alarm_del_btn)
-                self.dark_alarm_scrollArea_formLayout .addRow(
-                    dark_alarm_create_scroll_btn_layout)
+                dark_alarm_create_scroll_btn_layout.addWidget(dark_alarm_switch_btn)
+                dark_alarm_create_scroll_btn_layout.addWidget(dark_alarm_main_btn)
+                dark_alarm_create_scroll_btn_layout.addWidget(dark_alarm_edit_btn)
+                dark_alarm_create_scroll_btn_layout.addWidget(dark_alarm_del_btn)
+                self.dark_alarm_scrollArea_formLayout .addRow(dark_alarm_create_scroll_btn_layout)
+            
+            
 
-        def dark_alarm_add_window(txt):
+        def dark_alarm_add_window(txt,s):
+            self.s = s
+            print(self.s)
+            self.txt = txt
             self.files_set_DialogWindow = QtWidgets.QDialog()
-            self.files_set_DialogWindow.setWindowFlag(
-                QtCore.Qt.FramelessWindowHint)
-            self.files_set_DialogWindow.resize(400, 300)
+            self.files_set_DialogWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+            self.files_set_DialogWindow.resize(350, 200)
             self.files_set_DialogWindow.setStyleSheet("""
 QDialog {
 background-color: #36393f;
@@ -4698,8 +4690,7 @@ QComboBox QAbstractItemView {
 	selection-background-color: #40444b;
 }
 """)
-            self.alarm_add_layout = QtWidgets.QVBoxLayout(
-                self.files_set_DialogWindow)
+            self.alarm_add_layout = QtWidgets.QVBoxLayout(self.files_set_DialogWindow)
             self.alarm_ok_layout = QtWidgets.QHBoxLayout()
             self.dialog_ok_btn = QtWidgets.QPushButton()
             if txt == "Add":
@@ -4708,8 +4699,7 @@ QComboBox QAbstractItemView {
                 self.dialog_ok_btn.setText("Save")
             self.dialog_cancel_btn = QtWidgets.QPushButton()
             self.dialog_cancel_btn.setText("Cancel")
-            self.dialog_cancel_btn.clicked.connect(
-                lambda: self.files_set_DialogWindow.reject())
+            self.dialog_cancel_btn.clicked.connect(lambda: self.files_set_DialogWindow.reject())
             self.alarm_ok_layout.addWidget(self.dialog_ok_btn)
             self.alarm_ok_layout.addWidget(self.dialog_cancel_btn)
 
@@ -4720,9 +4710,9 @@ QComboBox QAbstractItemView {
             self.dialog_label.setText(f"{txt} your Alarm")
 
             self.alarm_hour_add = QtWidgets.QSpinBox()
-            self.alarm_hour_add.setRange(1, 12)
+            self.alarm_hour_add.setRange(1,12)
             self.alarm_minute_add = QtWidgets.QSpinBox()
-            self.alarm_minute_add.setRange(0, 59)
+            self.alarm_minute_add.setRange(0,59)
 
             self.alarm_time_add_layout = QtWidgets.QHBoxLayout()
             self.alarm_hour_layout = QtWidgets.QVBoxLayout()
@@ -4730,13 +4720,11 @@ QComboBox QAbstractItemView {
 
             self.alarm_hour_label = QtWidgets.QLabel()
             self.alarm_hour_label.setText("Hour")
-            self.alarm_hour_label.setStyleSheet(
-                "font-family: 'Cabin', sans-serif;font-size: 15px;")
+            self.alarm_hour_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
             self.alarm_minute_label = QtWidgets.QLabel()
             self.alarm_minute_label.setText("Minute")
-            self.alarm_minute_label.setStyleSheet(
-                "font-family: 'Cabin', sans-serif;font-size: 15px;")
-
+            self.alarm_minute_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+            
             self.alarm_hour_layout.addWidget(self.alarm_hour_label)
             self.alarm_hour_layout.addWidget(self.alarm_hour_add)
             self.alarm_minute_layout.addWidget(self.alarm_minute_label)
@@ -4744,6 +4732,7 @@ QComboBox QAbstractItemView {
 
             self.alarm_mid_group = QtWidgets.QComboBox()
             self.alarm_mid_group.addItems(["AM", "PM"])
+            
 
             self.alarm_time_add_layout.addLayout(self.alarm_hour_layout)
             self.alarm_time_add_layout.addLayout(self.alarm_minute_layout)
@@ -4752,137 +4741,128 @@ QComboBox QAbstractItemView {
             self.alarm_mid_group_layout.addWidget(self.alarm_mid_group)
             self.alarm_time_add_layout.addLayout(self.alarm_mid_group_layout)
 
-            self.alarm_other_layout = QtWidgets.QHBoxLayout()
-            self.alarm_repeats_label = QtWidgets.QLabel("Repeats")
-            self.alarm_repeats_label.setStyleSheet(
-                "font-family: 'Cabin', sans-serif;font-size: 15px;")
-            self.alarm_sound_label = QtWidgets.QLabel("Sound")
-            self.alarm_sound_label.setStyleSheet(
-                "font-family: 'Cabin', sans-serif;font-size: 15px;")
-            self.alarm_repeats_add = QtWidgets.QComboBox()
-            self.alarm_repeats_add.addItems(
-                ["Only Once", "Every day", "Every week", "Every Month"])
-            self.alarm_sound_add = QtWidgets.QComboBox()
-            self.alarm_sound_add.addItems(
-                ["sound A", "sound B", "sound C", "sound D", "sound E"])
-
-            self.alarm_repeats_layout = QtWidgets.QVBoxLayout()
-            self.alarm_repeats_layout.addWidget(self.alarm_repeats_label)
-            self.alarm_repeats_layout.addWidget(self.alarm_repeats_add)
-            self.alarm_sound_layout = QtWidgets.QVBoxLayout()
-            self.alarm_sound_layout.addWidget(self.alarm_sound_label)
-            self.alarm_sound_layout.addWidget(self.alarm_sound_add)
-
-            self.alarm_other_layout.addLayout(self.alarm_repeats_layout)
-            self.alarm_other_layout.addLayout(self.alarm_sound_layout)
-
             self.alarm_add_layout.addWidget(self.dialog_label)
             self.alarm_add_layout.addWidget(self.dialog_textEdit)
             self.alarm_add_layout.addLayout(self.alarm_time_add_layout)
-            self.alarm_add_layout.addLayout(self.alarm_other_layout)
             self.alarm_add_layout.addLayout(self.alarm_ok_layout)
+
+            self.combo_i = 0
+            def add_clicked(name, hour, minute):
+                add_alarm = Alarms()
+                combo = ["AM", "PM"]
+                if combo[self.combo_i] == "AM":
+                    combo = True
+                else:
+                    combo = False
+                time = add_alarm.convert_to_24_clock(hour.value(), minute.value(), AM= combo)
+
+                if self.txt == "Add":
+                    add_alarm.insert_alarm(name.toPlainText(), time[0], time[1])
+                else:
+                    add_alarm.edit_alarm(self.s[0],name.toPlainText(), time[0], time[1])
+
+                dark_alarm_scroll_files()
+                self.files_set_DialogWindow.accept()
+
+            self.dialog_ok_btn.clicked.connect(lambda: add_clicked(self.dialog_textEdit, self.alarm_hour_add, self.alarm_minute_add))
+
+            def combo_activate(index):
+                self.combo_i = index
+            self.alarm_mid_group.activated.connect(combo_activate)
 
             self.files_set_DialogWindow.exec_()
 
-# -----------------end of code adding--------------------------------------
-        self.dark_alarm_addcode_btn.clicked.connect(
-            lambda: dark_alarm_add_window("Add"))
-        self.dark_alarm_scroll_Area = QtWidgets.QScrollArea(
-            self.dark_alarm_centralwidget)
+#-----------------end of code adding--------------------------------------
+        self.dark_alarm_addcode_btn.clicked.connect(lambda s=None: dark_alarm_add_window("Add",s))
+        self.dark_alarm_scroll_Area = QtWidgets.QScrollArea(self.dark_alarm_centralwidget)
         self.dark_alarm_scroll_Area.setWidgetResizable(True)
         self.dark_alarm_centralwidget.setStyleSheet(
-            "QWidget {"
-            "   background-color: #36393f;"
-            "}"
-            "QScrollArea {"
-            "background-color: #2ABF88"
-            "}"
-            "/* VERTICAL SCROLLBAR */"
-            " QScrollBar:vertical {"
-            "    border: none;"
-            "    background: #2f3136;"
-            "    width: 14px;"
-            "    margin: 15px 0 15px 0;"
-            "    "
-            " }"
-            ""
-            "/*  HANDLE BAR VERTICAL */"
-            "QScrollBar::handle:vertical {    "
-            "    background-color: #202225;"
-            "    min-height: 30px;"
-            "    "
-            "}"
-            "QScrollBar::handle:vertical:hover{    "
-            "    background-color: #40444b;"
-            "}"
-            "QScrollBar::handle:vertical:pressed {    "
-            "    background-color: #18191c;"
-            "}"
-            ""
-            "/* BTN TOP - SCROLLBAR */"
-            "QScrollBar::sub-line:vertical {"
-            "    border: none;"
-            "    background-color: #202225;"
-            "    height: 15px;"
-            "    border-top-left-radius: 7px;"
-            "    border-top-right-radius: 7px;"
-            "    subcontrol-position: top;"
-            "    subcontrol-origin: margin;"
-            "}"
-            "QScrollBar::sub-line:vertical:hover {    "
-            "    background-color: #40444b;"
-            "}"
-            "QScrollBar::sub-line:vertical:pressed {    "
-            "    background-color: #18191c;"
-            "}"
-            ""
-            "/* BTN BOTTOM - SCROLLBAR */"
-            "QScrollBar::add-line:vertical {"
-            "    border: none;"
-            "    background-color: #202225;"
-            "    height: 15px;"
-            "    border-bottom-left-radius: 7px;"
-            "    border-bottom-right-radius: 7px;"
-            "    subcontrol-position: bottom;"
-            "    subcontrol-origin: margin;"
-            "}"
-            "QScrollBar::add-line:vertical:hover {    "
-            "    background-color: #40444b;"
-            "}"
-            "QScrollBar::add-line:vertical:pressed {    "
-            "    background-color: #18191c;"
-            "}"
-            ""
-            "/* RESET ARROW */"
-            "QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {"
-            "    background: none;"
-            "}"
-            "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {"
-            "    background: none;"
-            "}"
-        )
-        self.dark_alarm_scroll_Area.setStyleSheet(
-            "background: #2f3136; border-radius: 7px;")
-        self.dark_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(
-            self.dark_alarm_scroll_Area)
-        self.dark_alarm_scroll_Area.setWidget(
-            self.dark_alarm_scroll_AreaWidgetContents)
+"QWidget {"
+"   background-color: #36393f;"
+"}"
+"QScrollArea {"
+"background-color: #2ABF88"
+"}"        
+"/* VERTICAL SCROLLBAR */"
+" QScrollBar:vertical {"
+"    border: none;"
+"    background: #2f3136;"
+"    width: 14px;"
+"    margin: 15px 0 15px 0;"
+"    "
+" }"
+""
+"/*  HANDLE BAR VERTICAL */"
+"QScrollBar::handle:vertical {    "
+"    background-color: #202225;"
+"    min-height: 30px;"
+"    "
+"}"
+"QScrollBar::handle:vertical:hover{    "
+"    background-color: #40444b;"
+"}"
+"QScrollBar::handle:vertical:pressed {    "
+"    background-color: #18191c;"
+"}"
+""
+"/* BTN TOP - SCROLLBAR */"
+"QScrollBar::sub-line:vertical {"
+"    border: none;"
+"    background-color: #202225;"
+"    height: 15px;"
+"    border-top-left-radius: 7px;"
+"    border-top-right-radius: 7px;"
+"    subcontrol-position: top;"
+"    subcontrol-origin: margin;"
+"}"
+"QScrollBar::sub-line:vertical:hover {    "
+"    background-color: #40444b;"
+"}"
+"QScrollBar::sub-line:vertical:pressed {    "
+"    background-color: #18191c;"
+"}"
+""
+"/* BTN BOTTOM - SCROLLBAR */"
+"QScrollBar::add-line:vertical {"
+"    border: none;"
+"    background-color: #202225;"
+"    height: 15px;"
+"    border-bottom-left-radius: 7px;"
+"    border-bottom-right-radius: 7px;"
+"    subcontrol-position: bottom;"
+"    subcontrol-origin: margin;"
+"}"
+"QScrollBar::add-line:vertical:hover {    "
+"    background-color: #40444b;"
+"}"
+"QScrollBar::add-line:vertical:pressed {    "
+"    background-color: #18191c;"
+"}"
+""
+"/* RESET ARROW */"
+"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {"
+"    background: none;"
+"}"
+"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {"
+"    background: none;"
+"}"
+)
+        self.dark_alarm_scroll_Area.setStyleSheet("background: #2f3136; border-radius: 7px;")
+        self.dark_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(self.dark_alarm_scroll_Area)
+        self.dark_alarm_scroll_Area.setWidget(self.dark_alarm_scroll_AreaWidgetContents)
 
         self.dark_alarm_verticalLayout.addWidget(self.dark_alarm_scroll_Area)
 
-        self.dark_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(
-            self.dark_alarm_scroll_AreaWidgetContents)
+        self.dark_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(self.dark_alarm_scroll_AreaWidgetContents)
 
-        self.cond_lst = [".\\Assets\\images\\off.png",
-                         ".\\Assets\\images\\on.png"]
+        self.cond_lst = [".\Assets\\images\\off.png", ".\Assets\\images\\on.png"]
         self.cond_text = ["Off", "On"]
         self.cond = {}
-
         def dark_alarm_create_alarm_btn(btn, i, s):
             self.cond[btn] = 0
-            btn.setFixedSize(60, 35)
+            btn.setFixedSize(60,35)
             btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
-            btn.setIconSize(QtCore.QSize(40, 35))
+            btn.setIconSize(QtCore.QSize(40,35))
             btn.setText(self.cond_text[self.cond[btn]])
             btn.setStyleSheet("""
 QPushButton {
@@ -4896,28 +4876,39 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 """)
-
-            def alarm_switch():
+            if s[2] == 0:
+                btn.setIcon(QtGui.QIcon(self.cond_lst[0]))
+                btn.setText(self.cond_text[0])
+            else:
+                btn.setIcon(QtGui.QIcon(self.cond_lst[1]))
+                btn.setText(self.cond_text[1])
+            def alarm_switch(s):
                 self.cond[btn] = not self.cond[btn]
-                btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
-                btn.setText(self.cond_text[self.cond[btn]])
-            btn.clicked.connect(lambda: alarm_switch())
+                alarm_sw = Alarms()
+                if self.cond[btn] == True:
+                    alarm_sw.turn_alarm_on(s[0])
+                    btn.setIcon(QtGui.QIcon(self.cond_lst[1]))
+                    btn.setText(self.cond_text[1])
+                else:
+                    alarm_sw.turn_alarm_off(s[0])
+                    btn.setIcon(QtGui.QIcon(self.cond_lst[0]))
+                    btn.setText(self.cond_text[0])
+
+            btn.clicked.connect(lambda checked, s=s: alarm_switch(s))
         dark_alarm_scroll_files()
 
 # <<<<<<<<<<<<<<<light alarm Window
 
         self.light_alarm_centralwidget = QtWidgets.QWidget(MainWindow)
-        self.light_alarm_centralwidget.setFixedSize(430, 500)
-        self.light_alarm_verticalLayout = QtWidgets.QVBoxLayout(
-            self.light_alarm_centralwidget)
+        self.light_alarm_centralwidget.setFixedSize(430,500)
+        self.light_alarm_verticalLayout = QtWidgets.QVBoxLayout(self.light_alarm_centralwidget)
 
         self.light_alarm_home_btn = QtWidgets.QPushButton()
-        self.light_alarm_home_btn.setIcon(
-            QtGui.QIcon(".\Assets\\images\\home"))
+        self.light_alarm_home_btn.setIcon(QtGui.QIcon(".\Assets\\images\\home"))
         self.light_alarm_home_btn.setIconSize(QtCore.QSize(25, 25))
-        self.light_alarm_home_btn.setFixedSize(40, 40)
+        self.light_alarm_home_btn.setFixedSize(40,40)
         self.light_alarm_home_btn.setStyleSheet(
-            '''
+'''
 QPushButton {
     background-color: transparent;
     border-radius: 10px;
@@ -4932,7 +4923,7 @@ QPushButton:pressed {
 
         self.light_alarm_title_label = QtWidgets.QLabel(" Robert Alarm")
         self.light_alarm_title_label.setStyleSheet(
-            '''
+'''
 QLabel {
     font-family: 'Titillium Web', sans-serif;
     font-size: 40px;
@@ -4941,14 +4932,14 @@ QLabel {
         self.light_alarm_title_layout = QtWidgets.QHBoxLayout()
         self.light_alarm_title_layout.addWidget(self.light_alarm_home_btn)
         self.light_alarm_title_layout.addWidget(self.light_alarm_title_label)
+        
 
         self.light_alarm_addcode_btn = QtWidgets.QPushButton()
-        self.light_alarm_addcode_btn.setIcon(
-            QtGui.QIcon(".\Assets\\images\\add_btn.png"))
+        self.light_alarm_addcode_btn.setIcon(QtGui.QIcon(".\Assets\\images\\add_btn.png"))
         self.light_alarm_addcode_btn.setIconSize(QtCore.QSize(40, 40))
-        self.light_alarm_addcode_btn.setFixedSize(70, 50)
+        self.light_alarm_addcode_btn.setFixedSize(70,50)
         self.light_alarm_addcode_btn.setStyleSheet(
-            '''
+'''
 QPushButton {
     background-color: transparent;
     border-radius: 12px;
@@ -4961,17 +4952,21 @@ QPushButton:pressed {
 }
 ''')
         self.light_alarm_title_layout.addWidget(self.light_alarm_addcode_btn)
-        self.light_alarm_verticalLayout.addLayout(
-            self.light_alarm_title_layout)
+        self.light_alarm_verticalLayout.addLayout(self.light_alarm_title_layout)
+
+        def light_alarm_delete_action(s):
+            del_alarm = Alarms()
+            del_alarm.delete_alarm(s[0])
+            light_alarm_scroll_files()
 
         def light_alarm_scroll_files():
+            alarm = Alarms()
+            self.files = [[i[0],i[1],i[2]] for i in alarm.list_alarms()]
+
             self.light_alarm_scroll_AreaWidgetContents.deleteLater()
-            self.light_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(
-                self.light_alarm_scroll_Area)
-            self.light_alarm_scroll_Area.setWidget(
-                self.light_alarm_scroll_AreaWidgetContents)
-            self.light_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(
-                self.light_alarm_scroll_AreaWidgetContents)
+            self.light_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(self.light_alarm_scroll_Area)
+            self.light_alarm_scroll_Area.setWidget(self.light_alarm_scroll_AreaWidgetContents)
+            self.light_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(self.light_alarm_scroll_AreaWidgetContents)
 
             def main_clicked(s):
                 self.task_show_widget = QtWidgets.QDialog()
@@ -4980,12 +4975,11 @@ QPushButton:pressed {
                 scroll_area.setWidgetResizable(True)
                 scroll_area_content = QtWidgets.QWidget(scroll_area)
                 scroll_area.setWidget(scroll_area_content)
-                scroll_area.setStyleSheet(
-                    "background: #f2f3f5; border-radius: 7px;")
+                scroll_area.setStyleSheet("background: #f2f3f5; border-radius: 7px;")
                 form_lay = QtWidgets.QHBoxLayout(scroll_area_content)
 
-                self.task_show_widget.setWindowFlag(
-                    QtCore.Qt.FramelessWindowHint)
+
+                self.task_show_widget.setWindowFlag(QtCore.Qt.FramelessWindowHint)
                 self.task_show_widget.resize(300, 180)
                 self.task_show_widget.setMinimumSize(QtCore.QSize(300, 180))
                 self.task_show_widget.setMaximumSize(QtCore.QSize(300, 180))
@@ -4995,11 +4989,11 @@ QDialog {
 }
 QLabel {
     font-family: 'Titillium Web', sans-serif;
-    font-size: 30px;
+    font-size: 25px;
 }
 QPushButton {
     background-color: transparent;
-    border-radius: 5px;
+    border-radius: 12px;
 }
 QPushButton:hover {
     background-color: #ebedef;
@@ -5012,8 +5006,7 @@ QPushButton:pressed {
                 self.exit_lay = QtWidgets.QHBoxLayout()
                 self.exit_lay.addStretch(1)
                 self.exit_lay.addWidget(self.exit_btn)
-                self.exit_btn.setIcon(QtGui.QIcon(
-                    ".\Assets\\images\\exit_icon"))
+                self.exit_btn.setIcon(QtGui.QIcon(".\Assets\\images\\exit_icon"))
                 self.exit_btn.setIconSize(QtCore.QSize(20, 20))
                 self.exit_btn.setGeometry(QtCore.QRect(315, 5, 25, 25))
                 self.exit_btn.clicked.connect(self.task_show_widget.accept)
@@ -5023,21 +5016,24 @@ QPushButton:pressed {
 
                 self.des_label = QtWidgets.QLabel()
                 form_lay.addWidget(self.des_label)
-                self.des_label.setText(f"12:30 AM")
+                w_alarm = Alarms()
+                w_a = [i[3] for i in w_alarm.list_alarms() if i[0] == s[0]]
+
+                self.des_label.setText(f"Time Left: {w_a} Minutes")
                 self.des_label.setGeometry(QtCore.QRect(10, 10, 300, 180))
 
                 self.task_show_widget.exec_()
 
-            for i, s in enumerate(self.files):
+            for i,s in enumerate(self.files):
                 light_alarm_create_scroll_btn_layout = QtWidgets.QHBoxLayout()
                 light_alarm_switch_btn = QtWidgets.QPushButton()
                 light_alarm_create_alarm_btn(light_alarm_switch_btn, i, s)
-
+                
                 light_alarm_main_btn = QtWidgets.QPushButton()
-                light_alarm_main_btn.setFixedSize(240, 60)
-                light_alarm_main_btn.setText(files[i])
+                light_alarm_main_btn.setFixedSize(240,60)
+                light_alarm_main_btn.setText(self.files[i][1])
                 light_alarm_main_btn.setStyleSheet(
-                    '''
+'''
 QPushButton {
     background-color: #e3e5e8;
     font-family: 'Roboto Mono', monospace;
@@ -5054,16 +5050,14 @@ QPushButton:pressed {
     background-color: #A2A2A2;
 }
 ''')
-                light_alarm_main_btn.clicked.connect(
-                    lambda checked, s=s: main_clicked(s))
+                light_alarm_main_btn.clicked.connect(lambda checked, s=s: main_clicked(s))
 
-                light_alarm_edit_btn = QtWidgets.QPushButton()  # 39DFA2
-                light_alarm_edit_btn.setIcon(
-                    QtGui.QIcon(".\Assets\\images\\edit_icon.png"))
+                light_alarm_edit_btn = QtWidgets.QPushButton()   #39DFA2
+                light_alarm_edit_btn.setIcon(QtGui.QIcon(".\Assets\\images\\edit_icon.png"))
                 light_alarm_edit_btn.setIconSize(QtCore.QSize(28, 28))
-                light_alarm_edit_btn.setFixedSize(30, 60)
+                light_alarm_edit_btn.setFixedSize(30,60) 
                 light_alarm_edit_btn.setStyleSheet(
-                    '''
+'''
 QPushButton {
     background-color: transparent;
     border-radius: 0px;
@@ -5075,16 +5069,15 @@ QPushButton:pressed {
     background-color: #A2A2A2;
 }
 ''')
-                light_alarm_edit_btn.clicked.connect(
-                    lambda: light_alarm_add_window("Edit"))
+                light_alarm_edit_btn.clicked.connect(lambda checked,s=s : light_alarm_add_window("Edit",s))
 
                 light_alarm_del_btn = QtWidgets.QPushButton()
-                light_alarm_del_btn.setIcon(
-                    QtGui.QIcon(".\Assets\\images\\del_icon.png"))
+                light_alarm_del_btn.setIcon(QtGui.QIcon(".\Assets\\images\\del_icon.png"))
                 light_alarm_del_btn.setIconSize(QtCore.QSize(28, 28))
-                light_alarm_del_btn.setFixedSize(30, 60)  # 39DFA2
+                light_alarm_del_btn.setFixedSize(30,60)   #39DFA2
+                light_alarm_del_btn.clicked.connect(lambda checked, s=s: light_alarm_delete_action(s))
                 light_alarm_del_btn.setStyleSheet(
-                    '''
+'''
 QPushButton {
     background-color: transparent;
     border-top-left-radius: 0;
@@ -5099,22 +5092,21 @@ QPushButton:pressed {
     background-color: #A2A2A2;
 }
 ''')
-                light_alarm_create_scroll_btn_layout.addWidget(
-                    light_alarm_switch_btn)
-                light_alarm_create_scroll_btn_layout.addWidget(
-                    light_alarm_main_btn)
-                light_alarm_create_scroll_btn_layout.addWidget(
-                    light_alarm_edit_btn)
-                light_alarm_create_scroll_btn_layout.addWidget(
-                    light_alarm_del_btn)
-                self.light_alarm_scrollArea_formLayout .addRow(
-                    light_alarm_create_scroll_btn_layout)
+                light_alarm_create_scroll_btn_layout.addWidget(light_alarm_switch_btn)
+                light_alarm_create_scroll_btn_layout.addWidget(light_alarm_main_btn)
+                light_alarm_create_scroll_btn_layout.addWidget(light_alarm_edit_btn)
+                light_alarm_create_scroll_btn_layout.addWidget(light_alarm_del_btn)
+                self.light_alarm_scrollArea_formLayout .addRow(light_alarm_create_scroll_btn_layout)
+            
+            
 
-        def light_alarm_add_window(txt):
+        def light_alarm_add_window(txt,s):
+            self.s = s
+            print(self.s)
+            self.txt = txt
             self.files_set_DialogWindow = QtWidgets.QDialog()
-            self.files_set_DialogWindow.setWindowFlag(
-                QtCore.Qt.FramelessWindowHint)
-            self.files_set_DialogWindow.resize(400, 300)
+            self.files_set_DialogWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+            self.files_set_DialogWindow.resize(350, 200)
             self.files_set_DialogWindow.setStyleSheet("""
 QDialog {
     background-color: #ffffff;
@@ -5168,8 +5160,7 @@ QComboBox QAbstractItemView {
 	selection-background-color: #e3e5e8;
 }
 """)
-            self.alarm_add_layout = QtWidgets.QVBoxLayout(
-                self.files_set_DialogWindow)
+            self.alarm_add_layout = QtWidgets.QVBoxLayout(self.files_set_DialogWindow)
             self.alarm_ok_layout = QtWidgets.QHBoxLayout()
             self.dialog_ok_btn = QtWidgets.QPushButton()
             if txt == "Add":
@@ -5178,8 +5169,7 @@ QComboBox QAbstractItemView {
                 self.dialog_ok_btn.setText("Save")
             self.dialog_cancel_btn = QtWidgets.QPushButton()
             self.dialog_cancel_btn.setText("Cancel")
-            self.dialog_cancel_btn.clicked.connect(
-                lambda: self.files_set_DialogWindow.reject())
+            self.dialog_cancel_btn.clicked.connect(lambda: self.files_set_DialogWindow.reject())
             self.alarm_ok_layout.addWidget(self.dialog_ok_btn)
             self.alarm_ok_layout.addWidget(self.dialog_cancel_btn)
 
@@ -5190,9 +5180,9 @@ QComboBox QAbstractItemView {
             self.dialog_label.setText(f"{txt} your Alarm")
 
             self.alarm_hour_add = QtWidgets.QSpinBox()
-            self.alarm_hour_add.setRange(1, 12)
+            self.alarm_hour_add.setRange(1,12)
             self.alarm_minute_add = QtWidgets.QSpinBox()
-            self.alarm_minute_add.setRange(0, 59)
+            self.alarm_minute_add.setRange(0,59)
 
             self.alarm_time_add_layout = QtWidgets.QHBoxLayout()
             self.alarm_hour_layout = QtWidgets.QVBoxLayout()
@@ -5200,13 +5190,11 @@ QComboBox QAbstractItemView {
 
             self.alarm_hour_label = QtWidgets.QLabel()
             self.alarm_hour_label.setText("Hour")
-            self.alarm_hour_label.setStyleSheet(
-                "font-family: 'Cabin', sans-serif;font-size: 15px;")
+            self.alarm_hour_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
             self.alarm_minute_label = QtWidgets.QLabel()
             self.alarm_minute_label.setText("Minute")
-            self.alarm_minute_label.setStyleSheet(
-                "font-family: 'Cabin', sans-serif;font-size: 15px;")
-
+            self.alarm_minute_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+            
             self.alarm_hour_layout.addWidget(self.alarm_hour_label)
             self.alarm_hour_layout.addWidget(self.alarm_hour_add)
             self.alarm_minute_layout.addWidget(self.alarm_minute_label)
@@ -5214,6 +5202,7 @@ QComboBox QAbstractItemView {
 
             self.alarm_mid_group = QtWidgets.QComboBox()
             self.alarm_mid_group.addItems(["AM", "PM"])
+            
 
             self.alarm_time_add_layout.addLayout(self.alarm_hour_layout)
             self.alarm_time_add_layout.addLayout(self.alarm_minute_layout)
@@ -5222,135 +5211,128 @@ QComboBox QAbstractItemView {
             self.alarm_mid_group_layout.addWidget(self.alarm_mid_group)
             self.alarm_time_add_layout.addLayout(self.alarm_mid_group_layout)
 
-            self.alarm_other_layout = QtWidgets.QHBoxLayout()
-            self.alarm_repeats_label = QtWidgets.QLabel("Repeats")
-            self.alarm_repeats_label.setStyleSheet(
-                "font-family: 'Cabin', sans-serif;font-size: 15px;")
-            self.alarm_sound_label = QtWidgets.QLabel("Sound")
-            self.alarm_sound_label.setStyleSheet(
-                "font-family: 'Cabin', sans-serif;font-size: 15px;")
-            self.alarm_repeats_add = QtWidgets.QComboBox()
-            self.alarm_repeats_add.addItems(
-                ["Only Once", "Every day", "Every week", "Every Month"])
-            self.alarm_sound_add = QtWidgets.QComboBox()
-            self.alarm_sound_add.addItems(
-                ["sound A", "sound B", "sound C", "sound D", "sound E"])
-
-            self.alarm_repeats_layout = QtWidgets.QVBoxLayout()
-            self.alarm_repeats_layout.addWidget(self.alarm_repeats_label)
-            self.alarm_repeats_layout.addWidget(self.alarm_repeats_add)
-            self.alarm_sound_layout = QtWidgets.QVBoxLayout()
-            self.alarm_sound_layout.addWidget(self.alarm_sound_label)
-            self.alarm_sound_layout.addWidget(self.alarm_sound_add)
-
-            self.alarm_other_layout.addLayout(self.alarm_repeats_layout)
-            self.alarm_other_layout.addLayout(self.alarm_sound_layout)
-
             self.alarm_add_layout.addWidget(self.dialog_label)
             self.alarm_add_layout.addWidget(self.dialog_textEdit)
             self.alarm_add_layout.addLayout(self.alarm_time_add_layout)
-            self.alarm_add_layout.addLayout(self.alarm_other_layout)
             self.alarm_add_layout.addLayout(self.alarm_ok_layout)
+
+            self.combo_i = 0
+            def add_clicked(name, hour, minute):
+                add_alarm = Alarms()
+                combo = ["AM", "PM"]
+                if combo[self.combo_i] == "AM":
+                    combo = True
+                else:
+                    combo = False
+                time = add_alarm.convert_to_24_clock(hour.value(), minute.value(), AM= combo)
+
+                if self.txt == "Add":
+                    add_alarm.insert_alarm(name.toPlainText(), time[0], time[1])
+                else:
+                    add_alarm.edit_alarm(self.s[0],name.toPlainText(), time[0], time[1])
+
+                light_alarm_scroll_files()
+                self.files_set_DialogWindow.accept()
+
+            self.dialog_ok_btn.clicked.connect(lambda: add_clicked(self.dialog_textEdit, self.alarm_hour_add, self.alarm_minute_add))
+
+            def combo_activate(index):
+                self.combo_i = index
+            self.alarm_mid_group.activated.connect(combo_activate)
 
             self.files_set_DialogWindow.exec_()
 
-# -----------------end of code adding--------------------------------------
-        self.light_alarm_addcode_btn.clicked.connect(
-            lambda: light_alarm_add_window("Add"))
-        self.light_alarm_scroll_Area = QtWidgets.QScrollArea(
-            self.light_alarm_centralwidget)
+#-----------------end of code adding--------------------------------------
+        self.light_alarm_addcode_btn.clicked.connect(lambda s=None: light_alarm_add_window("Add",s))
+        self.light_alarm_scroll_Area = QtWidgets.QScrollArea(self.light_alarm_centralwidget)
         self.light_alarm_scroll_Area.setWidgetResizable(True)
         self.light_alarm_centralwidget.setStyleSheet(
-            "QWidget {"
-            "   background: #ffffff;"
-            "}"
-            "QScrollArea {"
-            "background-color: #f2f3f5"
-            "}"
-            "/* VERTICAL SCROLLBAR */"
-            " QScrollBar:vertical {"
-            "    border: none;"
-            "    background: #e3e5e8;"
-            "    width: 14px;"
-            "    margin: 15px 0 15px 0;"
-            "    "
-            " }"
-            ""
-            "/*  HANDLE BAR VERTICAL */"
-            "QScrollBar::handle:vertical {    "
-            "    background-color: #D0D0D0;"
-            "    min-height: 30px;"
-            "    "
-            "}"
-            "QScrollBar::handle:vertical:hover{    "
-            "    background-color: #B7B7B7;"
-            "}"
-            "QScrollBar::handle:vertical:pressed {    "
-            "    background-color: #A9A9A9;"
-            "}"
-            ""
-            "/* BTN TOP - SCROLLBAR */"
-            "QScrollBar::sub-line:vertical {"
-            "    border: none;"
-            "    background-color: #D0D0D0;"
-            "    height: 15px;"
-            "    border-top-left-radius: 7px;"
-            "    border-top-right-radius: 7px;"
-            "    subcontrol-position: top;"
-            "    subcontrol-origin: margin;"
-            "}"
-            "QScrollBar::sub-line:vertical:hover {    "
-            "    background-color: #B7B7B7;"
-            "}"
-            "QScrollBar::sub-line:vertical:pressed {    "
-            "    background-color: #A9A9A9;"
-            "}"
-            ""
-            "/* BTN BOTTOM - SCROLLBAR */"
-            "QScrollBar::add-line:vertical {"
-            "    border: none;"
-            "    background-color: #D0D0D0;"
-            "    height: 15px;"
-            "    border-bottom-left-radius: 7px;"
-            "    border-bottom-right-radius: 7px;"
-            "    subcontrol-position: bottom;"
-            "    subcontrol-origin: margin;"
-            "}"
-            "QScrollBar::add-line:vertical:hover {    "
-            "    background-color: #B7B7B7;"
-            "}"
-            "QScrollBar::add-line:vertical:pressed {    "
-            "    background-color: #A9A9A9;"
-            "}"
-            ""
-            "/* RESET ARROW */"
-            "QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {"
-            "    background: none;"
-            "}"
-            "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {"
-            "    background: none;"
-            "}"
-        )
-        self.light_alarm_scroll_Area.setStyleSheet(
-            "background: #f2f3f5; border-radius: 7px;")
-        self.light_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(
-            self.light_alarm_scroll_Area)
-        self.light_alarm_scroll_Area.setWidget(
-            self.light_alarm_scroll_AreaWidgetContents)
+"QWidget {"
+"   background: #ffffff;"
+"}"
+"QScrollArea {"
+"background-color: #f2f3f5"
+"}"        
+"/* VERTICAL SCROLLBAR */"
+" QScrollBar:vertical {"
+"    border: none;"
+"    background: #e3e5e8;"
+"    width: 14px;"
+"    margin: 15px 0 15px 0;"
+"    "
+" }"
+""
+"/*  HANDLE BAR VERTICAL */"
+"QScrollBar::handle:vertical {    "
+"    background-color: #D0D0D0;"
+"    min-height: 30px;"
+"    "
+"}"
+"QScrollBar::handle:vertical:hover{    "
+"    background-color: #B7B7B7;"
+"}"
+"QScrollBar::handle:vertical:pressed {    "
+"    background-color: #A9A9A9;"
+"}"
+""
+"/* BTN TOP - SCROLLBAR */"
+"QScrollBar::sub-line:vertical {"
+"    border: none;"
+"    background-color: #D0D0D0;"
+"    height: 15px;"
+"    border-top-left-radius: 7px;"
+"    border-top-right-radius: 7px;"
+"    subcontrol-position: top;"
+"    subcontrol-origin: margin;"
+"}"
+"QScrollBar::sub-line:vertical:hover {    "
+"    background-color: #B7B7B7;"
+"}"
+"QScrollBar::sub-line:vertical:pressed {    "
+"    background-color: #A9A9A9;"
+"}"
+""
+"/* BTN BOTTOM - SCROLLBAR */"
+"QScrollBar::add-line:vertical {"
+"    border: none;"
+"    background-color: #D0D0D0;"
+"    height: 15px;"
+"    border-bottom-left-radius: 7px;"
+"    border-bottom-right-radius: 7px;"
+"    subcontrol-position: bottom;"
+"    subcontrol-origin: margin;"
+"}"
+"QScrollBar::add-line:vertical:hover {    "
+"    background-color: #B7B7B7;"
+"}"
+"QScrollBar::add-line:vertical:pressed {    "
+"    background-color: #A9A9A9;"
+"}"
+""
+"/* RESET ARROW */"
+"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {"
+"    background: none;"
+"}"
+"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {"
+"    background: none;"
+"}"
+)
+        self.light_alarm_scroll_Area.setStyleSheet("background: #f2f3f5; border-radius: 7px;")
+        self.light_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(self.light_alarm_scroll_Area)
+        self.light_alarm_scroll_Area.setWidget(self.light_alarm_scroll_AreaWidgetContents)
 
         self.light_alarm_verticalLayout.addWidget(self.light_alarm_scroll_Area)
 
-        self.light_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(
-            self.light_alarm_scroll_AreaWidgetContents)
+        self.light_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(self.light_alarm_scroll_AreaWidgetContents)
 
-        #self.cond_lst = [".\Assets\\images\\off.png", ".\Assets\\images\\on.png"]
-        #self.cond_text = ["Off", "On"]
-        #self.cond = {}
+        self.cond_lst = [".\Assets\\images\\off.png", ".\Assets\\images\\on.png"]
+        self.cond_text = ["Off", "On"]
+        self.cond = {}
         def light_alarm_create_alarm_btn(btn, i, s):
             self.cond[btn] = 0
-            btn.setFixedSize(60, 35)
+            btn.setFixedSize(60,35)
             btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
-            btn.setIconSize(QtCore.QSize(40, 35))
+            btn.setIconSize(QtCore.QSize(40,35))
             btn.setText(self.cond_text[self.cond[btn]])
             btn.setStyleSheet("""
 QPushButton {
@@ -5364,28 +5346,39 @@ QPushButton:pressed {
     background-color: #A2A2A2;
 }
 """)
-
-            def alarm_switch():
+            if s[2] == 0:
+                btn.setIcon(QtGui.QIcon(self.cond_lst[0]))
+                btn.setText(self.cond_text[0])
+            else:
+                btn.setIcon(QtGui.QIcon(self.cond_lst[1]))
+                btn.setText(self.cond_text[1])
+            def alarm_switch(s):
                 self.cond[btn] = not self.cond[btn]
-                btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
-                btn.setText(self.cond_text[self.cond[btn]])
-            btn.clicked.connect(lambda: alarm_switch())
+                alarm_sw = Alarms()
+                if self.cond[btn] == True:
+                    alarm_sw.turn_alarm_on(s[0])
+                    btn.setIcon(QtGui.QIcon(self.cond_lst[1]))
+                    btn.setText(self.cond_text[1])
+                else:
+                    alarm_sw.turn_alarm_off(s[0])
+                    btn.setIcon(QtGui.QIcon(self.cond_lst[0]))
+                    btn.setText(self.cond_text[0])
+
+            btn.clicked.connect(lambda checked, s=s: alarm_switch(s))
         light_alarm_scroll_files()
 
 # <<<<<<<<<<<<<<<green alarm Window
 
         self.green_alarm_centralwidget = QtWidgets.QWidget(MainWindow)
-        self.green_alarm_centralwidget.setFixedSize(430, 500)
-        self.green_alarm_verticalLayout = QtWidgets.QVBoxLayout(
-            self.green_alarm_centralwidget)
+        self.green_alarm_centralwidget.setFixedSize(430,500)
+        self.green_alarm_verticalLayout = QtWidgets.QVBoxLayout(self.green_alarm_centralwidget)
 
         self.green_alarm_home_btn = QtWidgets.QPushButton()
-        self.green_alarm_home_btn.setIcon(
-            QtGui.QIcon(".\Assets\\images\\home"))
+        self.green_alarm_home_btn.setIcon(QtGui.QIcon(".\Assets\\images\\home"))
         self.green_alarm_home_btn.setIconSize(QtCore.QSize(25, 25))
-        self.green_alarm_home_btn.setFixedSize(40, 40)
+        self.green_alarm_home_btn.setFixedSize(40,40)
         self.green_alarm_home_btn.setStyleSheet(
-            '''
+'''
 QPushButton {
     background-color: transparent;
     border-radius: 10px;
@@ -5400,7 +5393,7 @@ QPushButton:pressed {
 
         self.green_alarm_title_label = QtWidgets.QLabel(" Robert Alarm")
         self.green_alarm_title_label.setStyleSheet(
-            '''
+'''
 QLabel {
     font-family: 'Titillium Web', sans-serif;
     font-size: 40px;
@@ -5409,14 +5402,14 @@ QLabel {
         self.green_alarm_title_layout = QtWidgets.QHBoxLayout()
         self.green_alarm_title_layout.addWidget(self.green_alarm_home_btn)
         self.green_alarm_title_layout.addWidget(self.green_alarm_title_label)
+        
 
         self.green_alarm_addcode_btn = QtWidgets.QPushButton()
-        self.green_alarm_addcode_btn.setIcon(
-            QtGui.QIcon(".\Assets\\images\\add_btn.png"))
+        self.green_alarm_addcode_btn.setIcon(QtGui.QIcon(".\Assets\\images\\add_btn.png"))
         self.green_alarm_addcode_btn.setIconSize(QtCore.QSize(40, 40))
-        self.green_alarm_addcode_btn.setFixedSize(70, 50)
+        self.green_alarm_addcode_btn.setFixedSize(70,50)
         self.green_alarm_addcode_btn.setStyleSheet(
-            '''
+'''
 QPushButton {
     background-color: transparent;
     border-radius: 12px;
@@ -5429,17 +5422,21 @@ QPushButton:pressed {
 }
 ''')
         self.green_alarm_title_layout.addWidget(self.green_alarm_addcode_btn)
-        self.green_alarm_verticalLayout.addLayout(
-            self.green_alarm_title_layout)
+        self.green_alarm_verticalLayout.addLayout(self.green_alarm_title_layout)
+
+        def green_alarm_delete_action(s):
+            del_alarm = Alarms()
+            del_alarm.delete_alarm(s[0])
+            green_alarm_scroll_files()
 
         def green_alarm_scroll_files():
+            alarm = Alarms()
+            self.files = [[i[0],i[1],i[2]] for i in alarm.list_alarms()]
+
             self.green_alarm_scroll_AreaWidgetContents.deleteLater()
-            self.green_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(
-                self.green_alarm_scroll_Area)
-            self.green_alarm_scroll_Area.setWidget(
-                self.green_alarm_scroll_AreaWidgetContents)
-            self.green_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(
-                self.green_alarm_scroll_AreaWidgetContents)
+            self.green_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(self.green_alarm_scroll_Area)
+            self.green_alarm_scroll_Area.setWidget(self.green_alarm_scroll_AreaWidgetContents)
+            self.green_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(self.green_alarm_scroll_AreaWidgetContents)
 
             def main_clicked(s):
                 self.task_show_widget = QtWidgets.QDialog()
@@ -5448,12 +5445,11 @@ QPushButton:pressed {
                 scroll_area.setWidgetResizable(True)
                 scroll_area_content = QtWidgets.QWidget(scroll_area)
                 scroll_area.setWidget(scroll_area_content)
-                scroll_area.setStyleSheet(
-                    "background: #2ABF88; border-radius: 7px;")
+                scroll_area.setStyleSheet("background: #2ABF88; border-radius: 7px;")
                 form_lay = QtWidgets.QHBoxLayout(scroll_area_content)
 
-                self.task_show_widget.setWindowFlag(
-                    QtCore.Qt.FramelessWindowHint)
+
+                self.task_show_widget.setWindowFlag(QtCore.Qt.FramelessWindowHint)
                 self.task_show_widget.resize(300, 180)
                 self.task_show_widget.setMinimumSize(QtCore.QSize(300, 180))
                 self.task_show_widget.setMaximumSize(QtCore.QSize(300, 180))
@@ -5463,7 +5459,7 @@ QDialog {
 }
 QLabel {
     font-family: 'Titillium Web', sans-serif;
-    font-size: 30px;
+    font-size: 25px;
 }
 QPushButton {
     background-color: transparent;
@@ -5482,8 +5478,7 @@ QPushButton:pressed {
                 self.exit_lay = QtWidgets.QHBoxLayout()
                 self.exit_lay.addStretch(1)
                 self.exit_lay.addWidget(self.exit_btn)
-                self.exit_btn.setIcon(QtGui.QIcon(
-                    ".\Assets\\images\\exit_icon"))
+                self.exit_btn.setIcon(QtGui.QIcon(".\Assets\\images\\exit_icon"))
                 self.exit_btn.setIconSize(QtCore.QSize(20, 20))
                 self.exit_btn.setGeometry(QtCore.QRect(315, 5, 25, 25))
                 self.exit_btn.clicked.connect(self.task_show_widget.accept)
@@ -5493,21 +5488,24 @@ QPushButton:pressed {
 
                 self.des_label = QtWidgets.QLabel()
                 form_lay.addWidget(self.des_label)
-                self.des_label.setText(f"12:30 AM")
+                w_alarm = Alarms()
+                w_a = [i[3] for i in w_alarm.list_alarms() if i[0] == s[0]]
+
+                self.des_label.setText(f"Time Left: {w_a} Minutes")
                 self.des_label.setGeometry(QtCore.QRect(10, 10, 300, 180))
 
                 self.task_show_widget.exec_()
 
-            for i, s in enumerate(self.files):
+            for i,s in enumerate(self.files):
                 green_alarm_create_scroll_btn_layout = QtWidgets.QHBoxLayout()
                 green_alarm_switch_btn = QtWidgets.QPushButton()
                 green_alarm_create_alarm_btn(green_alarm_switch_btn, i, s)
-
+                
                 green_alarm_main_btn = QtWidgets.QPushButton()
-                green_alarm_main_btn.setFixedSize(240, 60)
-                green_alarm_main_btn.setText(files[i])
+                green_alarm_main_btn.setFixedSize(240,60)
+                green_alarm_main_btn.setText(self.files[i][1])
                 green_alarm_main_btn.setStyleSheet(
-                    '''
+'''
 QPushButton {
     background-color: #39DFA2;
     font-family: 'Roboto Mono', monospace;
@@ -5524,16 +5522,14 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 ''')
-                green_alarm_main_btn.clicked.connect(
-                    lambda checked, s=s: main_clicked(s))
+                green_alarm_main_btn.clicked.connect(lambda checked, s=s: main_clicked(s))
 
-                green_alarm_edit_btn = QtWidgets.QPushButton()  # 39DFA2
-                green_alarm_edit_btn.setIcon(
-                    QtGui.QIcon(".\Assets\\images\\edit_icon.png"))
+                green_alarm_edit_btn = QtWidgets.QPushButton()   #39DFA2
+                green_alarm_edit_btn.setIcon(QtGui.QIcon(".\Assets\\images\\edit_icon.png"))
                 green_alarm_edit_btn.setIconSize(QtCore.QSize(28, 28))
-                green_alarm_edit_btn.setFixedSize(30, 60)
+                green_alarm_edit_btn.setFixedSize(30,60) 
                 green_alarm_edit_btn.setStyleSheet(
-                    '''
+'''
 QPushButton {
     background-color: transparent;
     border-radius: 0px;
@@ -5545,16 +5541,15 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 ''')
-                green_alarm_edit_btn.clicked.connect(
-                    lambda: green_alarm_add_window("Edit"))
+                green_alarm_edit_btn.clicked.connect(lambda checked,s=s : green_alarm_add_window("Edit",s))
 
                 green_alarm_del_btn = QtWidgets.QPushButton()
-                green_alarm_del_btn.setIcon(
-                    QtGui.QIcon(".\Assets\\images\\del_icon.png"))
+                green_alarm_del_btn.setIcon(QtGui.QIcon(".\Assets\\images\\del_icon.png"))
                 green_alarm_del_btn.setIconSize(QtCore.QSize(28, 28))
-                green_alarm_del_btn.setFixedSize(30, 60)  # 39DFA2
+                green_alarm_del_btn.setFixedSize(30,60)   #39DFA2
+                green_alarm_del_btn.clicked.connect(lambda checked, s=s: green_alarm_delete_action(s))
                 green_alarm_del_btn.setStyleSheet(
-                    '''
+'''
 QPushButton {
     background-color: transparent;
     border-top-left-radius: 0;
@@ -5569,22 +5564,21 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 ''')
-                green_alarm_create_scroll_btn_layout.addWidget(
-                    green_alarm_switch_btn)
-                green_alarm_create_scroll_btn_layout.addWidget(
-                    green_alarm_main_btn)
-                green_alarm_create_scroll_btn_layout.addWidget(
-                    green_alarm_edit_btn)
-                green_alarm_create_scroll_btn_layout.addWidget(
-                    green_alarm_del_btn)
-                self.green_alarm_scrollArea_formLayout .addRow(
-                    green_alarm_create_scroll_btn_layout)
+                green_alarm_create_scroll_btn_layout.addWidget(green_alarm_switch_btn)
+                green_alarm_create_scroll_btn_layout.addWidget(green_alarm_main_btn)
+                green_alarm_create_scroll_btn_layout.addWidget(green_alarm_edit_btn)
+                green_alarm_create_scroll_btn_layout.addWidget(green_alarm_del_btn)
+                self.green_alarm_scrollArea_formLayout .addRow(green_alarm_create_scroll_btn_layout)
+            
+            
 
-        def green_alarm_add_window(txt):
+        def green_alarm_add_window(txt,s):
+            self.s = s
+            print(self.s)
+            self.txt = txt
             self.files_set_DialogWindow = QtWidgets.QDialog()
-            self.files_set_DialogWindow.setWindowFlag(
-                QtCore.Qt.FramelessWindowHint)
-            self.files_set_DialogWindow.resize(400, 300)
+            self.files_set_DialogWindow.setWindowFlag(QtCore.Qt.FramelessWindowHint)
+            self.files_set_DialogWindow.resize(350, 200)
             self.files_set_DialogWindow.setStyleSheet("""
 QDialog {
     background-color: #14B57A;
@@ -5638,8 +5632,7 @@ QComboBox QAbstractItemView {
 	selection-background-color: #2ABF88;
 }
 """)
-            self.alarm_add_layout = QtWidgets.QVBoxLayout(
-                self.files_set_DialogWindow)
+            self.alarm_add_layout = QtWidgets.QVBoxLayout(self.files_set_DialogWindow)
             self.alarm_ok_layout = QtWidgets.QHBoxLayout()
             self.dialog_ok_btn = QtWidgets.QPushButton()
             if txt == "Add":
@@ -5648,8 +5641,7 @@ QComboBox QAbstractItemView {
                 self.dialog_ok_btn.setText("Save")
             self.dialog_cancel_btn = QtWidgets.QPushButton()
             self.dialog_cancel_btn.setText("Cancel")
-            self.dialog_cancel_btn.clicked.connect(
-                lambda: self.files_set_DialogWindow.reject())
+            self.dialog_cancel_btn.clicked.connect(lambda: self.files_set_DialogWindow.reject())
             self.alarm_ok_layout.addWidget(self.dialog_ok_btn)
             self.alarm_ok_layout.addWidget(self.dialog_cancel_btn)
 
@@ -5660,9 +5652,9 @@ QComboBox QAbstractItemView {
             self.dialog_label.setText(f"{txt} your Alarm")
 
             self.alarm_hour_add = QtWidgets.QSpinBox()
-            self.alarm_hour_add.setRange(1, 12)
+            self.alarm_hour_add.setRange(1,12)
             self.alarm_minute_add = QtWidgets.QSpinBox()
-            self.alarm_minute_add.setRange(0, 59)
+            self.alarm_minute_add.setRange(0,59)
 
             self.alarm_time_add_layout = QtWidgets.QHBoxLayout()
             self.alarm_hour_layout = QtWidgets.QVBoxLayout()
@@ -5670,13 +5662,11 @@ QComboBox QAbstractItemView {
 
             self.alarm_hour_label = QtWidgets.QLabel()
             self.alarm_hour_label.setText("Hour")
-            self.alarm_hour_label.setStyleSheet(
-                "font-family: 'Cabin', sans-serif;font-size: 15px;")
+            self.alarm_hour_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
             self.alarm_minute_label = QtWidgets.QLabel()
             self.alarm_minute_label.setText("Minute")
-            self.alarm_minute_label.setStyleSheet(
-                "font-family: 'Cabin', sans-serif;font-size: 15px;")
-
+            self.alarm_minute_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
+            
             self.alarm_hour_layout.addWidget(self.alarm_hour_label)
             self.alarm_hour_layout.addWidget(self.alarm_hour_add)
             self.alarm_minute_layout.addWidget(self.alarm_minute_label)
@@ -5684,6 +5674,7 @@ QComboBox QAbstractItemView {
 
             self.alarm_mid_group = QtWidgets.QComboBox()
             self.alarm_mid_group.addItems(["AM", "PM"])
+            
 
             self.alarm_time_add_layout.addLayout(self.alarm_hour_layout)
             self.alarm_time_add_layout.addLayout(self.alarm_minute_layout)
@@ -5692,135 +5683,128 @@ QComboBox QAbstractItemView {
             self.alarm_mid_group_layout.addWidget(self.alarm_mid_group)
             self.alarm_time_add_layout.addLayout(self.alarm_mid_group_layout)
 
-            self.alarm_other_layout = QtWidgets.QHBoxLayout()
-            self.alarm_repeats_label = QtWidgets.QLabel("Repeats")
-            self.alarm_repeats_label.setStyleSheet(
-                "font-family: 'Cabin', sans-serif;font-size: 15px;")
-            self.alarm_sound_label = QtWidgets.QLabel("Sound")
-            self.alarm_sound_label.setStyleSheet(
-                "font-family: 'Cabin', sans-serif;font-size: 15px;")
-            self.alarm_repeats_add = QtWidgets.QComboBox()
-            self.alarm_repeats_add.addItems(
-                ["Only Once", "Every day", "Every week", "Every Month"])
-            self.alarm_sound_add = QtWidgets.QComboBox()
-            self.alarm_sound_add.addItems(
-                ["sound A", "sound B", "sound C", "sound D", "sound E"])
-
-            self.alarm_repeats_layout = QtWidgets.QVBoxLayout()
-            self.alarm_repeats_layout.addWidget(self.alarm_repeats_label)
-            self.alarm_repeats_layout.addWidget(self.alarm_repeats_add)
-            self.alarm_sound_layout = QtWidgets.QVBoxLayout()
-            self.alarm_sound_layout.addWidget(self.alarm_sound_label)
-            self.alarm_sound_layout.addWidget(self.alarm_sound_add)
-
-            self.alarm_other_layout.addLayout(self.alarm_repeats_layout)
-            self.alarm_other_layout.addLayout(self.alarm_sound_layout)
-
             self.alarm_add_layout.addWidget(self.dialog_label)
             self.alarm_add_layout.addWidget(self.dialog_textEdit)
             self.alarm_add_layout.addLayout(self.alarm_time_add_layout)
-            self.alarm_add_layout.addLayout(self.alarm_other_layout)
             self.alarm_add_layout.addLayout(self.alarm_ok_layout)
+
+            self.combo_i = 0
+            def add_clicked(name, hour, minute):
+                add_alarm = Alarms()
+                combo = ["AM", "PM"]
+                if combo[self.combo_i] == "AM":
+                    combo = True
+                else:
+                    combo = False
+                time = add_alarm.convert_to_24_clock(hour.value(), minute.value(), AM= combo)
+
+                if self.txt == "Add":
+                    add_alarm.insert_alarm(name.toPlainText(), time[0], time[1])
+                else:
+                    add_alarm.edit_alarm(self.s[0],name.toPlainText(), time[0], time[1])
+
+                green_alarm_scroll_files()
+                self.files_set_DialogWindow.accept()
+
+            self.dialog_ok_btn.clicked.connect(lambda: add_clicked(self.dialog_textEdit, self.alarm_hour_add, self.alarm_minute_add))
+
+            def combo_activate(index):
+                self.combo_i = index
+            self.alarm_mid_group.activated.connect(combo_activate)
 
             self.files_set_DialogWindow.exec_()
 
-# -----------------end of code adding--------------------------------------
-        self.green_alarm_addcode_btn.clicked.connect(
-            lambda: green_alarm_add_window("Add"))
-        self.green_alarm_scroll_Area = QtWidgets.QScrollArea(
-            self.green_alarm_centralwidget)
+#-----------------end of code adding--------------------------------------
+        self.green_alarm_addcode_btn.clicked.connect(lambda s=None: green_alarm_add_window("Add",s))
+        self.green_alarm_scroll_Area = QtWidgets.QScrollArea(self.green_alarm_centralwidget)
         self.green_alarm_scroll_Area.setWidgetResizable(True)
         self.green_alarm_centralwidget.setStyleSheet(
-            "QWidget {"
-            "   background: #14B57A;"
-            "}"
-            "QScrollArea {"
-            "background-color: #2ABF88"
-            "}"
-            "/* VERTICAL SCROLLBAR */"
-            " QScrollBar:vertical {"
-            "    border: none;"
-            "    background: #40A681;"
-            "    width: 14px;"
-            "    margin: 15px 0 15px 0;"
-            "    "
-            " }"
-            ""
-            "/*  HANDLE BAR VERTICAL */"
-            "QScrollBar::handle:vertical {    "
-            "    background-color: #3ABA8B;"
-            "    min-height: 30px;"
-            "    "
-            "}"
-            "QScrollBar::handle:vertical:hover{    "
-            "    background-color: #0BE494;"
-            "}"
-            "QScrollBar::handle:vertical:pressed {    "
-            "    background-color: #05D085;"
-            "}"
-            ""
-            "/* BTN TOP - SCROLLBAR */"
-            "QScrollBar::sub-line:vertical {"
-            "    border: none;"
-            "    background-color: #1F986C;"
-            "    height: 15px;"
-            "    border-top-left-radius: 7px;"
-            "    border-top-right-radius: 7px;"
-            "    subcontrol-position: top;"
-            "    subcontrol-origin: margin;"
-            "}"
-            "QScrollBar::sub-line:vertical:hover {    "
-            "    background-color: #40A681;"
-            "}"
-            "QScrollBar::sub-line:vertical:pressed {    "
-            "    background-color: #1A6C4E;"
-            "}"
-            ""
-            "/* BTN BOTTOM - SCROLLBAR */"
-            "QScrollBar::add-line:vertical {"
-            "    border: none;"
-            "    background-color: #1F986C;"
-            "    height: 15px;"
-            "    border-bottom-left-radius: 7px;"
-            "    border-bottom-right-radius: 7px;"
-            "    subcontrol-position: bottom;"
-            "    subcontrol-origin: margin;"
-            "}"
-            "QScrollBar::add-line:vertical:hover {    "
-            "    background-color: #40A681;"
-            "}"
-            "QScrollBar::add-line:vertical:pressed {    "
-            "    background-color: #1A6C4E;"
-            "}"
-            ""
-            "/* RESET ARROW */"
-            "QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {"
-            "    background: none;"
-            "}"
-            "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {"
-            "    background: none;"
-            "}"
-        )
-        self.green_alarm_scroll_Area.setStyleSheet(
-            "background: #2ABF88; border-radius: 7px;")
-        self.green_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(
-            self.green_alarm_scroll_Area)
-        self.green_alarm_scroll_Area.setWidget(
-            self.green_alarm_scroll_AreaWidgetContents)
+"QWidget {"
+"   background: #14B57A;"
+"}"
+"QScrollArea {"
+"background-color: #2ABF88"
+"}"        
+"/* VERTICAL SCROLLBAR */"
+" QScrollBar:vertical {"
+"    border: none;"
+"    background: #40A681;"
+"    width: 14px;"
+"    margin: 15px 0 15px 0;"
+"    "
+" }"
+""
+"/*  HANDLE BAR VERTICAL */"
+"QScrollBar::handle:vertical {    "
+"    background-color: #3ABA8B;"
+"    min-height: 30px;"
+"    "
+"}"
+"QScrollBar::handle:vertical:hover{    "
+"    background-color: #0BE494;"
+"}"
+"QScrollBar::handle:vertical:pressed {    "
+"    background-color: #05D085;"
+"}"
+""
+"/* BTN TOP - SCROLLBAR */"
+"QScrollBar::sub-line:vertical {"
+"    border: none;"
+"    background-color: #1F986C;"
+"    height: 15px;"
+"    border-top-left-radius: 7px;"
+"    border-top-right-radius: 7px;"
+"    subcontrol-position: top;"
+"    subcontrol-origin: margin;"
+"}"
+"QScrollBar::sub-line:vertical:hover {    "
+"    background-color: #40A681;"
+"}"
+"QScrollBar::sub-line:vertical:pressed {    "
+"    background-color: #1A6C4E;"
+"}"
+""
+"/* BTN BOTTOM - SCROLLBAR */"
+"QScrollBar::add-line:vertical {"
+"    border: none;"
+"    background-color: #1F986C;"
+"    height: 15px;"
+"    border-bottom-left-radius: 7px;"
+"    border-bottom-right-radius: 7px;"
+"    subcontrol-position: bottom;"
+"    subcontrol-origin: margin;"
+"}"
+"QScrollBar::add-line:vertical:hover {    "
+"    background-color: #40A681;"
+"}"
+"QScrollBar::add-line:vertical:pressed {    "
+"    background-color: #1A6C4E;"
+"}"
+""
+"/* RESET ARROW */"
+"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {"
+"    background: none;"
+"}"
+"QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {"
+"    background: none;"
+"}"
+)
+        self.green_alarm_scroll_Area.setStyleSheet("background: #2ABF88; border-radius: 7px;")
+        self.green_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(self.green_alarm_scroll_Area)
+        self.green_alarm_scroll_Area.setWidget(self.green_alarm_scroll_AreaWidgetContents)
 
         self.green_alarm_verticalLayout.addWidget(self.green_alarm_scroll_Area)
 
-        self.green_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(
-            self.green_alarm_scroll_AreaWidgetContents)
+        self.green_alarm_scrollArea_formLayout = QtWidgets.QFormLayout(self.green_alarm_scroll_AreaWidgetContents)
 
-        #self.cond_lst = [".\Assets\\images\\off.png", ".\Assets\\images\\on.png"]
-        #self.cond_text = ["Off", "On"]
-        #self.cond = {}
+        self.cond_lst = [".\Assets\\images\\off.png", ".\Assets\\images\\on.png"]
+        self.cond_text = ["Off", "On"]
+        self.cond = {}
         def green_alarm_create_alarm_btn(btn, i, s):
             self.cond[btn] = 0
-            btn.setFixedSize(60, 35)
+            btn.setFixedSize(60,35)
             btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
-            btn.setIconSize(QtCore.QSize(40, 35))
+            btn.setIconSize(QtCore.QSize(40,35))
             btn.setText(self.cond_text[self.cond[btn]])
             btn.setStyleSheet("""
 QPushButton {
@@ -5834,12 +5818,25 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 """)
-
-            def alarm_switch():
+            if s[2] == 0:
+                btn.setIcon(QtGui.QIcon(self.cond_lst[0]))
+                btn.setText(self.cond_text[0])
+            else:
+                btn.setIcon(QtGui.QIcon(self.cond_lst[1]))
+                btn.setText(self.cond_text[1])
+            def alarm_switch(s):
                 self.cond[btn] = not self.cond[btn]
-                btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
-                btn.setText(self.cond_text[self.cond[btn]])
-            btn.clicked.connect(lambda: alarm_switch())
+                alarm_sw = Alarms()
+                if self.cond[btn] == True:
+                    alarm_sw.turn_alarm_on(s[0])
+                    btn.setIcon(QtGui.QIcon(self.cond_lst[1]))
+                    btn.setText(self.cond_text[1])
+                else:
+                    alarm_sw.turn_alarm_off(s[0])
+                    btn.setIcon(QtGui.QIcon(self.cond_lst[0]))
+                    btn.setText(self.cond_text[0])
+
+            btn.clicked.connect(lambda checked, s=s: alarm_switch(s))
         green_alarm_scroll_files()
 
         def switch_theme(from_, to_):
