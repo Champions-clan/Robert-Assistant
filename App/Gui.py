@@ -845,15 +845,23 @@ QLabel {
                 snippet = Snippets()
                 snippet.edit_snippet(s[0],code)
             dark_code_scroll_files()
+        def copyed(s):
+            import clipboard
+            code_copy = ""
+            code = Snippets()
+            lst_code = code.list_snippets()
+            for code_i in lst_code:
+                if code_i[0] == s[0]:
+                    code_copy = code_i[1]
+                    break
+            clipboard.copy(code_copy) 
 
         def dark_code_scroll_files():
             code_snippet = Snippets()
             if self.sort_cu == 0:
-                #self.sort_cu = 0
                 self.files = [[i[0],i[3].capitalize()] for i in code_snippet.list_snippets()]
                 self.files.reverse()
             else:
-                #self.sort_cu = 1
                 self.files = [[i[0],i[3].lower()] for i in code_snippet.list_snippets()]
                 sorted(self.files, key=lambda x: x[1])
                 self.files = [[i[0],i[1].capitalize()] for i in self.files]
@@ -866,6 +874,7 @@ QLabel {
                 dark_code_scroll_btns_layout = QtWidgets.QHBoxLayout()
                 dark_code_scroll_main_btn = QPushButton(self.files[i][1])
                 dark_code_scroll_main_btn.setFixedSize(300,60)
+                dark_code_scroll_main_btn.clicked.connect(lambda checked, s=s: copyed(s))
                 dark_code_scroll_main_btn.setStyleSheet(
 '''
 QPushButton {
@@ -1157,12 +1166,6 @@ QComboBox QAbstractItemView {
         self.dark_code_main_layout.addWidget(self.dark_code_scrollArea)
         self.dark_code_form_layout = QtWidgets.QFormLayout(self.dark_code_scrollAreaWidgetContents)
 
-        def copyed(txt):
-            import clipboard
-            file = open(f".\\codes\\{txt}.txt", 'r')
-            file = file.read()
-            clipboard.copy(file)
-
         def dark_code_delete_action(s):
             del_snippet = Snippets()
             del_snippet.delete_snippet(s[0])
@@ -1306,6 +1309,7 @@ QTextEdit{
                 light_code_scroll_btns_layout = QtWidgets.QHBoxLayout()
                 light_code_scroll_main_btn = QPushButton(self.files[i][1])
                 light_code_scroll_main_btn.setFixedSize(300,60)
+                light_code_scroll_main_btn.clicked.connect(lambda checked, s=s: copyed(s))
                 light_code_scroll_main_btn.setStyleSheet(
 '''
 QPushButton {
@@ -1591,12 +1595,6 @@ QComboBox QAbstractItemView {
         self.light_code_main_layout.addWidget(self.light_code_scrollArea)
         self.light_code_form_layout = QtWidgets.QFormLayout(self.light_code_scrollAreaWidgetContents)
 
-        def copyed(txt):
-            import clipboard
-            file = open(f".\\codes\\{txt}.txt", 'r')
-            file = file.read()
-            clipboard.copy(file)
-
         def light_code_delete_action(s):
             del_snippet = Snippets()
             del_snippet.delete_snippet(s[0])
@@ -1740,6 +1738,7 @@ QTextEdit{
                 green_code_scroll_btns_layout = QtWidgets.QHBoxLayout()
                 green_code_scroll_main_btn = QPushButton(self.files[i][1])
                 green_code_scroll_main_btn.setFixedSize(300,60)
+                green_code_scroll_main_btn.clicked.connect(lambda checked, s=s: copyed(s))
                 green_code_scroll_main_btn.setStyleSheet(
 '''
 QPushButton {
@@ -2025,12 +2024,6 @@ QComboBox QAbstractItemView {
 
         self.green_code_main_layout.addWidget(self.green_code_scrollArea)
         self.green_code_form_layout = QtWidgets.QFormLayout(self.green_code_scrollAreaWidgetContents)
-
-        def copyed(txt):
-            import clipboard
-            file = open(f".\\codes\\{txt}.txt", 'r')
-            file = file.read()
-            clipboard.copy(file)
 
         def green_code_delete_action(s):
             del_snippet = Snippets()
