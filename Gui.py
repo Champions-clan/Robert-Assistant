@@ -821,7 +821,6 @@ QLabel {
         self.green_setting_verticalLayout.addStretch(5)
 
 #<<<<<<<<<<<<<<<Dark code Window
-        self.sort_lang_int = "All Languages"
         self.sort_cu = 0
         self.dark_code_centralwidget = QtWidgets.QWidget(MainWindow)
         self.dark_code_centralwidget.setFixedSize(430,500)
@@ -838,14 +837,13 @@ QLabel {
             self.file_get = QtWidgets.QFileDialog.getOpenFileName(self.code_widget, 'Open File', user , code_file)
 
             self.file_selected = self.file_get[0]
-            code_ex = self.file_selected.split(".")[1]
             if self.file_selected == '':
                 pass
             else:
                 code = open(self.file_selected,'r')
                 code = code.read()
                 snippet = Snippets()
-                snippet.edit_snippet(s[0], code, code_ex, s[2])
+                snippet.edit_snippet(s[0],code)
             dark_code_scroll_files()
         def copyed(s):
             import clipboard
@@ -859,32 +857,14 @@ QLabel {
             clipboard.copy(code_copy) 
 
         def dark_code_scroll_files():
-            lang_dict = {"All Languages":None,"Python":"py", "Java":"java", "C++":"cpp", "C#":"cs",
-            "C":"c", "Golang":"go", "Javascript":"js", "Typescript":"ts","Html":"html", "CSS":"css", 
-            "PHP":"php","Dart":"dart", "Scala":"scala", "Ruby":"rb", "R":"r", "kotlin":"kt", 
-            "rust":"rs", "Lua":"lua","Haskell":"hs"}
-
             code_snippet = Snippets()
             if self.sort_cu == 0:
-                self.files = [[i[0],i[1],i[3].capitalize()] for i in code_snippet.list_snippets()]
+                self.files = [[i[0],i[3].capitalize()] for i in code_snippet.list_snippets()]
                 self.files.reverse()
             else:
-                import string
-                l= string.ascii_lowercase
-
-                self.files = [[i[0],i[1],i[3].lower()] for i in code_snippet.list_snippets()]
-                self.files = sorted(self.files, key=lambda x: l.find(x[2][0]))
-                self.files = [[i[0],i[1],i[2].capitalize()] for i in self.files]
-
-            code_ext = lang_dict[self.sort_lang_int]
-            code_indv = []
-            if code_ext == None:
-                pass
-            else:
-                for code_i in self.files:
-                    if code_i[1] == code_ext: 
-                        code_indv.append(code_i)
-                self.files = code_indv
+                self.files = [[i[0],i[3].lower()] for i in code_snippet.list_snippets()]
+                sorted(self.files, key=lambda x: x[1])
+                self.files = [[i[0],i[1].capitalize()] for i in self.files]
 
             self.dark_code_scrollAreaWidgetContents.deleteLater()
             self.dark_code_scrollAreaWidgetContents = QtWidgets.QWidget(self.dark_code_scrollArea)
@@ -892,9 +872,9 @@ QLabel {
             self.dark_code_form_layout = QtWidgets.QFormLayout(self.dark_code_scrollAreaWidgetContents)
             for i,s in enumerate(self.files):
                 dark_code_scroll_btns_layout = QtWidgets.QHBoxLayout()
-                dark_code_scroll_main_btn = QPushButton(self.files[i][2])
+                dark_code_scroll_main_btn = QPushButton(self.files[i][1])
                 dark_code_scroll_main_btn.setFixedSize(300,60)
-                dark_code_scroll_main_btn.clicked.connect(lambda checked, s =s: copyed(s))
+                dark_code_scroll_main_btn.clicked.connect(lambda checked, s=s: copyed(s))
                 dark_code_scroll_main_btn.setStyleSheet(
 '''
 QPushButton {
@@ -915,9 +895,9 @@ QPushButton:pressed {
 }
 ''')
                 dark_code_scroll_edit_btn = QPushButton()
-                dark_code_scroll_edit_btn.setIcon(QtGui.QIcon(".\\Assets\\images\\edit_icon.png"))
+                dark_code_scroll_edit_btn.setIcon(QtGui.QIcon(r".\Assets\images\edit_icon.png"))
                 dark_code_scroll_edit_btn.setIconSize(QtCore.QSize(28, 28))
-                dark_code_scroll_edit_btn.setFixedSize(30,60)  
+                dark_code_scroll_edit_btn.setFixedSize(30,60)
                 dark_code_scroll_edit_btn.clicked.connect(lambda checked, i= s: dark_code_edit_popup_func(i))
                 dark_code_scroll_edit_btn.setStyleSheet(
 '''
@@ -933,7 +913,7 @@ QPushButton:pressed {
 }
 ''')
                 dark_code_scroll_del_btn = QPushButton()
-                dark_code_scroll_del_btn.setIcon(QtGui.QIcon(".\\Assets\\images\\del_icon.png"))
+                dark_code_scroll_del_btn.setIcon(QtGui.QIcon(r".\Assets\images\del_icon.png"))
                 dark_code_scroll_del_btn.setIconSize(QtCore.QSize(28, 28))
                 dark_code_scroll_del_btn.setFixedSize(30,60)
                 dark_code_scroll_del_btn.clicked.connect(lambda checked, txt=s:dark_code_delete_action(txt))
@@ -1284,11 +1264,6 @@ QTextEdit{
         self.dark_code_addcode_btn.clicked.connect(lambda: dark_code_dialog_popup_func())
         self.dark_code_choice_group.activated.connect(dark_code_combo)
 
-        def lang_sort(index):
-            self.sort_lang_int = lang_lst[index]
-            dark_code_scroll_files()
-        self.dark_code_lang_choice.activated.connect(lang_sort)
-
 #<<<<<<<<<<<<<<<Light code Window
         self.light_code_centralwidget = QtWidgets.QWidget(MainWindow)
         self.light_code_centralwidget.setFixedSize(430,500)
@@ -1305,43 +1280,26 @@ QTextEdit{
             self.file_get = QtWidgets.QFileDialog.getOpenFileName(self.code_widget, 'Open File', user , code_file)
 
             self.file_selected = self.file_get[0]
-            code_ex = self.file_selected.split(".")[1]
             if self.file_selected == '':
                 pass
             else:
                 code = open(self.file_selected,'r')
                 code = code.read()
                 snippet = Snippets()
-                snippet.edit_snippet(s[0], code, code_ex, s[2])
+                snippet.edit_snippet(s[0],code)
             light_code_scroll_files()
 
         def light_code_scroll_files():
-            lang_dict = {"All Languages":None,"Python":"py", "Java":"java", "C++":"cpp", "C#":"cs",
-            "C":"c", "Golang":"go", "Javascript":"js", "Typescript":"ts","Html":"html", "CSS":"css", 
-            "PHP":"php","Dart":"dart", "Scala":"scala", "Ruby":"rb", "R":"r", "kotlin":"kt", 
-            "rust":"rs", "Lua":"lua","Haskell":"hs"}
-
             code_snippet = Snippets()
             if self.sort_cu == 0:
-                self.files = [[i[0],i[2],i[3].capitalize()] for i in code_snippet.list_snippets()]
+                self.sort_cu = 0
+                self.files = [[i[0],i[3].capitalize()] for i in code_snippet.list_snippets()]
                 self.files.reverse()
             else:
-                import string
-                l= string.ascii_lowercase
-
-                self.files = [[i[0],i[1],i[3].lower()] for i in code_snippet.list_snippets()]
-                self.files = sorted(self.files, key=lambda x: l.find(x[2][0]))
-                self.files = [[i[0],i[1],i[2].capitalize()] for i in self.files]
-
-            code_ext = lang_dict[self.sort_lang_int]
-            code_indv = []
-            if code_ext == None:
-                pass
-            else:
-                for code_i in self.files:
-                    if code_i[1] == code_ext: 
-                        code_indv.append(code_i)
-                self.files = code_indv
+                self.sort_cu = 1
+                self.files = [[i[0],i[3].lower()] for i in code_snippet.list_snippets()]
+                sorted(self.files, key=lambda x: x[1])
+                self.files = [[i[0],i[1].capitalize()] for i in self.files]
 
             self.light_code_scrollAreaWidgetContents.deleteLater()
             self.light_code_scrollAreaWidgetContents = QtWidgets.QWidget(self.light_code_scrollArea)
@@ -1349,9 +1307,9 @@ QTextEdit{
             self.light_code_form_layout = QtWidgets.QFormLayout(self.light_code_scrollAreaWidgetContents)
             for i,s in enumerate(self.files):
                 light_code_scroll_btns_layout = QtWidgets.QHBoxLayout()
-                light_code_scroll_main_btn = QPushButton(self.files[i][2])
+                light_code_scroll_main_btn = QPushButton(self.files[i][1])
                 light_code_scroll_main_btn.setFixedSize(300,60)
-                light_code_scroll_main_btn.clicked.connect(lambda checked, s =s: copyed(s))
+                light_code_scroll_main_btn.clicked.connect(lambda checked, s=s: copyed(s))
                 light_code_scroll_main_btn.setStyleSheet(
 '''
 QPushButton {
@@ -1371,9 +1329,9 @@ QPushButton:pressed {
 }
 ''')
                 light_code_scroll_edit_btn = QPushButton()
-                light_code_scroll_edit_btn.setIcon(QtGui.QIcon(".\Assets\\images\\edit_icon.png"))
+                light_code_scroll_edit_btn.setIcon(QtGui.QIcon(r".\Assets\images\edit_icon.png"))
                 light_code_scroll_edit_btn.setIconSize(QtCore.QSize(28, 28))
-                light_code_scroll_edit_btn.setFixedSize(30,60)  
+                light_code_scroll_edit_btn.setFixedSize(30,60)
                 light_code_scroll_edit_btn.clicked.connect(lambda checked, i= s: light_code_edit_popup_func(i))
                 light_code_scroll_edit_btn.setStyleSheet(
 '''
@@ -1389,7 +1347,7 @@ QPushButton:pressed {
 }
 ''')
                 light_code_scroll_del_btn = QPushButton()
-                light_code_scroll_del_btn.setIcon(QtGui.QIcon(".\Assets\\images\\del_icon.png"))
+                light_code_scroll_del_btn.setIcon(QtGui.QIcon(r".\Assets\images\del_icon.png"))
                 light_code_scroll_del_btn.setIconSize(QtCore.QSize(28, 28))
                 light_code_scroll_del_btn.setFixedSize(30,60)
                 light_code_scroll_del_btn.clicked.connect(lambda checked, txt=s:light_code_delete_action(txt))
@@ -1518,7 +1476,6 @@ QComboBox QAbstractItemView {
 }
 '''
 )
-
         self.light_code_lang_choice = QtWidgets.QComboBox()
         self.light_code_lang_choice.addItems(lang_lst)
         self.light_code_lang_choice.setStyleSheet(
@@ -1733,11 +1690,6 @@ QTextEdit{
         self.light_code_addcode_btn.clicked.connect(lambda: light_code_dialog_popup_func())
         self.light_code_choice_group.activated.connect(light_code_combo)
 
-        def light_lang_sort(index):
-            self.sort_lang_int = lang_lst[index]
-            light_code_scroll_files()
-        self.light_code_lang_choice.activated.connect(light_lang_sort)
-
 #<<<<<<<<<<<<<<<Green code Window
         self.green_code_centralwidget = QtWidgets.QWidget(MainWindow)
         self.green_code_centralwidget.setFixedSize(430,500)
@@ -1754,44 +1706,26 @@ QTextEdit{
             self.file_get = QtWidgets.QFileDialog.getOpenFileName(self.code_widget, 'Open File', user , code_file)
 
             self.file_selected = self.file_get[0]
-            code_ex = self.file_selected.split(".")[1]
             if self.file_selected == '':
                 pass
             else:
                 code = open(self.file_selected,'r')
                 code = code.read()
                 snippet = Snippets()
-                
-                snippet.edit_snippet(s[0], code, code_ex, s[2])
+                snippet.edit_snippet(s[0],code)
             green_code_scroll_files()
 
         def green_code_scroll_files():
-            lang_dict = {"All Languages":None,"Python":"py", "Java":"java", "C++":"cpp", "C#":"cs",
-            "C":"c", "Golang":"go", "Javascript":"js", "Typescript":"ts","Html":"html", "CSS":"css", 
-            "PHP":"php","Dart":"dart", "Scala":"scala", "Ruby":"rb", "R":"r", "kotlin":"kt", 
-            "rust":"rs", "Lua":"lua","Haskell":"hs"}
-
             code_snippet = Snippets()
             if self.sort_cu == 0:
-                self.files = [[i[0],i[2],i[3].capitalize()] for i in code_snippet.list_snippets()]
+                self.sort_cu = 0
+                self.files = [[i[0],i[3].capitalize()] for i in code_snippet.list_snippets()]
                 self.files.reverse()
             else:
-                import string
-                l= string.ascii_lowercase
-
-                self.files = [[i[0],i[1],i[3].lower()] for i in code_snippet.list_snippets()]
-                self.files = sorted(self.files, key=lambda x: l.find(x[2][0]))
-                self.files = [[i[0],i[1],i[2].capitalize()] for i in self.files]
-
-            code_ext = lang_dict[self.sort_lang_int]
-            code_indv = []
-            if code_ext == None:
-                pass
-            else:
-                for code_i in self.files:
-                    if code_i[1] == code_ext: 
-                        code_indv.append(code_i)
-                self.files = code_indv
+                self.sort_cu = 1
+                self.files = [[i[0],i[3].lower()] for i in code_snippet.list_snippets()]
+                sorted(self.files, key=lambda x: x[1])
+                self.files = [[i[0],i[1].capitalize()] for i in self.files]
 
             self.green_code_scrollAreaWidgetContents.deleteLater()
             self.green_code_scrollAreaWidgetContents = QtWidgets.QWidget(self.green_code_scrollArea)
@@ -1799,9 +1733,9 @@ QTextEdit{
             self.green_code_form_layout = QtWidgets.QFormLayout(self.green_code_scrollAreaWidgetContents)
             for i,s in enumerate(self.files):
                 green_code_scroll_btns_layout = QtWidgets.QHBoxLayout()
-                green_code_scroll_main_btn = QPushButton(self.files[i][2])
+                green_code_scroll_main_btn = QPushButton(self.files[i][1])
                 green_code_scroll_main_btn.setFixedSize(300,60)
-                green_code_scroll_main_btn.clicked.connect(lambda checked, s =s: copyed(s))
+                green_code_scroll_main_btn.clicked.connect(lambda checked, s=s: copyed(s))
                 green_code_scroll_main_btn.setStyleSheet(
 '''
 QPushButton {
@@ -1821,9 +1755,9 @@ QPushButton:pressed {
 }
 ''')
                 green_code_scroll_edit_btn = QPushButton()
-                green_code_scroll_edit_btn.setIcon(QtGui.QIcon(".\Assets\\images\\edit_icon.png"))
+                green_code_scroll_edit_btn.setIcon(QtGui.QIcon(r".\Assets\images\edit_icon.png"))
                 green_code_scroll_edit_btn.setIconSize(QtCore.QSize(28, 28))
-                green_code_scroll_edit_btn.setFixedSize(30,60)  
+                green_code_scroll_edit_btn.setFixedSize(30,60)
                 green_code_scroll_edit_btn.clicked.connect(lambda checked, i= s: green_code_edit_popup_func(i))
                 green_code_scroll_edit_btn.setStyleSheet(
 '''
@@ -1839,7 +1773,7 @@ QPushButton:pressed {
 }
 ''')
                 green_code_scroll_del_btn = QPushButton()
-                green_code_scroll_del_btn.setIcon(QtGui.QIcon(".\Assets\\images\\del_icon.png"))
+                green_code_scroll_del_btn.setIcon(QtGui.QIcon(r".\Assets\images\del_icon.png"))
                 green_code_scroll_del_btn.setIconSize(QtCore.QSize(28, 28))
                 green_code_scroll_del_btn.setFixedSize(30,60)
                 green_code_scroll_del_btn.clicked.connect(lambda checked, txt=s:green_code_delete_action(txt))
@@ -1876,7 +1810,7 @@ QLabel {
 ''')
         self.green_code_title_layout = QtWidgets.QHBoxLayout()
         self.green_code_home_btn = QtWidgets.QPushButton()
-        self.green_code_home_btn.setIcon(QtGui.QIcon(r".\Assets\\images\\home"))
+        self.green_code_home_btn.setIcon(QtGui.QIcon(r".\Assets\images\home"))
         self.green_code_home_btn.setIconSize(QtCore.QSize(25, 25))
         self.green_code_home_btn.setFixedSize(40,40)
         self.green_code_home_btn.setStyleSheet(
@@ -1969,7 +1903,6 @@ QComboBox QAbstractItemView {
 }
 '''
 )
-
         self.green_code_lang_choice = QtWidgets.QComboBox()
         self.green_code_lang_choice.addItems(lang_lst)
         self.green_code_lang_choice.setStyleSheet(
@@ -2183,11 +2116,6 @@ QTextEdit{
 #-----------------end of code adding--------------------------------------
         self.green_code_addcode_btn.clicked.connect(lambda: green_code_dialog_popup_func())
         self.green_code_choice_group.activated.connect(green_code_combo)
-
-        def green_lang_sort(index):
-            self.sort_lang_int = lang_lst[index]
-            green_code_scroll_files()
-        self.green_code_lang_choice.activated.connect(green_lang_sort)
 
 #<<<<<<<<<<<<<<<Dark trans Window
         self.to_combo_index = 0

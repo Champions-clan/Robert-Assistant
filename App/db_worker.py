@@ -113,7 +113,7 @@ class Snippets(DbWorker):
                 "SELECT * FROM snippets ORDER BY date_created DESC")
         return self.cursor.fetchall()
 
-    def edit_snippet(self, snippet_number_to_update, new_snippet, new_snippet_language, new_snippet_name,):
+    def edit_snippet(self, snippet_number_to_update, new_snippet, new_snippet_language, new_snippet_name):
         try:
             self.cursor.execute("UPDATE snippets SET snippet=?, snippet_language=?, snippet_name=? WHERE snippet_number=?", (new_snippet, new_snippet_language, new_snippet_name, snippet_number_to_update))
             self.conn.commit()
