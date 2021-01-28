@@ -1,4 +1,3 @@
-from os import truncate
 import sqlite3
 import time
 import datetime
@@ -15,9 +14,9 @@ class DbWorker:
         cursor = conn.cursor()
         cursor.execute("CREATE TABLE IF NOT EXISTS snippets (snippet_number INTEGER PRIMARY KEY, snippet TEXT, snippet_language TEXT,snippet_name TEXT, date_created REAL, times_used INTEGER)")
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS  alarms (alarm_number INTEGER PRIMARY KEY,alarm_name TEXT,is_alarm_on BOOLEAN,alarm_time INTEGER)")
+            "CREATE TABLE IF NOT EXISTS  alarms (alarm_number INTEGER PRIMARY KEY,alarm_name TEXT,is_alarm_on BOOLEAN, repeat_frequncy INTEGER,alarm_time INTEGER)")
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS tasks (task_number INTEGER PRIMARY KEY,task_name TEXT, task_description TEXT, priority INT, checked BOOLEAN,time_created REAL)")
+            "CREATE TABLE IF NOT EXISTS tasks (task_number INTEGER PRIMARY KEY,task_name TEXT, task_description TEXT, checked BOOLEAN,time_created REAL)")
         conn.commit()
         return conn, cursor
 
@@ -166,7 +165,16 @@ class Alarms(DbWorker):
             return True
         except:
             return False
-
+    def edit_alarm(self, alarm_number, new_alarm_name, new_alarm_hour, new_alarm_minute):
+        try:
+            mins_frm_midnight = self.__convert_to_minutes_from_midnight(
+            new_alarm_hour, new_alarm_minute)
+            self.cursor.execute(
+                                "UPDATE alarms SET alarm_name=?, alarm_time=? WHERE alarm_number=?", (new_alarm_name, mins_frm_midnight, alarm_number))
+            self.conn.commit()
+            return True
+        except:
+            return False
     def delete_alarm(self, alarm_number):
         try:
             self.cursor.execute(
@@ -204,7 +212,7 @@ class Alarms(DbWorker):
             return False
 
     def listen_for_alarms(self, callback_func):
-        day_of_the_week = datetime.datetime.today().weekday() + 1
+        # day_of_the_week = datetime.datetime.today().weekday() + 1
         timm = self.__convert_to_minutes_from_midnight(
             datetime.datetime.now().hour, datetime.datetime.now().minute)
         self.cursor.execute("SELECT * FROM alarms WHERE is_alarm_on=?", (True))
@@ -329,6 +337,6 @@ alarm_manager = Alarms()
 # print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
 # 
 
-time = alarm_manager.convert_to_24_clock(2, 12, AM=False)
+# 4
 
-alarm_manager.insert_alarm("wakeup", time[0], time[1])
+print(alarm_manager.edit_alarm(2, "EDit testing", 13, 23))
