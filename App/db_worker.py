@@ -157,15 +157,15 @@ class Alarms(DbWorker):
         return minutes_from_midnight // 60, minutes_from_midnight % 60
 
     def insert_alarm(self, alarm_name: str,alarm_hour: int, alarm_minutes: int):
-        # try:
-        mins_frm_midnight = self.__convert_to_minutes_from_midnight(
-        alarm_hour, alarm_minutes)
-        self.cursor.execute(
-            "INSERT INTO alarms (alarm_number, alarm_name ,is_alarm_on ,alarm_time) VALUES (?, ?, ?, ?)", (None, alarm_name ,True, mins_frm_midnight, ))
-        self.conn.commit()
-        #     return True
-        # except:
-        #     return False
+        try:
+            mins_frm_midnight = self.__convert_to_minutes_from_midnight(
+            alarm_hour, alarm_minutes)
+            self.cursor.execute(
+                "INSERT INTO alarms (alarm_number, alarm_name ,is_alarm_on ,alarm_time) VALUES (?, ?, ?, ?)", (None, alarm_name ,True, mins_frm_midnight, ))
+            self.conn.commit()
+            return True
+        except:
+            return False
 
     def delete_alarm(self, alarm_number):
         try:
@@ -329,4 +329,6 @@ alarm_manager = Alarms()
 # print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
 # 
 
-# print(alarm_manager.convert_to_24_clock(2, 12))
+time = alarm_manager.convert_to_24_clock(2, 12, AM=False)
+
+alarm_manager.insert_alarm("wakeup", time[0], time[1])
