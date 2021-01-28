@@ -142,6 +142,12 @@ class Alarms(DbWorker):
     def __init__(self):
         self.conn, self.cursor = super().set_up_db()
 
+
+    def convert_to_24_clock(self, hour, minute, AM=True):
+        if AM:
+            return hour, minute
+        else:
+            return hour + 12, minute
     def __convert_to_minutes_from_midnight(self, hours, minutes):
         assert minutes <= 59
         assert hours <= 23
@@ -264,6 +270,7 @@ class TaskManager(DbWorker):
 
     #     pass
 
+
     def insert_task(self, task_name, task_description, priority_level):
         try:
         # self.check_priority_level(priority_level)
@@ -320,4 +327,6 @@ alarm_manager = Alarms()
 
 
 # print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
-alarm_manager.turn_alarm_on(1)
+# 
+
+print(alarm_manager.convert_to_24_clock(2, 12))
