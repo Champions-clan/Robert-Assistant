@@ -337,6 +337,3 @@ alarm_manager = Alarms()
 # print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
 # 
 
-# 4
-
-print(alarm_manager.edit_alarm(2, "EDit testing", 13, 23))
