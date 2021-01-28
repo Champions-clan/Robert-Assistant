@@ -1,3 +1,4 @@
+from os import truncate
 import sqlite3
 import time
 import datetime
@@ -14,9 +15,9 @@ class DbWorker:
         cursor = conn.cursor()
         cursor.execute("CREATE TABLE IF NOT EXISTS snippets (snippet_number INTEGER PRIMARY KEY, snippet TEXT, snippet_language TEXT,snippet_name TEXT, date_created REAL, times_used INTEGER)")
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS  alarms (alarm_number INTEGER PRIMARY KEY,alarm_time INTEGER)")
+            "CREATE TABLE IF NOT EXISTS  alarms (alarm_number INTEGER PRIMARY KEY,alarm_name TEXT,is_alarm_on BOOLEAN,alarm_time INTEGER)")
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS tasks (task_number INTEGER PRIMARY KEY,task_name TEXT, task_description TEXT, priority INT,time_created REAL)")
+            "CREATE TABLE IF NOT EXISTS tasks (task_number INTEGER PRIMARY KEY,task_name TEXT, task_description TEXT, priority INT, checked BOOLEAN,time_created REAL)")
         conn.commit()
         return conn, cursor
 
@@ -149,16 +150,14 @@ class Alarms(DbWorker):
     def __back_to_hours_and_minutes(self, minutes_from_midnight):
         return minutes_from_midnight // 60, minutes_from_midnight % 60
 
-    def insert_alarm(self, alarm_hour: int, alarm_minutes: int):
-        try:
-            mins_frm_midnight = self.__convert_to_minutes_from_midnight(
-                alarm_hour, alarm_minutes)
-            self.cursor.execute(
-                "INSERT INTO alarms (alarm_number, alarm_time) VALUES (?, ?)", (None, mins_frm_midnight, ))
-            self.conn.commit()
-            return True
-        except:
-            return False
+    def insert_alarm(self, alarm_name: str,alarm_hour: int, alarm_minutes: int):
+        # try:
+        mins_frm_midnight = self.__convert_to_minutes_from_midnight(
+        alarm_hour, alarm_minutes)
+        self.cursor.execute(
+            "INSERT INTO alarms (alarm_number, alarm_name ,is_alarm_on ,alarm_time) VALUES (?, ?, ?, ?)", (None, alarm_name ,True, mins_frm_midnight, ))
+        self.conn.commit()
+        #     return True
         # except:
         #     return False
 
@@ -174,6 +173,23 @@ class Alarms(DbWorker):
         # except:
         #     return False
 
+    def turn_alarm_on(self, alarm_number):
+        try:
+            self.cursor.execute("UPDATE alarms SET is_alarm_on=? WHERE alarm_number=?", (True, alarm_number))
+            self.conn.commit()
+            return True
+        except:
+            return False
+
+    def turn_alarm_off(self, alarm_number):
+        try:
+            self.cursor.execute("UPDATE alarms SET is_alarm_on=? WHERE alarm_number=?", (False, alarm_number))
+            self.conn.commit()
+            return True
+        except:
+            return False
+
+
     def list_alarms(self):
         try:
             self.cursor.execute("SELECT * FROM alarms")
@@ -185,7 +201,7 @@ class Alarms(DbWorker):
         day_of_the_week = datetime.datetime.today().weekday() + 1
         timm = self.__convert_to_minutes_from_midnight(
             datetime.datetime.now().hour, datetime.datetime.now().minute)
-        self.cursor.execute("SELECT * FROM alarms")
+        self.cursor.execute("SELECT * FROM alarms WHERE is_alarm_on=?", (True))
         data = self.cursor.fetchall()
         for i in data:
             if i[1] == timm:
@@ -211,8 +227,8 @@ class Alarms(DbWorker):
 #         assert priority_level < 0
 #         self.cursor.execute("INSERT INTO tasks (task)")
 
-class PriorityLevelNotRight:
-    pass
+# class PriorityLevelNotRight(Exception):
+#     pass
 
 
 
@@ -240,19 +256,19 @@ class TaskManager(DbWorker):
     def __init__(self):
         self.conn, self.cursor = super().set_up_db()
 
-    def check_priority_level(self, priority_level):
-        if priority_level < 0 and priority_level > 6:
-            pass
-        else:
-            raise PriorityLevelNotRight()
+    # def check_priority_level(self, priority_level):
+    #     if priority_level < 0 and priority_level > 6:
+    #         pass
+    #     else:
+    #         raise PriorityLevelNotRight("The prioirty level is not right")
 
-        pass
+    #     pass
 
     def insert_task(self, task_name, task_description, priority_level):
         try:
-            self.check_priority_level(priority_level)
-            self.cursor.execute("INSERT INTO tasks (task_number,task_name, task_description, priority, time_created) VALUES (?,?, ?, ?, ?)",
-                            (None, task_name, task_description, priority_level, time.time(),))
+        # self.check_priority_level(priority_level)
+            self.cursor.execute("INSERT INTO tasks (task_number,task_name, task_description, priority, checked ,time_created) VALUES (?, ?, ?, ?, ?, ?)",
+                            (None, task_name, task_description, priority_level, False,time.time(),))
             self.conn.commit()
             return True
         except:
@@ -267,6 +283,21 @@ class TaskManager(DbWorker):
         except:
             return False
 
+    def check_task(self, task_number):
+        try:
+            self.cursor.execute("UPDATE tasks SET checked=? WHERE task_number=?", (True, task_number))
+            self.conn.commit()
+            return True
+        except:
+            return False
+
+    def uncheck_task(self, task_number):
+        try:
+            self.cursor.execute("UPDATE tasks SET checked=? WHERE task_number=?", (False, task_number))
+            self.conn.commit()
+            return True
+        except:
+            return False
 
     def list_tasks(self, sort_by_priority=False):
         if sort_by_priority:
@@ -282,4 +313,11 @@ class TaskManager(DbWorker):
 
 # task = TaskManager()
 
-# task.
+# # print(task.insert_task('Code', "Code literally everything", 2))
+
+# print(task.uncheck_task(1))
+alarm_manager = Alarms()
+
+
+# print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
+alarm_manager.turn_alarm_on(1)
