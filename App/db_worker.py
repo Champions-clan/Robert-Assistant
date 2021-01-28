@@ -329,4 +329,4 @@ alarm_manager = Alarms()
 # print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
 # 
 
-print(alarm_manager.convert_to_24_clock(2, 12))
+# print(alarm_manager.convert_to_24_clock(2, 12))
