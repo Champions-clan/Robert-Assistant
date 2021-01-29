@@ -4046,7 +4046,7 @@ QComboBox QAbstractItemView {
                     if self.txt == "Add":
                         task.insert_task(name, desc, self.i)
                     else:
-                        task.edit_tasks(self.s[0], name, desc, self.i))
+                        task.edit_tasks(self.s[0], name, desc, self.i)
                     light_task_scroll_files()
                     self.files_set_DialogWindow.accept()
 
@@ -4461,7 +4461,7 @@ QLabel {
         self.dark_alarm_title_layout = QtWidgets.QHBoxLayout()
         self.dark_alarm_title_layout.addWidget(self.dark_alarm_home_btn)
         self.dark_alarm_title_layout.addWidget(self.dark_alarm_title_label)
-        
+
 
         self.dark_alarm_addcode_btn = QtWidgets.QPushButton()
         self.dark_alarm_addcode_btn.setIcon(QtGui.QIcon(".\Assets\\images\\add_btn.png"))
@@ -4557,7 +4557,7 @@ background-color: #18191c;
                 dark_alarm_create_scroll_btn_layout = QtWidgets.QHBoxLayout()
                 dark_alarm_switch_btn = QtWidgets.QPushButton()
                 dark_alarm_create_alarm_btn(dark_alarm_switch_btn, i, s)
-                
+
                 dark_alarm_main_btn = QtWidgets.QPushButton()
                 dark_alarm_main_btn.setFixedSize(240,60)
                 dark_alarm_main_btn.setText(self.files[i][1])
@@ -4585,7 +4585,7 @@ QPushButton:pressed {
                 dark_alarm_edit_btn = QtWidgets.QPushButton()   #39DFA2
                 dark_alarm_edit_btn.setIcon(QtGui.QIcon(".\Assets\\images\\edit_icon.png"))
                 dark_alarm_edit_btn.setIconSize(QtCore.QSize(28, 28))
-                dark_alarm_edit_btn.setFixedSize(30,60) 
+                dark_alarm_edit_btn.setFixedSize(30,60)
                 dark_alarm_edit_btn.setStyleSheet(
 '''
 QPushButton {
@@ -4627,8 +4627,8 @@ QPushButton:pressed {
                 dark_alarm_create_scroll_btn_layout.addWidget(dark_alarm_edit_btn)
                 dark_alarm_create_scroll_btn_layout.addWidget(dark_alarm_del_btn)
                 self.dark_alarm_scrollArea_formLayout .addRow(dark_alarm_create_scroll_btn_layout)
-            
-            
+
+
 
         def dark_alarm_add_window(txt,s):
             self.s = s
@@ -4671,7 +4671,7 @@ QSpinBox {
 	padding-left: 10px;
 }
 QSpinBox QAbstractItemView {
-	color: #FFFFFF;	
+	color: #FFFFFF;
 	background-color: #2f3136;
 	padding: 10px;
 	selection-background-color: #40444b;
@@ -4685,7 +4685,7 @@ QComboBox{
 	padding-left: 10px;
 }
 QComboBox QAbstractItemView {
-	color: #FFFFFF;	
+	color: #FFFFFF;
 	background-color: #2f3136;
 	padding: 10px;
 	selection-background-color: #40444b;
@@ -4725,7 +4725,7 @@ QComboBox QAbstractItemView {
             self.alarm_minute_label = QtWidgets.QLabel()
             self.alarm_minute_label.setText("Minute")
             self.alarm_minute_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
-            
+
             self.alarm_hour_layout.addWidget(self.alarm_hour_label)
             self.alarm_hour_layout.addWidget(self.alarm_hour_add)
             self.alarm_minute_layout.addWidget(self.alarm_minute_label)
@@ -4733,7 +4733,7 @@ QComboBox QAbstractItemView {
 
             self.alarm_mid_group = QtWidgets.QComboBox()
             self.alarm_mid_group.addItems(["AM", "PM"])
-            
+
 
             self.alarm_time_add_layout.addLayout(self.alarm_hour_layout)
             self.alarm_time_add_layout.addLayout(self.alarm_minute_layout)
@@ -4783,7 +4783,7 @@ QComboBox QAbstractItemView {
 "}"
 "QScrollArea {"
 "background-color: #2ABF88"
-"}"        
+"}"
 "/* VERTICAL SCROLLBAR */"
 " QScrollBar:vertical {"
 "    border: none;"
@@ -4933,7 +4933,7 @@ QLabel {
         self.light_alarm_title_layout = QtWidgets.QHBoxLayout()
         self.light_alarm_title_layout.addWidget(self.light_alarm_home_btn)
         self.light_alarm_title_layout.addWidget(self.light_alarm_title_label)
-        
+
 
         self.light_alarm_addcode_btn = QtWidgets.QPushButton()
         self.light_alarm_addcode_btn.setIcon(QtGui.QIcon(".\Assets\\images\\add_btn.png"))
@@ -5029,7 +5029,7 @@ QPushButton:pressed {
                 light_alarm_create_scroll_btn_layout = QtWidgets.QHBoxLayout()
                 light_alarm_switch_btn = QtWidgets.QPushButton()
                 light_alarm_create_alarm_btn(light_alarm_switch_btn, i, s)
-                
+
                 light_alarm_main_btn = QtWidgets.QPushButton()
                 light_alarm_main_btn.setFixedSize(240,60)
                 light_alarm_main_btn.setText(self.files[i][1])
@@ -5056,7 +5056,7 @@ QPushButton:pressed {
                 light_alarm_edit_btn = QtWidgets.QPushButton()   #39DFA2
                 light_alarm_edit_btn.setIcon(QtGui.QIcon(".\Assets\\images\\edit_icon.png"))
                 light_alarm_edit_btn.setIconSize(QtCore.QSize(28, 28))
-                light_alarm_edit_btn.setFixedSize(30,60) 
+                light_alarm_edit_btn.setFixedSize(30,60)
                 light_alarm_edit_btn.setStyleSheet(
 '''
 QPushButton {
@@ -5098,8 +5098,8 @@ QPushButton:pressed {
                 light_alarm_create_scroll_btn_layout.addWidget(light_alarm_edit_btn)
                 light_alarm_create_scroll_btn_layout.addWidget(light_alarm_del_btn)
                 self.light_alarm_scrollArea_formLayout .addRow(light_alarm_create_scroll_btn_layout)
-            
-            
+
+
 
         def light_alarm_add_window(txt,s):
             self.s = s
@@ -5141,7 +5141,7 @@ QSpinBox {
 	padding-left: 10px;
 }
 QSpinBox QAbstractItemView {
-	color: #000000;	
+	color: #000000;
 	background-color: #e3e5e8;
 	padding: 10px;
 	selection-background-color: #e3e5e8;
@@ -5154,7 +5154,7 @@ QComboBox{
 	padding-left: 10px;
 }
 QComboBox QAbstractItemView {
-	color: #000000;	
+	color: #000000;
 	background-color: #e3e5e8;
 	padding: 10px;
 	selection-background-color: #e3e5e8;
@@ -5194,7 +5194,7 @@ QComboBox QAbstractItemView {
             self.alarm_minute_label = QtWidgets.QLabel()
             self.alarm_minute_label.setText("Minute")
             self.alarm_minute_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
-            
+
             self.alarm_hour_layout.addWidget(self.alarm_hour_label)
             self.alarm_hour_layout.addWidget(self.alarm_hour_add)
             self.alarm_minute_layout.addWidget(self.alarm_minute_label)
@@ -5202,7 +5202,7 @@ QComboBox QAbstractItemView {
 
             self.alarm_mid_group = QtWidgets.QComboBox()
             self.alarm_mid_group.addItems(["AM", "PM"])
-            
+
 
             self.alarm_time_add_layout.addLayout(self.alarm_hour_layout)
             self.alarm_time_add_layout.addLayout(self.alarm_minute_layout)
@@ -5252,7 +5252,7 @@ QComboBox QAbstractItemView {
 "}"
 "QScrollArea {"
 "background-color: #f2f3f5"
-"}"        
+"}"
 "/* VERTICAL SCROLLBAR */"
 " QScrollBar:vertical {"
 "    border: none;"
@@ -5402,7 +5402,7 @@ QLabel {
         self.green_alarm_title_layout = QtWidgets.QHBoxLayout()
         self.green_alarm_title_layout.addWidget(self.green_alarm_home_btn)
         self.green_alarm_title_layout.addWidget(self.green_alarm_title_label)
-        
+
 
         self.green_alarm_addcode_btn = QtWidgets.QPushButton()
         self.green_alarm_addcode_btn.setIcon(QtGui.QIcon(".\Assets\\images\\add_btn.png"))
@@ -5500,7 +5500,7 @@ QPushButton:pressed {
                 green_alarm_create_scroll_btn_layout = QtWidgets.QHBoxLayout()
                 green_alarm_switch_btn = QtWidgets.QPushButton()
                 green_alarm_create_alarm_btn(green_alarm_switch_btn, i, s)
-                
+
                 green_alarm_main_btn = QtWidgets.QPushButton()
                 green_alarm_main_btn.setFixedSize(240,60)
                 green_alarm_main_btn.setText(self.files[i][1])
@@ -5527,7 +5527,7 @@ QPushButton:pressed {
                 green_alarm_edit_btn = QtWidgets.QPushButton()   #39DFA2
                 green_alarm_edit_btn.setIcon(QtGui.QIcon(".\Assets\\images\\edit_icon.png"))
                 green_alarm_edit_btn.setIconSize(QtCore.QSize(28, 28))
-                green_alarm_edit_btn.setFixedSize(30,60) 
+                green_alarm_edit_btn.setFixedSize(30,60)
                 green_alarm_edit_btn.setStyleSheet(
 '''
 QPushButton {
@@ -5569,8 +5569,8 @@ QPushButton:pressed {
                 green_alarm_create_scroll_btn_layout.addWidget(green_alarm_edit_btn)
                 green_alarm_create_scroll_btn_layout.addWidget(green_alarm_del_btn)
                 self.green_alarm_scrollArea_formLayout .addRow(green_alarm_create_scroll_btn_layout)
-            
-            
+
+
 
         def green_alarm_add_window(txt,s):
             self.s = s
@@ -5612,7 +5612,7 @@ QSpinBox {
 	padding-left: 10px;
 }
 QSpinBox QAbstractItemView {
-	color: #000000;	
+	color: #000000;
 	background-color: #2ABF88;
 	padding: 10px;
 	selection-background-color: #2ABF88;
@@ -5625,7 +5625,7 @@ QComboBox{
 	padding-left: 10px;
 }
 QComboBox QAbstractItemView {
-	color: #000000;	
+	color: #000000;
 	background-color: #2ABF88;
 	padding: 10px;
 	selection-background-color: #2ABF88;
@@ -5665,7 +5665,7 @@ QComboBox QAbstractItemView {
             self.alarm_minute_label = QtWidgets.QLabel()
             self.alarm_minute_label.setText("Minute")
             self.alarm_minute_label.setStyleSheet("font-family: 'Cabin', sans-serif;font-size: 15px;")
-            
+
             self.alarm_hour_layout.addWidget(self.alarm_hour_label)
             self.alarm_hour_layout.addWidget(self.alarm_hour_add)
             self.alarm_minute_layout.addWidget(self.alarm_minute_label)
@@ -5673,7 +5673,7 @@ QComboBox QAbstractItemView {
 
             self.alarm_mid_group = QtWidgets.QComboBox()
             self.alarm_mid_group.addItems(["AM", "PM"])
-            
+
 
             self.alarm_time_add_layout.addLayout(self.alarm_hour_layout)
             self.alarm_time_add_layout.addLayout(self.alarm_minute_layout)
@@ -5723,7 +5723,7 @@ QComboBox QAbstractItemView {
 "}"
 "QScrollArea {"
 "background-color: #2ABF88"
-"}"        
+"}"
 "/* VERTICAL SCROLLBAR */"
 " QScrollBar:vertical {"
 "    border: none;"
