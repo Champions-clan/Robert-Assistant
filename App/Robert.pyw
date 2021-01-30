@@ -33,10 +33,9 @@ def takeCommand():
 
 
 def take_speak_command():
-    wishMe()
+    #wishMe()
     speak("Nice To See You Again")
     statement = takeCommand().lower()
-    if statement == 0
 
        
 if __name__ == "__main__":
