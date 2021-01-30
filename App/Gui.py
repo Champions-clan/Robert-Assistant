@@ -3042,21 +3042,18 @@ QComboBox QAbstractItemView {
         def green_task_scroll_files():
             task = TaskManager()
             if self.task_sort == 0:
-                self.files = [[i[0],i[2], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.reverse()
             elif self.task_sort == 1:
-                self.files = [[i[3],i[2], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.sort()
                 self.files.reverse()
             else:
-                self.files = [[i[0],i[2], i[4], i[1].lower(), i[2]]
-                              for i in task.list_tasks()]
-                self.files
-                self.files = sorted(self.files, key=lambda x: x[2])
-                self.files = [[i[0],i[2], i[4], i[1].capitalize(), i[2]]
-                              for i in self.files]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].lower()]for i in task.list_tasks()]
+                self.files = sorted(self.files, key=lambda x: x[4])
+                self.files = [[i[0],i[1], i[2], i[3], i[4].capitalize()] for i in self.files]
 
             self.green_task_scrollAreaWidgetContents.deleteLater()
             self.green_task_scrollAreaWidgetContents = QtWidgets.QWidget(
@@ -3071,7 +3068,7 @@ QComboBox QAbstractItemView {
                 green_task_checked_btn = QtWidgets.QPushButton()
                 green_task_create_task_btn_func(green_task_checked_btn, i, s)
                 green_task_scroll_btn_layout.addWidget(green_task_checked_btn)
-                green_task_main_btn = QPushButton(self.files[i][3])
+                green_task_main_btn = QPushButton(self.files[i][4])
                 green_task_main_btn.setFixedSize(250, 60)
                 green_task_main_btn.setStyleSheet(
                     '''
@@ -3383,20 +3380,22 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 """)
-            if s[1] == 0:
+            if s[3] == 0:
                 btn.setIcon(QtGui.QIcon(self.green_task_cond_lst[0]))
             else:
                 btn.setIcon(QtGui.QIcon(self.green_task_cond_lst[1]))
 
             def task_switch(s):
-                self.green_task_cond[btn] = not self.green_task_cond[btn]
                 task_sw = TaskManager()
-                if self.green_task_cond[btn] == True:
+                if self.green_task_cond[btn] == 0:
                     btn.setIcon(QtGui.QIcon(self.green_task_cond_lst[1]))
-                    task_sw.check_task(s[0])
+                    print(task_sw.check_task(s[0]))
+                    self.green_task_cond[btn] = 1
                 else:
                     btn.setIcon(QtGui.QIcon(self.green_task_cond_lst[0]))
-                    task_sw.uncheck_task(s[0])
+                    print(task_sw.uncheck_task(s[0]))
+                    self.green_task_cond[btn] = 0
+
             btn.clicked.connect(lambda checked, s=s: task_switch(s))
 
         green_task_scroll_files()
@@ -3553,18 +3552,18 @@ QComboBox QAbstractItemView {
         def dark_task_scroll_files():
             task = TaskManager()
             if self.task_sort == 0:
-                self.files = [[i[0], i[2],i[4],i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.reverse()
             elif self.task_sort == 1:
-                self.files = [[i[3], i[2], i[4], i[1].capitalize(), i[2]]for i in task.list_tasks()]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize(), i[2]]
+                              for i in task.list_tasks()]
                 self.files.sort()
                 self.files.reverse()
             else:
-                self.files = [[i[0], i[2],i[4], i[1].lower(), i[2]]for i in task.list_tasks()]
-                self.files = sorted(self.files, key=lambda x: x[2])
-                self.files = [[i[0], i[2], i[4], i[1].capitalize(), i[2]]
-                              for i in self.files]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].lower()]for i in task.list_tasks()]
+                self.files = sorted(self.files, key=lambda x: x[4])
+                self.files = [[i[0],i[1], i[2], i[3], i[4].capitalize()] for i in self.files]
 
             self.dark_task_scrollAreaWidgetContents.deleteLater()
             self.dark_task_scrollAreaWidgetContents = QtWidgets.QWidget(
@@ -3579,7 +3578,7 @@ QComboBox QAbstractItemView {
                 dark_task_checked_btn = QtWidgets.QPushButton()
                 dark_task_create_task_btn_func(dark_task_checked_btn, i, s)
                 dark_task_scroll_btn_layout.addWidget(dark_task_checked_btn)
-                dark_task_main_btn = QPushButton(self.files[i][3])
+                dark_task_main_btn = QPushButton(self.files[i][4])
                 dark_task_main_btn.setFixedSize(250, 60)
                 dark_task_main_btn.setStyleSheet(
                     '''
@@ -3906,20 +3905,22 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 """)
-            if s[1] == 0:
+            if s[3] == 0:
                 btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[0]))
             else:
                 btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[1]))
 
             def task_switch(s):
-                self.dark_task_cond[btn] = not self.dark_task_cond[btn]
                 task_sw = TaskManager()
-                if self.dark_task_cond[btn] == True:
+                if self.dark_task_cond[btn] == 0:
                     btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[1]))
-                    task_sw.check_task(s[0])
+                    print(task_sw.check_task(s[0]))
+                    self.dark_task_cond[btn] = 1
                 else:
                     btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[0]))
-                    task_sw.uncheck_task(s[0])
+                    print(task_sw.uncheck_task(s[0]))
+                    self.dark_task_cond[btn] = 0
+
             btn.clicked.connect(lambda checked, s=s: task_switch(s))
 
         dark_task_scroll_files()
@@ -4062,18 +4063,18 @@ QComboBox QAbstractItemView {
         def light_task_scroll_files():
             task = TaskManager()
             if self.task_sort == 0:
-                self.files = [[i[0],i[2], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.reverse()
             elif self.task_sort == 1:
-                self.files = [[i[3],i[2],i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.sort()
                 self.files.reverse()
             else:
-                self.files = [[i[0],i[2],i[4], i[1].lower(), i[2]] for i in task.list_tasks()]
-                self.files = sorted(self.files, key=lambda x: x[2])
-                self.files = [[i[0], i[2],i[4], i[1].capitalize(), i[2]] for i in self.files]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].lower()]for i in task.list_tasks()]
+                self.files = sorted(self.files, key=lambda x: x[4])
+                self.files = [[i[0],i[1], i[2], i[3], i[4].capitalize()] for i in self.files]
 
             self.light_task_scrollAreaWidgetContents.deleteLater()
             self.light_task_scrollAreaWidgetContents = QtWidgets.QWidget(
@@ -4088,7 +4089,7 @@ QComboBox QAbstractItemView {
                 light_task_checked_btn = QtWidgets.QPushButton()
                 light_task_create_task_btn_func(light_task_checked_btn, i, s)
                 light_task_scroll_btn_layout.addWidget(light_task_checked_btn)
-                light_task_main_btn = QPushButton(self.files[i][3])
+                light_task_main_btn = QPushButton(self.files[i][4])
                 light_task_main_btn.setFixedSize(250, 60)
                 light_task_main_btn.setStyleSheet(
                     '''
@@ -4403,20 +4404,22 @@ QPushButton:pressed {
     background-color: #A2A2A2;
 }
 """)
-            if s[1] == 0:
+            if s[3] == 0:
                 btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[0]))
             else:
                 btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[1]))
 
             def task_switch(s):
-                self.light_task_cond[btn] = not self.light_task_cond[btn]
                 task_sw = TaskManager()
-                if self.light_task_cond[btn] == True:
+                if self.light_task_cond[btn] == 0:
                     btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[1]))
-                    task_sw.check_task(s[0])
+                    print(task_sw.check_task(s[0]))
+                    self.light_task_cond[btn] = 1
                 else:
                     btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[0]))
-                    task_sw.uncheck_task(s[0])
+                    print(task_sw.uncheck_task(s[0]))
+                    self.light_task_cond[btn] = 0
+
             btn.clicked.connect(lambda checked, s=s: task_switch(s))
 
         light_task_scroll_files()
@@ -4490,7 +4493,7 @@ QPushButton:pressed {
 
         def dark_alarm_scroll_files():
             alarm = Alarms()
-            self.files = [[i[0],i[1],i[2]] for i in alarm.list_alarms()]
+            self.files = [i for i in alarm.list_alarms()]
 
             self.dark_alarm_scroll_AreaWidgetContents.deleteLater()
             self.dark_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(self.dark_alarm_scroll_Area)
@@ -4546,9 +4549,10 @@ background-color: #18191c;
                 self.des_label = QtWidgets.QLabel()
                 form_lay.addWidget(self.des_label)
                 w_alarm = Alarms()
-                w_a = [i[3] for i in w_alarm.list_alarms() if i[0] == s[0]]
+                time = w_alarm.convert_to_12_hour_clock(s[3])
+                time = ':'.join([str(i) for i in time])
 
-                self.des_label.setText(f"Time Left: {w_a} Minutes")
+                self.des_label.setText(f"{time}")
                 self.des_label.setGeometry(QtCore.QRect(10, 10, 300, 180))
 
                 self.task_show_widget.exec_()
@@ -4962,7 +4966,7 @@ QPushButton:pressed {
 
         def light_alarm_scroll_files():
             alarm = Alarms()
-            self.files = [[i[0],i[1],i[2]] for i in alarm.list_alarms()]
+            self.files = [i for i in alarm.list_alarms()]
 
             self.light_alarm_scroll_AreaWidgetContents.deleteLater()
             self.light_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(self.light_alarm_scroll_Area)
@@ -5018,9 +5022,10 @@ QPushButton:pressed {
                 self.des_label = QtWidgets.QLabel()
                 form_lay.addWidget(self.des_label)
                 w_alarm = Alarms()
-                w_a = [i[3] for i in w_alarm.list_alarms() if i[0] == s[0]]
+                time = w_alarm.convert_to_12_hour_clock(s[3])
+                time = ':'.join([str(i) for i in time])
 
-                self.des_label.setText(f"Time Left: {w_a} Minutes")
+                self.des_label.setText(f"{time}")
                 self.des_label.setGeometry(QtCore.QRect(10, 10, 300, 180))
 
                 self.task_show_widget.exec_()
@@ -5431,7 +5436,7 @@ QPushButton:pressed {
 
         def green_alarm_scroll_files():
             alarm = Alarms()
-            self.files = [[i[0],i[1],i[2]] for i in alarm.list_alarms()]
+            self.files = [i for i in alarm.list_alarms()]
 
             self.green_alarm_scroll_AreaWidgetContents.deleteLater()
             self.green_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(self.green_alarm_scroll_Area)
@@ -5489,9 +5494,10 @@ QPushButton:pressed {
                 self.des_label = QtWidgets.QLabel()
                 form_lay.addWidget(self.des_label)
                 w_alarm = Alarms()
-                w_a = [i[3] for i in w_alarm.list_alarms() if i[0] == s[0]]
+                time = w_alarm.convert_to_12_hour_clock(s[3])
+                time = ':'.join([str(i) for i in time])
 
-                self.des_label.setText(f"Time Left: {w_a} Minutes")
+                self.des_label.setText(f"{time}")
                 self.des_label.setGeometry(QtCore.QRect(10, 10, 300, 180))
 
                 self.task_show_widget.exec_()

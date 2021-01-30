@@ -329,17 +329,17 @@ class TaskManager(DbWorker):
 
 # print(timee.convert_to_12_hour_clock(946))
 
-def this_will_run_when_alarm_rings(alarm):
-    print(f"Alarm is ringing {alarm}")
+# def this_will_run_when_alarm_rings(alarm):
+#     print(f"Alarm is ringing {alarm}")
 
 
-alarm_manager = Alarms()
+# alarm_manager = Alarms()
 
-print(alarm_manager.insert_alarm("Test", 20, 8))
-def listen():
-    alarm_manager.listen_for_alarms(this_will_run_when_alarm_rings)
+# print(alarm_manager.insert_alarm("Test", 20, 8))
+# def listen():
+#     alarm_manager.listen_for_alarms(this_will_run_when_alarm_rings)
 
-schedule.every().minute.at(':00').do(listen)
+# schedule.every().minute.at(':00').do(listen)
 
-while True:
-    schedule.run_pending()
+# while True:
+#     schedule.run_pending()

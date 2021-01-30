@@ -29,4 +29,3 @@ keyboard.add_hotkey('shift+7', lambda: os.system('python ./App/GUI.py'))
 
 tray.setContextMenu(menu)
 app.exec_()
-
