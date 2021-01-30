@@ -292,7 +292,7 @@ class TaskManager(DbWorker):
     def delete_task(self, task_number):
         try:
             self.cursor.execute(
-                "DELETE * FROM tasks WHERE task_number=?", (task_number,))
+                "DELETE FROM tasks WHERE task_number=?", (task_number,))
             self.conn.commit()
             return True
         except:
@@ -331,7 +331,7 @@ class TaskManager(DbWorker):
 # # print(task.insert_task('Code', "Code literally everything", 2))
 
 # print(task.uncheck_task(1))
-alarm_manager = Alarms()
+# alarm_manager = Alarms()
 
 
 # print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
@@ -339,4 +339,10 @@ alarm_manager = Alarms()
 
 # 4
 
-print(alarm_manager.edit_alarm(2, "EDit testing", 13, 23))
+# print(alarm_manager.edit_alarm(2, "EDit testing", t
+
+task = TaskManager()
+
+# task.insert_task('Hello tekldfsl', 'jljslfdsjfjdsklf', 3)
+
+print(task.delete_task(1))
