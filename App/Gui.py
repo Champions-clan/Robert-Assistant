@@ -3042,20 +3042,20 @@ QComboBox QAbstractItemView {
         def green_task_scroll_files():
             task = TaskManager()
             if self.task_sort == 0:
-                self.files = [[i[0], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[2], i[4], i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.reverse()
             elif self.task_sort == 1:
-                self.files = [[i[3], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[3],i[2], i[4], i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.sort()
                 self.files.reverse()
             else:
-                self.files = [[i[0], i[4], i[1].lower(), i[2]]
+                self.files = [[i[0],i[2], i[4], i[1].lower(), i[2]]
                               for i in task.list_tasks()]
                 self.files
                 self.files = sorted(self.files, key=lambda x: x[2])
-                self.files = [[i[0], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[2], i[4], i[1].capitalize(), i[2]]
                               for i in self.files]
 
             self.green_task_scrollAreaWidgetContents.deleteLater()
@@ -3071,7 +3071,7 @@ QComboBox QAbstractItemView {
                 green_task_checked_btn = QtWidgets.QPushButton()
                 green_task_create_task_btn_func(green_task_checked_btn, i, s)
                 green_task_scroll_btn_layout.addWidget(green_task_checked_btn)
-                green_task_main_btn = QPushButton(self.files[i][2])
+                green_task_main_btn = QPushButton(self.files[i][3])
                 green_task_main_btn.setFixedSize(250, 60)
                 green_task_main_btn.setStyleSheet(
                     '''
@@ -3350,7 +3350,7 @@ QPushButton:pressed {
             vertical_lay.addLayout(self.exit_lay)
             vertical_lay.addWidget(scroll_area)
 
-            btn_info = btn_info[2]
+            btn_info = btn_info[1]
 
             self.des_label = QtWidgets.QLabel()
             form_lay.addWidget(self.des_label)
@@ -3553,17 +3553,17 @@ QComboBox QAbstractItemView {
         def dark_task_scroll_files():
             task = TaskManager()
             if self.task_sort == 0:
-                self.files = [[i[0],i[4],i[1].capitalize(), i[2]]
+                self.files = [[i[0], i[2],i[4],i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.reverse()
             elif self.task_sort == 1:
-                self.files = [[i[3], i[4], i[1].capitalize(), i[2]]for i in task.list_tasks()]
+                self.files = [[i[3], i[2], i[4], i[1].capitalize(), i[2]]for i in task.list_tasks()]
                 self.files.sort()
                 self.files.reverse()
             else:
-                self.files = [[i[0], i[4], i[1].lower(), i[2]]for i in task.list_tasks()]
+                self.files = [[i[0], i[2],i[4], i[1].lower(), i[2]]for i in task.list_tasks()]
                 self.files = sorted(self.files, key=lambda x: x[2])
-                self.files = [[i[0], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0], i[2], i[4], i[1].capitalize(), i[2]]
                               for i in self.files]
 
             self.dark_task_scrollAreaWidgetContents.deleteLater()
@@ -3579,7 +3579,7 @@ QComboBox QAbstractItemView {
                 dark_task_checked_btn = QtWidgets.QPushButton()
                 dark_task_create_task_btn_func(dark_task_checked_btn, i, s)
                 dark_task_scroll_btn_layout.addWidget(dark_task_checked_btn)
-                dark_task_main_btn = QPushButton(self.files[i][2])
+                dark_task_main_btn = QPushButton(self.files[i][3])
                 dark_task_main_btn.setFixedSize(250, 60)
                 dark_task_main_btn.setStyleSheet(
                     '''
@@ -3872,7 +3872,7 @@ border-radius: 5px;
             vertical_lay.addLayout(self.exit_lay)
             vertical_lay.addWidget(scroll_area)
 
-            btn_info = btn_info[2]
+            btn_info = btn_info[1]
 
             self.des_label = QtWidgets.QLabel()
             form_lay.addWidget(self.des_label)
@@ -4062,18 +4062,18 @@ QComboBox QAbstractItemView {
         def light_task_scroll_files():
             task = TaskManager()
             if self.task_sort == 0:
-                self.files = [[i[0], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[2], i[4], i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.reverse()
             elif self.task_sort == 1:
-                self.files = [[i[3],i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[3],i[2],i[4], i[1].capitalize(), i[2]]
                               for i in task.list_tasks()]
                 self.files.sort()
                 self.files.reverse()
             else:
-                self.files = [[i[0],i[4], i[1].lower(), i[2]] for i in task.list_tasks()]
+                self.files = [[i[0],i[2],i[4], i[1].lower(), i[2]] for i in task.list_tasks()]
                 self.files = sorted(self.files, key=lambda x: x[2])
-                self.files = [[i[0],i[4], i[1].capitalize(), i[2]] for i in self.files]
+                self.files = [[i[0], i[2],i[4], i[1].capitalize(), i[2]] for i in self.files]
 
             self.light_task_scrollAreaWidgetContents.deleteLater()
             self.light_task_scrollAreaWidgetContents = QtWidgets.QWidget(
@@ -4088,7 +4088,7 @@ QComboBox QAbstractItemView {
                 light_task_checked_btn = QtWidgets.QPushButton()
                 light_task_create_task_btn_func(light_task_checked_btn, i, s)
                 light_task_scroll_btn_layout.addWidget(light_task_checked_btn)
-                light_task_main_btn = QPushButton(self.files[i][2])
+                light_task_main_btn = QPushButton(self.files[i][3])
                 light_task_main_btn.setFixedSize(250, 60)
                 light_task_main_btn.setStyleSheet(
                     '''
@@ -4368,7 +4368,7 @@ QPushButton:pressed {
             vertical_lay.addLayout(self.exit_lay)
             vertical_lay.addWidget(scroll_area)
 
-            btn_info = btn_info[2]
+            btn_info = btn_info[1]
 
             self.des_label = QtWidgets.QLabel()
             form_lay.addWidget(self.des_label)
