@@ -168,6 +168,21 @@ class Alarms(DbWorker):
             return True
         except:
             return False
+    
+    def convert_to_12_hour_clock(self, minutes_from_minight):
+        time = self.__back_to_hours_and_minutes(minutes_from_minight)
+
+        if (time[0] < 12): 
+            Meridien = "AM"; 
+        else: 
+            Meridien = "PM"; 
+        
+        if Meridien == "AM":
+            return (time[0], time[1], Meridien)
+        else:
+            return (time[0] - 12, time[1], Meridien)
+
+
 
     def turn_alarm_on(self, alarm_number):
         try:
@@ -184,15 +199,6 @@ class Alarms(DbWorker):
             return True
         except:
             return False
-
-    def time_left_to_alarm(self, alarm_time):
-        time_now = datetime.datetime.now()
-        current_time = self.__convert_to_minutes_from_midnight(time_now.hour, time_now.minute)
-        time_left = current_time - alarm_time
-        good_time = -time_left
-        return (good_time//60, good_time % 60)
-
-
 
     def list_alarms(self):
         try:
@@ -315,3 +321,6 @@ class TaskManager(DbWorker):
 # print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
 # 
 
+# timee = Alarms()
+
+# print(timee.convert_to_12_hour_clock(946))
