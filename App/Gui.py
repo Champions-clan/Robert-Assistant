@@ -4490,7 +4490,7 @@ QPushButton:pressed {
 
         def dark_alarm_scroll_files():
             alarm = Alarms()
-            self.files = [[i[0],i[1],i[2]] for i in alarm.list_alarms()]
+            self.files = [i for i in alarm.list_alarms()]
 
             self.dark_alarm_scroll_AreaWidgetContents.deleteLater()
             self.dark_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(self.dark_alarm_scroll_Area)
@@ -4546,9 +4546,10 @@ background-color: #18191c;
                 self.des_label = QtWidgets.QLabel()
                 form_lay.addWidget(self.des_label)
                 w_alarm = Alarms()
-                w_a = [i[3] for i in w_alarm.list_alarms() if i[0] == s[0]]
+                time = w_alarm.convert_to_12_hour_clock(s[3])
+                time = ':'.join([str(i) for i in time])
 
-                self.des_label.setText(f"Time Left: {w_a} Minutes")
+                self.des_label.setText(f"{time}")
                 self.des_label.setGeometry(QtCore.QRect(10, 10, 300, 180))
 
                 self.task_show_widget.exec_()
@@ -4962,7 +4963,7 @@ QPushButton:pressed {
 
         def light_alarm_scroll_files():
             alarm = Alarms()
-            self.files = [[i[0],i[1],i[2]] for i in alarm.list_alarms()]
+            self.files = [i for i in alarm.list_alarms()]
 
             self.light_alarm_scroll_AreaWidgetContents.deleteLater()
             self.light_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(self.light_alarm_scroll_Area)
@@ -5018,9 +5019,10 @@ QPushButton:pressed {
                 self.des_label = QtWidgets.QLabel()
                 form_lay.addWidget(self.des_label)
                 w_alarm = Alarms()
-                w_a = [i[3] for i in w_alarm.list_alarms() if i[0] == s[0]]
+                time = w_alarm.convert_to_12_hour_clock(s[3])
+                time = ':'.join([str(i) for i in time])
 
-                self.des_label.setText(f"Time Left: {w_a} Minutes")
+                self.des_label.setText(f"{time}")
                 self.des_label.setGeometry(QtCore.QRect(10, 10, 300, 180))
 
                 self.task_show_widget.exec_()
@@ -5431,7 +5433,7 @@ QPushButton:pressed {
 
         def green_alarm_scroll_files():
             alarm = Alarms()
-            self.files = [[i[0],i[1],i[2]] for i in alarm.list_alarms()]
+            self.files = [i for i in alarm.list_alarms()]
 
             self.green_alarm_scroll_AreaWidgetContents.deleteLater()
             self.green_alarm_scroll_AreaWidgetContents = QtWidgets.QWidget(self.green_alarm_scroll_Area)
@@ -5489,9 +5491,10 @@ QPushButton:pressed {
                 self.des_label = QtWidgets.QLabel()
                 form_lay.addWidget(self.des_label)
                 w_alarm = Alarms()
-                w_a = [i[3] for i in w_alarm.list_alarms() if i[0] == s[0]]
+                time = w_alarm.convert_to_12_hour_clock(s[3])
+                time = ':'.join([str(i) for i in time])
 
-                self.des_label.setText(f"Time Left: {w_a} Minutes")
+                self.des_label.setText(f"{time}")
                 self.des_label.setGeometry(QtCore.QRect(10, 10, 300, 180))
 
                 self.task_show_widget.exec_()
