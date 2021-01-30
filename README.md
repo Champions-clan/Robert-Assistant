@@ -4,6 +4,17 @@
 <p align="center">
     <img src="./Assets/Robert Logo.png" alt="Logo" widht="300" height="300">
   </a>
+   <img src="">
+
+<p align="center">
+    <img src="https://forthebadge.com/images/badges/made-with-python.svg">
+    <img src="https://forthebadge.com/images/badges/built-by-developers.svg">
+    <img src="https://forthebadge.com/images/badges/built-with-love.svg">
+    <img src="https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg">
+    <img src="https://forthebadge.com/images/badges/open-source.svg">
+    <img src="https://forthebadge.com/images/badges/for-you.svg">
+    <img src="https://forthebadge.com/images/badges/powered-by-electricity.svg">
+  </a>
 
   <h3 align="center">ROBERT VIRTUAL ASSISTANT</h3>
 
