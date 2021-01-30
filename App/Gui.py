@@ -623,7 +623,7 @@ QLabel {
         self.dark_setting_keyboard_layout.addWidget(
             self.dark_setting_keyboard_label)
         self.dark_setting_keyboard_shortcut_label = QtWidgets.QLabel(
-            "Home Page  :-  Shift + Tab + 6\nRobert Listener  :-  Shift + Tab + 7")
+            " Shift + 6\n Shift + 7")
         self.dark_setting_keyboard_layout.addWidget(
             self.dark_setting_keyboard_shortcut_label)
 
@@ -767,7 +767,7 @@ QLabel {
         self.light_setting_keyboard_layout.addWidget(
             self.light_setting_keyboard_label)
         self.light_setting_keyboard_shortcut_label = QtWidgets.QLabel(
-            "Home Page  :-  Shift + Tab + 6\nRobert Listener  :-  Shift + Tab + 7")
+            " Shift + 6\n Shift + 7")
 
         self.light_setting_keyboard_layout.addWidget(
             self.light_setting_keyboard_shortcut_label)
@@ -914,7 +914,7 @@ QLabel {
             self.green_setting_keyboard_label)
 
         self.green_setting_keyboard_shortcut_label = QtWidgets.QLabel(
-            "Home Page  :-  Shift + Tab + 6\nRobert Listener  :-  Shift + Tab + 7")
+            " Shift + 6\n Shift + 7")
 
         self.green_setting_keyboard_layout.addWidget(
             self.green_setting_keyboard_label)
@@ -4858,13 +4858,13 @@ QComboBox QAbstractItemView {
 
         self.cond_lst = [".\Assets\\images\\off.png", ".\Assets\\images\\on.png"]
         self.cond_text = ["Off", "On"]
-        self.cond = {}
+        self.dark_cond = {}
         def dark_alarm_create_alarm_btn(btn, i, s):
-            self.cond[btn] = 0
+            self.dark_cond[btn] = 0
             btn.setFixedSize(60,35)
-            btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
+            btn.setIcon(QtGui.QIcon(self.cond_lst[self.dark_cond[btn]]))
             btn.setIconSize(QtCore.QSize(40,35))
-            btn.setText(self.cond_text[self.cond[btn]])
+            btn.setText(self.cond_text[self.dark_cond[btn]])
             btn.setStyleSheet("""
 QPushButton {
     background-color: transparent;
@@ -4884,9 +4884,9 @@ QPushButton:pressed {
                 btn.setIcon(QtGui.QIcon(self.cond_lst[1]))
                 btn.setText(self.cond_text[1])
             def alarm_switch(s):
-                self.cond[btn] = not self.cond[btn]
+                self.dark_cond[btn] = not self.dark_cond[btn]
                 alarm_sw = Alarms()
-                if self.cond[btn] == True:
+                if self.dark_cond[btn] == True:
                     alarm_sw.turn_alarm_on(s[0])
                     btn.setIcon(QtGui.QIcon(self.cond_lst[1]))
                     btn.setText(self.cond_text[1])
@@ -5327,13 +5327,13 @@ QComboBox QAbstractItemView {
 
         self.cond_lst = [".\Assets\\images\\off.png", ".\Assets\\images\\on.png"]
         self.cond_text = ["Off", "On"]
-        self.cond = {}
+        self.light_cond= {}
         def light_alarm_create_alarm_btn(btn, i, s):
-            self.cond[btn] = 0
+            self.light_cond[btn] = 0
             btn.setFixedSize(60,35)
-            btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
+            btn.setIcon(QtGui.QIcon(self.cond_lst[self.light_cond[btn]]))
             btn.setIconSize(QtCore.QSize(40,35))
-            btn.setText(self.cond_text[self.cond[btn]])
+            btn.setText(self.cond_text[self.light_cond[btn]])
             btn.setStyleSheet("""
 QPushButton {
     background-color: transparent;
@@ -5353,9 +5353,9 @@ QPushButton:pressed {
                 btn.setIcon(QtGui.QIcon(self.cond_lst[1]))
                 btn.setText(self.cond_text[1])
             def alarm_switch(s):
-                self.cond[btn] = not self.cond[btn]
+                self.light_cond[btn] = not self.light_cond[btn]
                 alarm_sw = Alarms()
-                if self.cond[btn] == True:
+                if self.light_cond[btn] == True:
                     alarm_sw.turn_alarm_on(s[0])
                     btn.setIcon(QtGui.QIcon(self.cond_lst[1]))
                     btn.setText(self.cond_text[1])
@@ -5798,13 +5798,13 @@ QComboBox QAbstractItemView {
 
         self.cond_lst = [".\Assets\\images\\off.png", ".\Assets\\images\\on.png"]
         self.cond_text = ["Off", "On"]
-        self.cond = {}
+        self.green_cond= {}
         def green_alarm_create_alarm_btn(btn, i, s):
-            self.cond[btn] = 0
+            self.green_cond[btn] = 0
             btn.setFixedSize(60,35)
-            btn.setIcon(QtGui.QIcon(self.cond_lst[self.cond[btn]]))
+            btn.setIcon(QtGui.QIcon(self.cond_lst[self.green_cond[btn]]))
             btn.setIconSize(QtCore.QSize(40,35))
-            btn.setText(self.cond_text[self.cond[btn]])
+            btn.setText(self.cond_text[self.green_cond[btn]])
             btn.setStyleSheet("""
 QPushButton {
     background-color: transparent;
@@ -5824,9 +5824,9 @@ QPushButton:pressed {
                 btn.setIcon(QtGui.QIcon(self.cond_lst[1]))
                 btn.setText(self.cond_text[1])
             def alarm_switch(s):
-                self.cond[btn] = not self.cond[btn]
+                self.green_cond[btn] = not self.green_cond[btn]
                 alarm_sw = Alarms()
-                if self.cond[btn] == True:
+                if self.green_cond[btn] == True:
                     alarm_sw.turn_alarm_on(s[0])
                     btn.setIcon(QtGui.QIcon(self.cond_lst[1]))
                     btn.setText(self.cond_text[1])
