@@ -16,7 +16,7 @@
     <img src="https://forthebadge.com/images/badges/powered-by-electricity.svg">
   </a>
 
-  <h3 align="center">ROBERT VIRTUAL ASSISTANT</h3>
+  <h3 align="center" style="font-weight:bold">ROBERT VIRTUAL ASSISTANT</h3>
 
   <p align="center">Robert, your own virtual assistant with a beautiful text and speech based interface
     <br />

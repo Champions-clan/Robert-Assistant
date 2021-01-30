@@ -6,3 +6,8 @@ keyboard
 win10toast
 pyttsx3
 SpeechRecognition
+datetime
+wikipedia
+wolframalpha
+matplotlib
+Pillow
