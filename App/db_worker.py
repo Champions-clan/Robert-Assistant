@@ -189,7 +189,8 @@ class Alarms(DbWorker):
         time_now = datetime.datetime.now()
         current_time = self.__convert_to_minutes_from_midnight(time_now.hour, time_now.minute)
         time_left = current_time - alarm_time
-        return -time_left
+        good_time = -time_left
+        return (good_time//60, good_time % 60)
 
 
 
