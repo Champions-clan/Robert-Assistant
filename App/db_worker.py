@@ -323,6 +323,13 @@ class TaskManager(DbWorker):
             self.cursor.execute("SELECT * FROM tasks ORDER BY time_created DESC")
             return self.cursor.fetchall()
 
+    def edit_tasks(self, number_to_edit,new_taskname, new_task_descripton, new_task_prioirty):
+        try:
+            self.cursor.execute("UPDATE tasks SET task_name=?, task_description=?, priority=? WHERE task_number=?", (new_taskname, new_task_descripton, new_task_prioirty, number_to_edit))
+            self.conn.commit()
+            return True
+        except:
+            return False
 # task_name TEXT, task_description TEXT, priority INT,time_created REAL
 
 
@@ -337,15 +344,3 @@ class TaskManager(DbWorker):
 # print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
 # 
 
-<<<<<<< HEAD
-# 4
-
-# print(alarm_manager.edit_alarm(2, "EDit testing", t
-
-task = TaskManager()
-
-# task.insert_task('Hello tekldfsl', 'jljslfdsjfjdsklf', 3)
-
-print(task.delete_task(1))
-=======
->>>>>>> 7b8b7f09d95f44dccaaecf65db3123be6be2cb74
