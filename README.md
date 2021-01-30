@@ -2,7 +2,9 @@
 <br />
 <p align="center">
     <img src="./Assets/Robert_Typography.gif" alt="Logo">
-    <img src="./Assets/Logo_banner.png" alt="Logo">
+
+<h1 align="center">THE ROBERT</h1>
+<img align="center" src="./Assets/Logo_banner.png" alt="Logo">
 
 <p align="center">
     <img src="https://forthebadge.com/images/badges/made-with-python.svg">
@@ -13,17 +15,9 @@
     <img src="https://forthebadge.com/images/badges/for-you.svg">
     <img src="https://forthebadge.com/images/badges/powered-by-electricity.svg">
   </a>
-
-
-  <br />
-  <br />
-  <br />
 </p>
 
-
-
 # About The Project
-
 Robert is peronal assistant with a text and speech based interface that allow you to keep track of you day with a task and alarms manager. With its inbuilt code snippets manager, it allows you to retrive, create, delete and edit your snippets which prevents repetition. with its 3 themes, it a fit for everybody with different color tastes.
 At last but not least you can open the gui or give commands to the robert without using a mouse but with the hotkeys
 
