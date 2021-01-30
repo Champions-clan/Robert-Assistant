@@ -1,35 +1,32 @@
-from pynput import keyboard
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 import os
+import keyboard 
 
+os.system('python ./App/GUI.py')
 
-def function_1():
-    print("function_1")
-    os.system('python ./App/Gui.py')
+app = QApplication([])
+app.setQuitOnLastWindowClosed(False)
 
+icon = QIcon("./Assets/Robert logo.png")
 
-def function_2():
-    print("function_2")
-    os.system('python ./App/Robert.pyw')
+tray = QSystemTrayIcon()
+tray.setIcon(icon)
+tray.setVisible(True)
 
+menu = QMenu()
+btn = QAction("Robert")
+btn.triggered.connect(lambda: os.system('python ./App/GUI.py'))
 
-with keyboard.GlobalHotKeys({
-    "<shift>+<tab>+6": function_1,
-        "<shift>+<tab>+7": function_2, }) as h:
-    h.join()
+menu.addAction(btn)
 
+quit = QAction("Quit")
+quit.triggered.connect(app.quit)
+menu.addAction(quit)
 
-def on_press(key):
-    try:
-        return f"Alphanumreic key {key.char} pressed"
-    except AttributeError:
-        return f"Special key {key} pressed"
+keyboard.add_hotkey('shift+6', lambda: os.system('python ./App/GUI.py')) 
+keyboard.add_hotkey('shift+7', lambda: os.system('python ./App/GUI.py')) 
 
+tray.setContextMenu(menu)
+app.exec_()
 
-def on_release(key):
-    print(f"{key} released")
-    if key == keyboard.Key.esc:
-        return False
-
-
-with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-    listener.join()

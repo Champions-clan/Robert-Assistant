@@ -337,6 +337,7 @@ class TaskManager(DbWorker):
 # print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
 # 
 
+<<<<<<< HEAD
 # 4
 
 # print(alarm_manager.edit_alarm(2, "EDit testing", t
@@ -346,3 +347,5 @@ task = TaskManager()
 # task.insert_task('Hello tekldfsl', 'jljslfdsjfjdsklf', 3)
 
 print(task.delete_task(1))
+=======
+>>>>>>> 7b8b7f09d95f44dccaaecf65db3123be6be2cb74
