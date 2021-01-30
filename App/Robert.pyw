@@ -209,7 +209,7 @@ def take_speak_command():
             speak('Opening Notepad')
             os.startfile('C:\\Windows\\system32\\notepad.exe')
 
-        elif "Start Power Mode" in statement:
+        elif "start power mode" in statement or "power mode" in statement:
             speak('I can answer to Computational and Scientific questions and what question do you want to ask now')
             question = takeCommand()
             app_id = "R2K75H-7ELALHR35X"
