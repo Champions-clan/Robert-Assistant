@@ -20,16 +20,6 @@ class DbWorker:
         conn.commit()
         return conn, cursor
 
-
-# print(query_snippets_by_name('UNIX'))
-
-# db = DbWorker()
-
-# snippets = db.Snippets()
-
-# print(snippets.insert_snippet('print("hello world")', 'Python', "Hello world in python", "print hello world in python"))
-
-
 class Snippets(DbWorker):
     def __init__(self):
         self.conn, self.cursor = super().set_up_db()
@@ -132,11 +122,6 @@ class Snippets(DbWorker):
             "times_used": snippet[5]
         }
 
-# snippets = Snippets()
-
-# print(snippets.insert_snippet('print("hello world")', 'Python', "Hello world in python", "print hello world in python"))
-
-
 class Alarms(DbWorker):
     def __init__(self):
         self.conn, self.cursor = super().set_up_db()
@@ -183,9 +168,6 @@ class Alarms(DbWorker):
             return True
         except:
             return False
-        #     return True
-        # except:
-        #     return False
 
     def turn_alarm_on(self, alarm_number):
         try:
@@ -254,34 +236,15 @@ class SettingsManager:
             return parsed_json
 
     def change_settings(self, new_settings):
-        print(new_settings)
         with open('robert_settings.json', 'w+') as file:
             json.dump(new_settings, file, indent=6)
-            # file.write()
-
-# settings = SettingsManager()
-
-
-# settt = settings.get_settings()
-# settt['settings hotkey'] = 'loo=jkhhhhhhhhhhhhhhhhhhhhhhhhhk'
-# settings.change_settings(settt)
-
+    
 class TaskManager(DbWorker):
     def __init__(self):
         self.conn, self.cursor = super().set_up_db()
 
-    # def check_priority_level(self, priority_level):
-    #     if priority_level < 0 and priority_level > 6:
-    #         pass
-    #     else:
-    #         raise PriorityLevelNotRight("The prioirty level is not right")
-
-    #     pass
-
-
     def insert_task(self, task_name, task_description, priority_level):
         try:
-        # self.check_priority_level(priority_level)
             self.cursor.execute("INSERT INTO tasks (task_number,task_name, task_description, priority, checked ,time_created) VALUES (?, ?, ?, ?, ?, ?)",
                             (None, task_name, task_description, priority_level, False,time.time(),))
             self.conn.commit()

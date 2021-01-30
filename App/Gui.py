@@ -5,9 +5,9 @@ from db_worker import Snippets, TaskManager, Alarms
 
 
 class Ui_MainWindow(object):
-    def __init__(self, MainWindow, c_th, files):
-        # <<<<<<<<<<<<<<<Dark Main Window
+    def __init__(self, MainWindow,c_th):
         self.c_th = c_th
+        # <<<<<<<<<<<<<<<Dark Main Window
         self.i = 0
         MainWindow.resize(430, 500)
         MainWindow.setMinimumSize(430, 500)
@@ -2904,7 +2904,7 @@ QTextEdit {
 
         def green_task_delete_action(s):
             del_task = TaskManager()
-            print(del_task.delete_task(s[0]))
+            del_task.delete_task(s[0])
             green_task_scroll_files()
 
         def green_task_task_add_func(txt, s):
@@ -3416,7 +3416,7 @@ QPushButton:pressed {
 
         def dark_task_delete_action(s):
             del_task = TaskManager()
-            print(del_task.delete_task(s[0]))
+            del_task.delete_task(s[0])
             dark_task_scroll_files()
 
         def dark_task_task_add_func(txt, s):
@@ -3939,7 +3939,7 @@ QPushButton:pressed {
 
         def light_task_delete_action(s):
             del_task = TaskManager()
-            print(del_task.delete_task(s[0]))
+            del_task.delete_task(s[0])
             light_task_scroll_files()
 
         def light_task_task_add_func(txt, s):
@@ -6045,15 +6045,11 @@ QPushButton:pressed {
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
 
-
-current_theme = "D"
-files = ['a', 'b', 'c', 'd', 'e', 'f', 'g',
-         'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p']
-
+c_th = "D"
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow(MainWindow, current_theme, files)
+    ui = Ui_MainWindow(MainWindow,c_th)
     MainWindow.show()
     sys.exit(app.exec_())
