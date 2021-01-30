@@ -3,7 +3,7 @@
 <p align="center">
     <img src="./Assets/Robert_Typography.gif" alt="Logo">
 
-<h1 align="center">THE ROBERT</h1>
+<h1 align="center">LET'S BEGIN THE JOURNEY</h1>
 <img align="center" src="./Assets/Logo_banner.png" alt="Logo">
 
 <p align="center">
