@@ -2,7 +2,7 @@
 <br />
 <p align="center">
     <img src="./Assets/Robert_Typography.gif" alt="Logo">
-    <img src="./Assets/LOGO.png" alt="Logo">
+    <img src="./Assets/Logo_banner.png" alt="Logo">
 
 <p align="center">
     <img src="https://forthebadge.com/images/badges/made-with-python.svg">
