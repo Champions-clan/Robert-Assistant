@@ -16,10 +16,13 @@ tray.setIcon(icon)
 tray.setVisible(True)
 
 menu = QMenu()
-btn = QAction("Robert")
+btn = QAction("Home Page")
+btn2 = QAction("Robert Listner")
 btn.triggered.connect(lambda: os.system('python ./App/GUI.py'))
+btn2.triggered.connect(lambda: os.system('python ./App/Robert.pyw'))
 
 menu.addAction(btn)
+menu.addAction(btn2)
 
 quit = QAction("Quit")
 quit.triggered.connect(app.quit)
