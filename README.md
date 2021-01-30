@@ -1,9 +1,7 @@
 
 <br />
 <p align="center">
-    <img src="./Assets/Robert Logo.png" alt="Logo" widht="300" height="300">
-  </a>
-   <img src="">
+    <img src="./Assets/Robert_Typography.gif" alt="Logo">
 
   <h3 align="center" style="font-weight:bold;font-size:30px">ROBERT VIRTUAL ASSISTANT</h3>
   <p align="center">Robert, your own virtual assistant with a beautiful text and speech based interface  </p>
