@@ -315,6 +315,3 @@ class TaskManager(DbWorker):
 # print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
 # 
 
-timee = Alarms()
-
-print(timee.time_left_to_alarm(920))
