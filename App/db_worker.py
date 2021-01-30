@@ -2,7 +2,7 @@ import sqlite3
 import time
 import datetime
 import json
-
+import schedule
 
 class DbWorker:
     def __init__(self):
@@ -211,12 +211,16 @@ class Alarms(DbWorker):
         # day_of_the_week = datetime.datetime.today().weekday() + 1
         timm = self.__convert_to_minutes_from_midnight(
             datetime.datetime.now().hour, datetime.datetime.now().minute)
-        self.cursor.execute("SELECT * FROM alarms WHERE is_alarm_on=?", (True))
+        self.cursor.execute("SELECT * FROM alarms")
+        # print(timm)
         data = self.cursor.fetchall()
         for i in data:
-            if i[1] == timm:
+            # print("Looking")
+            # print(i[1])
+            if i[4] == timm:
+                # print("Ringing alarm")
                 callback_func(i)
-                self.delete_alarm(i[0])
+                # self.delete_alarm(i[0])
 
     def parse_alarms(self, alarm):
         hour, minute = self.__back_to_hours_and_minutes(alarm[1])
@@ -324,3 +328,18 @@ class TaskManager(DbWorker):
 # timee = Alarms()
 
 # print(timee.convert_to_12_hour_clock(946))
+
+def this_will_run_when_alarm_rings(alarm):
+    print(f"Alarm is ringing {alarm}")
+
+
+alarm_manager = Alarms()
+
+print(alarm_manager.insert_alarm("Test", 20, 8))
+def listen():
+    alarm_manager.listen_for_alarms(this_will_run_when_alarm_rings)
+
+schedule.every().minute.at(':00').do(listen)
+
+while True:
+    schedule.run_pending()
