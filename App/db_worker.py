@@ -185,6 +185,13 @@ class Alarms(DbWorker):
         except:
             return False
 
+    def time_left_to_alarm(self, alarm_time):
+        time_now = datetime.datetime.now()
+        current_time = self.__convert_to_minutes_from_midnight(time_now.hour, time_now.minute)
+        time_left = current_time - alarm_time
+        return -time_left
+
+
 
     def list_alarms(self):
         try:
@@ -307,3 +314,6 @@ class TaskManager(DbWorker):
 # print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
 # 
 
+timee = Alarms()
+
+print(timee.time_left_to_alarm(920))
