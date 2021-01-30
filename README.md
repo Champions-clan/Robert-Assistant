@@ -32,4 +32,5 @@ At last but not least you can open the gui or give commands to the robert withou
 - And at last it have hotkeys too so want to give commands by summoning the robert! or open the home page gui! ⌨️.
 
 ### Robert
-
+The main heart of the project and the bascially it do the everything say to him you can give him commands as commander by pressing a hotkey which is shift+tab+6 or by right clicking on this cutie thing as shown here :- 
+<img scr="https://github.com/Champions-clan/Robert-Assistant/blob/master/Assets/cutty%20thing.png?raw=true">
