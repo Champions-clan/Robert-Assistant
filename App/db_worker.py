@@ -136,7 +136,7 @@ class Alarms(DbWorker):
         assert hours <= 23
         return (hours * 60) + minutes
 
-    def __back_to_hours_and_minutes(self, minutes_from_midnight):
+    def back_to_hours_and_minutes(self, minutes_from_midnight):
         return minutes_from_midnight // 60, minutes_from_midnight % 60
 
     def insert_alarm(self, alarm_name: str,alarm_hour: int, alarm_minutes: int):
@@ -169,7 +169,7 @@ class Alarms(DbWorker):
             return False
 
     def convert_to_12_hour_clock(self, minutes_from_minight):
-        time = self.__back_to_hours_and_minutes(minutes_from_minight)
+        time = self.back_to_hours_and_minutes(minutes_from_minight)
 
         if (time[0] < 12):
             Meridien = "AM";
@@ -180,7 +180,6 @@ class Alarms(DbWorker):
             return (time[0], time[1], Meridien)
         else:
             return (time[0] - 12, time[1], Meridien)
-
 
 
     def turn_alarm_on(self, alarm_number):
@@ -222,7 +221,7 @@ class Alarms(DbWorker):
                 # self.delete_alarm(i[0])
 
     def parse_alarms(self, alarm):
-        hour, minute = self.__back_to_hours_and_minutes(alarm[1])
+        hour, minute = self.back_to_hours_and_minutes(alarm[1])
         return {
             "alarm_number": alarm[0],
             "alarm_hour": hour,
@@ -247,14 +246,14 @@ class Alarms(DbWorker):
 
 class SettingsManager:
     def get_settings(self):
-        with open('../Database\\robert.settings.json') as file:
+        with open('./Database\\robert.settings.json') as file:
             jason = file.read()
             # print(jason)
             parsed_json = json.loads(jason)
             return parsed_json
 
     def change_settings(self, new_settings):
-        with open('robert.settings.json', 'w+') as file:
+        with open('robert.settings.json', 'w') as file:
             json.dump(new_settings, file, indent=6)
 
 class TaskManager(DbWorker):
@@ -350,3 +349,18 @@ class TaskManager(DbWorker):
 
 # settings = SettingsManager()
 # print(settings.get_settings())
+
+
+def convert_to_12_hour_clock(minutes_from_minight):
+    alarm_man = Alarms()
+    time = alarm_man.back_to_hours_and_minutes(minutes_from_minight)
+
+    if (time[0] < 12):
+        Meridien = "AM";
+    else:
+        Meridien = "PM";
+
+    if Meridien == "AM":
+        return (time[0], time[1], Meridien)
+    else:
+        return (time[0] - 12, time[1], Meridien)

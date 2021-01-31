@@ -4,6 +4,8 @@ googletrans==3.1.0a0
 PyQt5==5.15.2
 keyboard
 win10toast
+notify-py
+notify-run
 pyttsx3
 SpeechRecognition
 datetime
