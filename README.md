@@ -30,7 +30,7 @@ At last but not least you can open the GUI or give commands to Robert without us
 - Setting: let's CHANGE THE COLORS! 🎨.
 - And at last, it has hotkeys too so want to give commands by summoning Robert! or open the home page GUI! ⌨️.
 
-<img src="./Assets/Robert.gif" width=300px> 
+<img src="./Assets/Robert.gif" width=900px> 
 
 ### Robert
 The main heart of the project and the basically it does the everything say to him you can give him commands as commander by pressing a hotkey which is `shift+7` or by right-clicking on this icon in the system tray as shown here and selecting the **Robert Listner**:- 
