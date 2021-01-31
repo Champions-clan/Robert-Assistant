@@ -3380,7 +3380,7 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 """)
-            if s[1] == 0:
+            if s[3] == 0:
                 btn.setIcon(QtGui.QIcon(self.green_task_cond_lst[0]))
             else:
                 btn.setIcon(QtGui.QIcon(self.green_task_cond_lst[1]))
@@ -3905,7 +3905,7 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 """)
-            if s[1] == 0:
+            if s[3] == 0:
                 btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[0]))
             else:
                 btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[1]))
@@ -4404,8 +4404,7 @@ QPushButton:pressed {
     background-color: #A2A2A2;
 }
 """)
-            print(s[4],s[1])
-            if s[1] == 0:
+            if s[3] == 0:
                 btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[0]))
             else:
                 btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[1]))
@@ -4550,7 +4549,7 @@ background-color: #18191c;
                 self.des_label = QtWidgets.QLabel()
                 form_lay.addWidget(self.des_label)
                 w_alarm = Alarms()
-                time = w_alarm.convert_to_12_hour_clock(s[3])
+                time = w_alarm.convert_to_12_hour_clock(s[4])
                 time = ':'.join([str(i) for i in time])
 
                 self.des_label.setText(f"{time}")
@@ -4754,21 +4753,24 @@ QComboBox QAbstractItemView {
 
             self.combo_i = 0
             def add_clicked(name, hour, minute):
-                add_alarm = Alarms()
-                combo = ["AM", "PM"]
-                if combo[self.combo_i] == "AM":
-                    combo = True
+                if name.toPlainText() == "":
+                    pass
                 else:
-                    combo = False
-                time = add_alarm.convert_to_24_clock(hour.value(), minute.value(), AM= combo)
+                    add_alarm = Alarms()
+                    combo = ["AM", "PM"]
+                    if combo[self.combo_i] == "AM":
+                        combo = True
+                    else:
+                        combo = False
 
-                if self.txt == "Add":
-                    add_alarm.insert_alarm(name.toPlainText(), time[0], time[1])
-                else:
-                    add_alarm.edit_alarm(self.s[0],name.toPlainText(), time[0], time[1])
+                    time = add_alarm.convert_to_24_clock(hour.value(), minute.value(), AM= combo)
+                    if self.txt == "Add":
+                        print(add_alarm.insert_alarm(name.toPlainText(), time[0], time[1]))
+                    else:
+                        add_alarm.edit_alarm(self.s[0],name.toPlainText(), time[0], time[1])
 
-                dark_alarm_scroll_files()
-                self.files_set_DialogWindow.accept()
+                    dark_alarm_scroll_files()
+                    self.files_set_DialogWindow.accept()
 
             self.dialog_ok_btn.clicked.connect(lambda: add_clicked(self.dialog_textEdit, self.alarm_hour_add, self.alarm_minute_add))
 
@@ -5023,7 +5025,7 @@ QPushButton:pressed {
                 self.des_label = QtWidgets.QLabel()
                 form_lay.addWidget(self.des_label)
                 w_alarm = Alarms()
-                time = w_alarm.convert_to_12_hour_clock(s[3])
+                time = w_alarm.convert_to_12_hour_clock(s[4])
                 time = ':'.join([str(i) for i in time])
 
                 self.des_label.setText(f"{time}")
@@ -5224,21 +5226,24 @@ QComboBox QAbstractItemView {
 
             self.combo_i = 0
             def add_clicked(name, hour, minute):
-                add_alarm = Alarms()
-                combo = ["AM", "PM"]
-                if combo[self.combo_i] == "AM":
-                    combo = True
+                if name.toPlainText() == "":
+                    pass
                 else:
-                    combo = False
-                time = add_alarm.convert_to_24_clock(hour.value(), minute.value(), AM= combo)
+                    add_alarm = Alarms()
+                    combo = ["AM", "PM"]
+                    if combo[self.combo_i] == "AM":
+                        combo = True
+                    else:
+                        combo = False
 
-                if self.txt == "Add":
-                    add_alarm.insert_alarm(name.toPlainText(), time[0], time[1])
-                else:
-                    add_alarm.edit_alarm(self.s[0],name.toPlainText(), time[0], time[1])
+                    time = add_alarm.convert_to_24_clock(hour.value(), minute.value(), AM= combo)
+                    if self.txt == "Add":
+                        print(add_alarm.insert_alarm(name.toPlainText(), time[0], time[1]))
+                    else:
+                        add_alarm.edit_alarm(self.s[0],name.toPlainText(), time[0], time[1])
 
-                light_alarm_scroll_files()
-                self.files_set_DialogWindow.accept()
+                    light_alarm_scroll_files()
+                    self.files_set_DialogWindow.accept()
 
             self.dialog_ok_btn.clicked.connect(lambda: add_clicked(self.dialog_textEdit, self.alarm_hour_add, self.alarm_minute_add))
 
@@ -5495,7 +5500,7 @@ QPushButton:pressed {
                 self.des_label = QtWidgets.QLabel()
                 form_lay.addWidget(self.des_label)
                 w_alarm = Alarms()
-                time = w_alarm.convert_to_12_hour_clock(s[3])
+                time = w_alarm.convert_to_12_hour_clock(s[4])
                 time = ':'.join([str(i) for i in time])
 
                 self.des_label.setText(f"{time}")
@@ -5696,21 +5701,24 @@ QComboBox QAbstractItemView {
 
             self.combo_i = 0
             def add_clicked(name, hour, minute):
-                add_alarm = Alarms()
-                combo = ["AM", "PM"]
-                if combo[self.combo_i] == "AM":
-                    combo = True
+                if name.toPlainText() == "":
+                    pass
                 else:
-                    combo = False
-                time = add_alarm.convert_to_24_clock(hour.value(), minute.value(), AM= combo)
+                    add_alarm = Alarms()
+                    combo = ["AM", "PM"]
+                    if combo[self.combo_i] == "AM":
+                        combo = True
+                    else:
+                        combo = False
 
-                if self.txt == "Add":
-                    add_alarm.insert_alarm(name.toPlainText(), time[0], time[1])
-                else:
-                    add_alarm.edit_alarm(self.s[0],name.toPlainText(), time[0], time[1])
+                    time = add_alarm.convert_to_24_clock(hour.value(), minute.value(), AM= combo)
+                    if self.txt == "Add":
+                        print(add_alarm.insert_alarm(name.toPlainText(), time[0], time[1]))
+                    else:
+                        add_alarm.edit_alarm(self.s[0],name.toPlainText(), time[0], time[1])
 
-                green_alarm_scroll_files()
-                self.files_set_DialogWindow.accept()
+                    green_alarm_scroll_files()
+                    self.files_set_DialogWindow.accept()
 
             self.dialog_ok_btn.clicked.connect(lambda: add_clicked(self.dialog_textEdit, self.alarm_hour_add, self.alarm_minute_add))
 
@@ -5845,7 +5853,7 @@ QPushButton:pressed {
             btn.clicked.connect(lambda checked, s=s: alarm_switch(s))
         green_alarm_scroll_files()
 
-        def switch_theme(from_, to_):
+        def switch_theme(from_, to_): #to_ = "L"
             self.i = 0
             if from_ == "D":
                 self.dark_setting_centralwidget.hide()
@@ -5859,7 +5867,7 @@ QPushButton:pressed {
             set_past["Theme Mode"] = to_
             setting.change_settings(set_past)
             self.c_th = setting.get_settings()['Theme Mode']
-
+            
             if self.c_th == "D":
                 self.dark_setting_centralwidget.show()
             elif self.c_th == "L":
@@ -5937,12 +5945,9 @@ QPushButton:pressed {
             from_.hide()
             if to_ == "setting":
                 self.to_combo_index = 0
-                self.dark_trans_to_lang_combo.setCurrentIndex(
-                    self.to_combo_index)
-                self.light_trans_to_lang_combo.setCurrentIndex(
-                    self.to_combo_index)
-                self.light_trans_to_lang_combo.setCurrentIndex(
-                    self.to_combo_index)
+                self.dark_trans_to_lang_combo.setCurrentIndex(self.to_combo_index)
+                self.light_trans_to_lang_combo.setCurrentIndex(self.to_combo_index)
+                self.light_trans_to_lang_combo.setCurrentIndex(self.to_combo_index)
                 self.dark_trans_from_textedit.clear()
                 self.dark_trans_to_textedit.clear()
                 self.light_trans_from_textedit.clear()
@@ -6024,8 +6029,8 @@ QPushButton:pressed {
             self.green_main_central_widget, "task", self.c_th))
         self.green_main_alarm_page.clicked.connect(lambda: switch_to(
             self.green_main_central_widget, "alarm", self.c_th))
-	
-	self.green_main_central_widget.hide()
+
+        self.green_main_central_widget.hide()
         self.light_main_central_widget.hide()
         self.dark_main_central_widget.hide()
 
@@ -6066,7 +6071,9 @@ QPushButton:pressed {
         MainWindow.setWindowIcon(QtGui.QIcon("./Assets/Robert logo.png"))
 
 setting = SettingsManager()
+
 c_th = setting.get_settings()['Theme Mode']
+
 
 if __name__ == "__main__":
     import sys

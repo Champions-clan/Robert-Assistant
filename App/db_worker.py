@@ -124,7 +124,10 @@ class Alarms(DbWorker):
         if AM:
             return hour, minute
         else:
-            return hour + 12, minute
+            if hour == 12:
+                return hour, minute
+            else:
+                return hour + 12, minute
     def __convert_to_minutes_from_midnight(self, hours, minutes):
         assert minutes <= 59
         assert hours <= 23
@@ -200,19 +203,13 @@ class Alarms(DbWorker):
             return False
 
     def listen_for_alarms(self, callback_func):
-        # day_of_the_week = datetime.datetime.today().weekday() + 1
-        timm = self.__convert_to_minutes_from_midnight(
-            datetime.datetime.now().hour, datetime.datetime.now().minute)
-        self.cursor.execute("SELECT * FROM alarms")
-        # print(timm)
+        timm = self.__convert_to_minutes_from_midnight(datetime.datetime.now().hour, datetime.datetime.now().minute)
+        self.cursor.execute("SELECT * FROM alarms WHERE is_alarm_on=?", (True, ))
         data = self.cursor.fetchall()
         for i in data:
-            # print("Looking")
-            # print(i[1])
             if i[4] == timm:
-                # print("Ringing alarm")
                 callback_func(i)
-                # self.delete_alarm(i[0])
+
 
     def parse_alarms(self, alarm):
         hour, minute = self.back_to_hours_and_minutes(alarm[1])
@@ -304,57 +301,3 @@ class TaskManager(DbWorker):
             return True
         except:
             return False
-# task_name TEXT, task_description TEXT, priority INT,time_created REAL
-
-
-# task = TaskManager()
-
-# # print(task.insert_task('Code', "Code literally everything", 2))
-
-# print(task.uncheck_task(1))
-# alarm_manager = Alarms()
-
-
-# print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
-#
-
-# timee = Alarms()
-
-# print(timee.convert_to_12_hour_clock(946))
-
-# def this_will_run_when_alarm_rings(alarm):
-#     print(f"Alarm is ringing {alarm}")
-
-
-# alarm_manager = Alarms()
-
-# print(alarm_manager.insert_alarm("Test", 20, 8))
-# def listen():
-#     alarm_manager.listen_for_alarms(this_will_run_when_alarm_rings)
-
-# schedule.every().minute.at(':00').do(listen)
-
-# while True:
-#     schedule.run_pending()
-
-
-# tasks = TaskManager()
-# print(tasks.insert_task("hello world", 'skksl', 3))
-
-# settings = SettingsManager()
-# print(settings.get_settings())
-
-
-def convert_to_12_hour_clock(minutes_from_minight):
-    alarm_man = Alarms()
-    time = alarm_man.back_to_hours_and_minutes(minutes_from_minight)
-
-    if (time[0] < 12):
-        Meridien = "AM";
-    else:
-        Meridien = "PM";
-
-    if Meridien == "AM":
-        return (time[0], time[1], Meridien)
-    else:
-        return (time[0] - 12, time[1], Meridien)
