@@ -32,7 +32,7 @@ At last but not least you can open the gui or give commands to the robert withou
 - And at last it have hotkeys too so want to give commands by summoning the robert! or open the home page gui! ⌨️.
 
 ### Robert
-The main heart of the project and the bascially it do the everything say to him you can give him commands as commander by pressing a hotkey which is shift+tab+6 or by right clicking on this cutie thing as shown here and selecting the **Robert Listner**:- 
+The main heart of the project and the bascially it do the everything say to him you can give him commands as commander by pressing a hotkey which is shift+7 or by right clicking on this cutie thing as shown here and selecting the **Robert Listner**:- 
 
 ![](https://github.com/Champions-clan/Robert-Assistant/blob/master/Assets/cutie%20thing.png?raw=true")     
 So let me tell you all the things it can do or the things you can do by speaking are wikipedia, open youtube, open google (I know this one is funny but what goes to add it and it funny to mention it 😅), open gmail,show weather,tell time,tell day,tell date, who are you, who made you, open stackoverflow, news, open cmd, open calculator,do search,take screenshot, play music, open notepad and THE POWER MODE (It is a simple thing you can ask the robert any scientific question 😋).
