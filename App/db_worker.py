@@ -2,7 +2,6 @@ import sqlite3
 import time
 import datetime
 import json
-import schedule
 
 class DbWorker:
     def __init__(self):
@@ -168,15 +167,15 @@ class Alarms(DbWorker):
             return True
         except:
             return False
-    
+
     def convert_to_12_hour_clock(self, minutes_from_minight):
         time = self.__back_to_hours_and_minutes(minutes_from_minight)
 
-        if (time[0] < 12): 
-            Meridien = "AM"; 
-        else: 
-            Meridien = "PM"; 
-        
+        if (time[0] < 12):
+            Meridien = "AM";
+        else:
+            Meridien = "PM";
+
         if Meridien == "AM":
             return (time[0], time[1], Meridien)
         else:
@@ -256,7 +255,7 @@ class SettingsManager:
     def change_settings(self, new_settings):
         with open('robert_settings.json', 'w+') as file:
             json.dump(new_settings, file, indent=6)
-    
+
 class TaskManager(DbWorker):
     def __init__(self):
         self.conn, self.cursor = super().set_up_db()
@@ -323,7 +322,7 @@ class TaskManager(DbWorker):
 
 
 # print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
-# 
+#
 
 # timee = Alarms()
 

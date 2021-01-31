@@ -3042,18 +3042,19 @@ QComboBox QAbstractItemView {
         def green_task_scroll_files():
             task = TaskManager()
             if self.task_sort == 0:
-                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize()]
                               for i in task.list_tasks()]
                 self.files.reverse()
             elif self.task_sort == 1:
-                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize()]
                               for i in task.list_tasks()]
                 self.files.sort()
                 self.files.reverse()
             else:
                 self.files = [[i[0],i[3], i[2], i[4], i[1].lower()]for i in task.list_tasks()]
                 self.files = sorted(self.files, key=lambda x: x[4])
-                self.files = [[i[0],i[1], i[2], i[3], i[4].capitalize()] for i in self.files]
+                self.files = [[i[0],i[1],i[2],i[3],i[4].capitalize()] for i in self.files]
+
 
             self.green_task_scrollAreaWidgetContents.deleteLater()
             self.green_task_scrollAreaWidgetContents = QtWidgets.QWidget(
@@ -3347,7 +3348,7 @@ QPushButton:pressed {
             vertical_lay.addLayout(self.exit_lay)
             vertical_lay.addWidget(scroll_area)
 
-            btn_info = btn_info[1]
+            btn_info = btn_info[2]
 
             self.des_label = QtWidgets.QLabel()
             form_lay.addWidget(self.des_label)
@@ -3365,8 +3366,7 @@ QPushButton:pressed {
         def green_task_create_task_btn_func(btn, i, s):
             self.green_task_cond[btn] = 0
             btn.setFixedSize(25, 25)
-            btn.setIcon(QtGui.QIcon(
-            self.green_task_cond_lst[self.green_task_cond[btn]]))
+            btn.setIcon(QtGui.QIcon(self.green_task_cond_lst[self.green_task_cond[btn]]))
             btn.setIconSize(QtCore.QSize(25, 25))
             btn.setStyleSheet("""
 QPushButton {
@@ -3380,7 +3380,7 @@ QPushButton:pressed {
     background-color: #1A4E3B;
 }
 """)
-            if s[3] == 0:
+            if s[1] == 0:
                 btn.setIcon(QtGui.QIcon(self.green_task_cond_lst[0]))
             else:
                 btn.setIcon(QtGui.QIcon(self.green_task_cond_lst[1]))
@@ -3552,18 +3552,18 @@ QComboBox QAbstractItemView {
         def dark_task_scroll_files():
             task = TaskManager()
             if self.task_sort == 0:
-                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize()]
                               for i in task.list_tasks()]
                 self.files.reverse()
             elif self.task_sort == 1:
-                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize()]
                               for i in task.list_tasks()]
                 self.files.sort()
                 self.files.reverse()
             else:
                 self.files = [[i[0],i[3], i[2], i[4], i[1].lower()]for i in task.list_tasks()]
                 self.files = sorted(self.files, key=lambda x: x[4])
-                self.files = [[i[0],i[1], i[2], i[3], i[4].capitalize()] for i in self.files]
+                self.files = [[i[0],i[1],i[2],i[3],i[4].capitalize()] for i in self.files]
 
             self.dark_task_scrollAreaWidgetContents.deleteLater()
             self.dark_task_scrollAreaWidgetContents = QtWidgets.QWidget(
@@ -3871,7 +3871,7 @@ border-radius: 5px;
             vertical_lay.addLayout(self.exit_lay)
             vertical_lay.addWidget(scroll_area)
 
-            btn_info = btn_info[1]
+            btn_info = btn_info[2]
 
             self.des_label = QtWidgets.QLabel()
             form_lay.addWidget(self.des_label)
@@ -3905,7 +3905,7 @@ QPushButton:pressed {
     background-color: #18191c;
 }
 """)
-            if s[3] == 0:
+            if s[1] == 0:
                 btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[0]))
             else:
                 btn.setIcon(QtGui.QIcon(self.dark_task_cond_lst[1]))
@@ -4063,18 +4063,18 @@ QComboBox QAbstractItemView {
         def light_task_scroll_files():
             task = TaskManager()
             if self.task_sort == 0:
-                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize()]
                               for i in task.list_tasks()]
                 self.files.reverse()
             elif self.task_sort == 1:
-                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize(), i[2]]
+                self.files = [[i[0],i[3], i[2], i[4], i[1].capitalize()]
                               for i in task.list_tasks()]
                 self.files.sort()
                 self.files.reverse()
             else:
                 self.files = [[i[0],i[3], i[2], i[4], i[1].lower()]for i in task.list_tasks()]
                 self.files = sorted(self.files, key=lambda x: x[4])
-                self.files = [[i[0],i[1], i[2], i[3], i[4].capitalize()] for i in self.files]
+                self.files = [[i[0],i[1],i[2],i[3],i[4].capitalize()] for i in self.files]
 
             self.light_task_scrollAreaWidgetContents.deleteLater()
             self.light_task_scrollAreaWidgetContents = QtWidgets.QWidget(
@@ -4369,7 +4369,7 @@ QPushButton:pressed {
             vertical_lay.addLayout(self.exit_lay)
             vertical_lay.addWidget(scroll_area)
 
-            btn_info = btn_info[1]
+            btn_info = btn_info[2]
 
             self.des_label = QtWidgets.QLabel()
             form_lay.addWidget(self.des_label)
@@ -4404,7 +4404,8 @@ QPushButton:pressed {
     background-color: #A2A2A2;
 }
 """)
-            if s[3] == 0:
+            print(s[4],s[1])
+            if s[1] == 0:
                 btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[0]))
             else:
                 btn.setIcon(QtGui.QIcon(self.light_task_cond_lst[1]))

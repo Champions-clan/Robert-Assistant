@@ -8,7 +8,6 @@ import wolframalpha
 import os
 import random
 import matplotlib.pyplot as plt
-from playsound import playsound
 from PIL import ImageGrab
 
 
@@ -104,8 +103,6 @@ def take_speak_command():
     #wishMe()
     speak("Nice To See You Again")
     statement = takeCommand().lower()
-<<<<<<< HEAD
-=======
     if statement == 0:
 
         if 'wikipedia' in statement:
@@ -212,7 +209,7 @@ def take_speak_command():
             speak('Opening Notepad')
             os.startfile('C:\\Windows\\system32\\notepad.exe')
 
-        elif "Start Power Mode" in statement:
+        elif "start power mode" in statement or "power mode" in statement:
             speak('I can answer to Computational and Scientific questions and what question do you want to ask now')
             question = takeCommand()
             app_id = "R2K75H-7ELALHR35X"
@@ -220,8 +217,7 @@ def take_speak_command():
             res = client.statement(question)
             answer = next(res.results).text
             speak(answer)
->>>>>>> 4cf89b9402bfd038ccb580f560beb2cd7b51f689
 
-       
+
 if __name__ == "__main__":
     take_speak_command()
