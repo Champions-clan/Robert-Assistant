@@ -75,7 +75,7 @@ pip install -r requirements.txt
 # Run the badboy
 python Main.py
 ```
-Keep in mind that it is a background script so see your taskbar there you will find that cutie thing and in first the gui will open after closing the gui you can give commands to the robert but to give the roberts command again just use the hotkey shift+tab+7 or that cutie thing and to open the gui just right click on the cutie thing or press the hotkey shift+tab+6.
+Keep in mind that it is a background script so see your taskbar there you will find the icon in the system tray and in first the gui will open after closing the gui you can give commands to the robert but to give the roberts command again just use the hotkey shift+tab+7 or that cutie thing and to open the gui just right click on the cutie thing or press the hotkey shift+tab+6.
 
 Now enjoy the project 😉.
 Here is a simple gif on how to install it if you are still confused.
