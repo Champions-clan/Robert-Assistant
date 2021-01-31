@@ -1,0 +1,8 @@
+{
+    "settings hotkey": "<alt>+<shift>+6",
+    "input via": "<alt>+k",
+    "Reminder Alert Type": "notification",
+    "Sound Effects Location":  "./Asserts/",
+    "Theme Mode": "Dark",
+    "Code Base Hot Key": "<alt>+<shift>+7"
+}

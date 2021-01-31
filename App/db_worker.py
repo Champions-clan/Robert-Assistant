@@ -247,13 +247,14 @@ class Alarms(DbWorker):
 
 class SettingsManager:
     def get_settings(self):
-        with open('robert_settings.json') as file:
+        with open('../Database\\robert.settings.json') as file:
             jason = file.read()
+            # print(jason)
             parsed_json = json.loads(jason)
             return parsed_json
 
     def change_settings(self, new_settings):
-        with open('robert_settings.json', 'w+') as file:
+        with open('robert.settings.json', 'w+') as file:
             json.dump(new_settings, file, indent=6)
 
 class TaskManager(DbWorker):
@@ -346,3 +347,6 @@ class TaskManager(DbWorker):
 
 # tasks = TaskManager()
 # print(tasks.insert_task("hello world", 'skksl', 3))
+
+# settings = SettingsManager()
+# print(settings.get_settings())
