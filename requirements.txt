@@ -1,9 +1,7 @@
 clipboard==0.0.4
-pynput==1.7.2
 googletrans==3.1.0a0
 PyQt5==5.15.2
 keyboard
-win10toast
 notify-py
 notify-run
 pyttsx3
