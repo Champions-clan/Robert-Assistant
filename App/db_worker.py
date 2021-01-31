@@ -16,7 +16,7 @@ class DbWorker:
         cursor.execute(
             "CREATE TABLE IF NOT EXISTS  alarms (alarm_number INTEGER PRIMARY KEY,alarm_name TEXT,is_alarm_on BOOLEAN, repeat_frequncy INTEGER,alarm_time INTEGER)")
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS tasks (task_number INTEGER PRIMARY KEY,task_name TEXT, task_description TEXT, checked BOOLEAN,time_created REAL)")
+            "CREATE TABLE IF NOT EXISTS tasks (task_number INTEGER PRIMARY KEY,task_name TEXT, task_description TEXT, priority INTEGER ,checked BOOLEAN,time_created REAL)")
         conn.commit()
         return conn, cursor
 
@@ -343,3 +343,7 @@ class TaskManager(DbWorker):
 
 # while True:
 #     schedule.run_pending()
+
+
+# tasks = TaskManager()
+# print(tasks.insert_task("hello world", 'skksl', 3))
