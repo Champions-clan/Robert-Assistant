@@ -34,8 +34,13 @@ At last but not least you can open the gui or give commands to the robert withou
 ### Robert
 The main heart of the project and the bascially it do the everything say to him you can give him commands as commander by pressing a hotkey which is shift+tab+6 or by right clicking on this cutie thing as shown here and selecting the **Robert Listner**:- 
 
-![](https://github.com/Champions-clan/Robert-Assistant/blob/master/Assets/cutie%20thing.png?raw=true")     
+<img src="https://github.com/Champions-clan/Robert-Assistant/blob/master/Assets/cutie%20thing.png?raw=true" width=200px> 
+
 So let me tell you all the things it can do or the things you can do by speaking are wikipedia, open youtube, open google (I know this one is funny but what goes to add it and it funny to mention it 😅), open gmail,show weather,tell time,tell day,tell date, who are you, who made you, open stackoverflow, news, open cmd, open calculator,do search,take screenshot, play music, open notepad and THE POWER MODE (It is a simple thing you can ask the robert any scientific question 😋).
 
 ### Task Manger
 So here comes the guis. They have very good things and we thought why not give you guys a task manger like if you forgot that today is your's mom's or her's 😉 birthday eh leave it like you miss a task or your angry boss gave you alot of task and your lazy brain can't handle them then just write them down so you don't forget the task and you don't get fired from the company (I have done research there is less chances to get fired by fogeting the task 🤣).
+<im src="#" alt="THE GIF WILL BE HERE">
+
+## ALARM
+The name is self-explanatory, If your little brain can't understand what it is so it is <a href="https://www.google.com/search?rlz=1C1CHBD_enIN916IN916&ei=oF8WYIHaA8LFz7sPzfeGuAE&q=alarm+meaning&oq=alarm+meaning&gs_lcp=CgZwc3ktYWIQAzIICAAQsQMQkQIyBQgAEJECMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BAgAEEc6BwgAELEDEEM6BQgAELEDUIIMWKgXYI8ZaABwAngCgAGuAogB6wqSAQcwLjYuMS4xmAEAoAEBqgEHZ3dzLXdpesgBCMABAQ&sclient=psy-ab&ved=0ahUKEwiBqoCl1sXuAhXC4nMBHc27ARcQ4dUDCA0&uact=5"> 
