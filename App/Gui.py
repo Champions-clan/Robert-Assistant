@@ -6062,7 +6062,8 @@ QPushButton:pressed {
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Robert"))
+        MainWindow.setWindowIcon(QtGui.QIcon("./Assets/Robert logo.png"))
 
 setting = SettingsManager()
 c_th = setting.get_settings()['Theme Mode']
