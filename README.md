@@ -33,7 +33,7 @@ At last but not least you can open the GUI or give commands to Robert without us
 ### Robert
 The main heart of the project and the basically it does the everything say to him you can give him commands as commander by pressing a hotkey which is `shift+7` or by right-clicking on this icon in the system tray as shown here and selecting the **Robert Listner**:- 
 
-<img src="https://github.com/Champions-clan/Robert-Assistant/blob/master/Assets/cutie%20thing.png?raw=true" width=200px> 
+<img src="./Assets/translator.gif" width=200px> 
 
 So let me tell you all the things it can do or the things you can do by speaking are Wikipedia, open youtube, open google (I know this one is funny but what goes to add it and it funny to mention it 😅), open Gmail, show weather, tell time, tell day, tell the date, who are you, who made you, open StackOverflow, news, open cmd, open calculator, do a search, take a screenshot, play music, open notepad and THE POWER MODE (It is a simple thing you can ask the Robert any scientific question 😋).
 
