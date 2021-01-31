@@ -1,5 +1,6 @@
-<img align="center" src="./Assets/Robert Logo.png" alt="Logo" height="300" width="300">
-
+<p align="center">
+<img src="./Assets/Robert Logo.png" alt="Logo" height="300" width="300" >
+</p>
 <p align="center">
     <img src="https://forthebadge.com/images/badges/made-with-python.svg">
     <img src="https://forthebadge.com/images/badges/built-by-developers.svg">
