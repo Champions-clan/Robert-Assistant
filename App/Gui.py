@@ -6020,10 +6020,10 @@ QPushButton:pressed {
             self.green_main_central_widget, "task", self.c_th))
         self.green_main_alarm_page.clicked.connect(lambda: switch_to(
             self.green_main_central_widget, "alarm", self.c_th))
-
-        self.dark_main_central_widget.show()
+	
+	self.green_main_central_widget.hide()
         self.light_main_central_widget.hide()
-        self.green_main_central_widget.hide()
+        self.dark_main_central_widget.hide()
 
         self.dark_setting_centralwidget.hide()
         self.light_setting_centralwidget.hide()
@@ -6045,6 +6045,14 @@ QPushButton:pressed {
         self.light_alarm_centralwidget.hide()
         self.green_alarm_centralwidget.hide()
 
+
+        if self.c_th == "D":
+            self.dark_main_central_widget.show()
+        elif self.c_th == "L":
+            self.light_main_central_widget.show()
+        else:
+            self.green_main_central_widget.show()
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -6052,7 +6060,7 @@ QPushButton:pressed {
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
 
-c_th = "D"
+c_th = "G"
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
