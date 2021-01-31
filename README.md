@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-take this 
-=======
 
 <br />
 <p align="center">
@@ -8,11 +5,7 @@ take this
 
 <h1 align="center">LET'S BEGIN THE JOURNEY</h1>
 <img align="center" src="./Assets/Logo_banner.png" alt="Logo">
->>>>>>> 785d78b4a35d83ac66b230a6a405339e36b4a9d1
 
-<p align="center">
-<img src="./Assets/Robert Logo.png" alt="Logo" height="300" width="300" >
-</p>
 <p align="center">
     <img src="https://forthebadge.com/images/badges/made-with-python.svg">
     <img src="https://forthebadge.com/images/badges/built-by-developers.svg">
@@ -39,53 +32,54 @@ At last but not least you can open the gui or give commands to the robert withou
 - And at last it have hotkeys too so want to give commands by summoning the robert! or open the home page gui! ⌨️.
 
 ### Robert
-The main heart of the project and the bascially it do the everything say to him you can give him commands as commander by pressing a hotkey which is shift+tab+6 or by right clicking on this cutie thing as shown here and selecting the **Robert Listner**:- 
+The main heart of the project and the bascially it do the everything say to him you can give him commands as commander by pressing a hotkey which is shift+tab+7 or by right clicking on this cutie thing as shown here and selecting the **Robert Listner**:- 
 
 <img src="https://github.com/Champions-clan/Robert-Assistant/blob/master/Assets/cutie%20thing.png?raw=true" width=200px> 
 
 So let me tell you all the things it can do or the things you can do by speaking are wikipedia, open youtube, open google (I know this one is funny but what goes to add it and it funny to mention it 😅), open gmail,show weather,tell time,tell day,tell date, who are you, who made you, open stackoverflow, news, open cmd, open calculator,do search,take screenshot, play music, open notepad and THE POWER MODE (It is a simple thing you can ask the robert any scientific question 😋).
 
-## Installation and usage
+### Task Manger
+So here comes the guis. They have very good things and we thought why not give you guys a task manger like if you forgot that today is your's mom's or her's 😉 birthday eh leave it like you miss a task or your angry boss gave you alot of task and your lazy brain can't handle them then just write them down so you don't forget the task and you don't get fired from the company (I have done research there is less chances to get fired by fogeting the task 🤣). And you can edit the task name, description and it's priority.
+<img src="#" alt="THE GIF WILL BE HERE">
 
-### 1. Clone the repo
-Open your Terminal, navigate to your prefered directory and execute
+### ALarm
+The name is self-explanatory, If your little brain can't understand what it is so it is <a href="https://www.google.com/search?rlz=1C1CHBD_enIN916IN916&ei=oF8WYIHaA8LFz7sPzfeGuAE&q=alarm+meaning&oq=alarm+meaning&gs_lcp=CgZwc3ktYWIQAzIICAAQsQMQkQIyBQgAEJECMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BAgAEEc6BwgAELEDEEM6BQgAELEDUIIMWKgXYI8ZaABwAngCgAGuAogB6wqSAQcwLjYuMS4xmAEAoAEBqgEHZ3dzLXdpesgBCMABAQ&sclient=psy-ab&ved=0ahUKEwiBqoCl1sXuAhXC4nMBHc27ARcQ4dUDCA0&uact=5" target="_blank">alarm</a>. And you can set the alarm up give it the timming when to ring the alarm and when alarm matches the time you sets , It will give you notification and will ring a beep sound, So you never forget to do the work on time.
+<img src="#" alt="THE GIF WILL BE HERE">
 
-git
+### Translation
+As straight out of the word as it sounds. You might often face some foreign or new words that you have never met before. So here it is your translator (I know that there is a thing called google translation but as you readed we are carzy so we also added it so it can funny project 😁).
+<img src="#" alt="THE GIF WILL BE HERE">
+
+### **CODE SNIPPET**
+Here is your most useful thing!, So honestly tell me how many times you ever serach for a code which have some lines of code or a project on github in which you have used a module and you can't remember what module was it and how you used it (I know everyone have done this in there life if you didn't then you are noob!) ,So this is the best thing for this type of situation it will store the code in the database and which you can just sync or make gitlist for it so you can never lost the code. It is easy to open the code snippet thing right click on that cutie thing that I have mentioned earlier and choose the **Home Page** or press shift+tab+6 and you will get the code snippet gui button in the fornt from there you can access the code snippet gui and there you can select the files of any langauge and later on you can sort them, name the code snippet and to just access the code just press on the code's name and it will be copied to your clipborad and then you can just past it and do whatever you want!
+If you didn't understood then see this :-
+<img src="#" alt="THE GIF WILL BE HERE">
+
+### Settings 
+Simply you can change the theme of the gui.
+<img src="#" alt="THE GIF WILL BE HERE">
+
+## Installation
+Now your mind will be saying so how to get this thing so here is it:-
+For installing the whole project the you must need <a href="https://www.python.org/downloads/">Python</a> and <a href="https://git-scm.com/downloads">Git</a>.
+```
+# Clone the repo (Open your Terminal, navigate to your prefered directory and execute)
 git clone https://github.com/Champions-clan/Robert-Assistant
 
-### 2. Cd into the directory
-After the above command finishes execution, execute the following command 
+# Cd into the directory 
+cd Robert-Assistant
 
-git
-cd Robert-assistant
-
-### 3. Install the requirements (you must have python installed and pip working for this to work)
-
-We have already made a `requirements.txt` for you cuz we are good 😎
-
-anyway on the same terminal execute the following
-
-
+# Install the requirements (Install all the dependencies, might take time depending on your internet speed)
 pip install -r requirements.txt
 
-This might take a second or two, until then go poop 💩
+# Run the badboy
+python Main.py
+```
+Keep in mind that it is a background script so see your taskbar there you will find that cutie thing and in first the gui will open after closing the gui you can give commands to the robert but to give the roberts command again just use the hotkey shift+tab+7 or that cutie thing and to open the gui just right click on the cutie thing or press the hotkey shift+tab+6.
 
+Now enjoy the project 😉.
+Here is a simple gif on how to install it if you are still confused.
+<img src="#" alt="THE GIF WILL BE HERE">
 
-### Now you can finally run it
-
-**Its showtime**
-
-In the same terminal execute
-
-
-python App/Gui.py
-
-**Enjoy**
-
-<img src="./Assets/themes.png">
-
-
-
-
-## ALARM
-The name is self-explanatory, If your little brain can't understand what it is so it is <a href="https://www.google.com/search?rlz=1C1CHBD_enIN916IN916&ei=oF8WYIHaA8LFz7sPzfeGuAE&q=alarm+meaning&oq=alarm+meaning&gs_lcp=CgZwc3ktYWIQAzIICAAQsQMQkQIyBQgAEJECMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BAgAEEc6BwgAELEDEEM6BQgAELEDUIIMWKgXYI8ZaABwAngCgAGuAogB6wqSAQcwLjYuMS4xmAEAoAEBqgEHZ3dzLXdpesgBCMABAQ&sclient=psy-ab&ved=0ahUKEwiBqoCl1sXuAhXC4nMBHc27ARcQ4dUDCA0&uact=5"> 
+## Contributions
+So you want to make a imporvement or want to make a whole new feature? Well we also want to see that how we have impacted the community or how the community can improve this project for different uses. However, as this project is a part of **Third Timathon Code Jam**, we are not allowed to make any changes to the project after the submission time ends. So, we won't be merging any pull requests. But after the voting time finish then we will be ready to merge your brilliant works 😊.
