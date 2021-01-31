@@ -72,7 +72,7 @@ cd Robert-Assistant
 pip install -r requirements.txt
 
 # Run the bad boy
-python Main.py
+pythonw Main.py
 ```
 Keep in mind that it is a background script so see your taskbar there you will find the icon in the system tray and first the GUI will open after closing the GUI you can give commands to the Robert but to give the Roberts command again just use the hotkey `<shift>+7` or that icon in the system tray and to open the GUI just right click on the icon in the system tray or press the hotkey `<shift>+6`.
 
