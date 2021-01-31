@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QPushButton, QMainWindow, QTextEdit
 from googletrans import Translator
-from db_worker import Snippets, TaskManager, Alarms
+from db_worker import Snippets, TaskManager, Alarms, SettingsManager
 
 
 class Ui_MainWindow(object):
@@ -5854,7 +5854,11 @@ QPushButton:pressed {
             else:
                 self.green_setting_centralwidget.hide()
 
-            self.c_th = to_
+            setting = SettingsManager()
+            set_past = setting.get_settings()
+            set_past["Theme Mode"] = to_
+            setting.change_settings(set_past)
+            self.c_th = setting.get_settings()['Theme Mode']
 
             if self.c_th == "D":
                 self.dark_setting_centralwidget.show()
@@ -6060,7 +6064,9 @@ QPushButton:pressed {
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
 
-c_th = "G"
+setting = SettingsManager()
+c_th = setting.get_settings()['Theme Mode']
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
