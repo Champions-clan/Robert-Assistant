@@ -32,7 +32,7 @@ At last but not least you can open the gui or give commands to the robert withou
 - And at last it have hotkeys too so want to give commands by summoning the robert! or open the home page gui! ⌨️.
 
 ### Robert
-The main heart of the project and the bascially it do the everything say to him you can give him commands as commander by pressing a hotkey which is shift+tab+7 or by right clicking on this icon in the system tray as shown here and selecting the **Robert Listner**:- 
+The main heart of the project and the bascially it do the everything say to him you can give him commands as commander by pressing a hotkey which is `shift+7` or by right clicking on this icon in the system tray as shown here and selecting the **Robert Listner**:- 
 
 <img src="https://github.com/Champions-clan/Robert-Assistant/blob/master/Assets/cutie%20thing.png?raw=true" width=200px> 
 
@@ -47,7 +47,7 @@ The name is self-explanatory, If your little brain can't understand what it is s
 <img src="#" alt="THE GIF WILL BE HERE">
 
 ### Translation
-As straight out of the word as it sounds. You might often face some foreign or new words that you have never met before. So here it is your translator (I know that there is a thing called google translation but as you readed we are carzy so we also added it so it can funny project 😁).
+As straight out of the word as it sounds. You might often face some foreign or new words that you have never met before. So here it is your translator for the same.
 <img src="#" alt="THE GIF WILL BE HERE">
 
 ### **CODE SNIPPET**
@@ -75,14 +75,14 @@ pip install -r requirements.txt
 # Run the badboy
 python Main.py
 ```
-Keep in mind that it is a background script so see your taskbar there you will find the icon in the system tray and in first the gui will open after closing the gui you can give commands to the robert but to give the roberts command again just use the hotkey shift+tab+7 or that icon in the system tray and to open the gui just right click on the icon in the system tray or press the hotkey shift+tab+6.
+Keep in mind that it is a background script so see your taskbar there you will find the icon in the system tray and in first the gui will open after closing the gui you can give commands to the robert but to give the roberts command again just use the hotkey shift+tab+7 or that icon in the system tray and to open the gui just right click on the icon in the system tray or press the hotkey `<shift>+6`.
 
 Now enjoy the project 😉.
 Here is a simple gif on how to install it if you are still confused.
 <img src="#" alt="THE GIF WILL BE HERE">
 
 ## Contributions
-So you want to make a imporvement or want to make a whole new feature? Well we also want to see that how we have impacted the community or how the community can improve this project for different uses. However, as this project is a part of **Third Timathon Code Jam**, we are not allowed to make any changes to the project after the submission time ends. So, we won't be merging any pull requests. But after the voting time finish then we will be ready to merge your brilliant works 😊.
+So you want to make a imporvement or want to make a whole new feature? Well we also want to see that how we have impacted the community or how the community can improve this project for different uses. However, as this project is a part of **Third Timathon Code Jam**, we are not allowed to make any changes to the project after the submission time ends. So, we won't be merging any pull requests. But after the jam finishes. PR's will be accepted.
 
 ## Champions Clan
 We are four!
@@ -92,4 +92,4 @@ We are four!
 - Dawn Saju aka <a href="https://github.com/dawntom2006">dawntom2006</a>
 - Harsh Pandey aka <a href="https://github.com/akionsight">akionsight</a>
 
-**Created by,with & for Community**❤
+**Created by,with & for the Community**❤
