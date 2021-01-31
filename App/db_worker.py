@@ -26,12 +26,10 @@ class Snippets(DbWorker):
     def insert_snippet(self, snippet, snippet_language, snippet_name):
         """
         Inserts snippets
-
         Arguments required
         - snippet
         - snippet_language
         - snippet_name
-
         Returns true if query is successful, False if not
         """
         try:
@@ -50,9 +48,7 @@ class Snippets(DbWorker):
     def snippet_used(self, snippet_number):
         """
         This number keeps the record whenever snippets are used
-
         it must be called whenever the snippet is used
-
         takes the argument of the snippet number
         """
         self.cursor.execute(
@@ -65,9 +61,7 @@ class Snippets(DbWorker):
     def delete_snippet(self, snippet_number):
         """
         This deletes snippet
-
         deletes the snippet when supplied by the snippet number
-
         """
         try:
 
@@ -246,14 +240,14 @@ class Alarms(DbWorker):
 
 class SettingsManager:
     def get_settings(self):
-        with open('./Database\\robert.settings.json') as file:
+        with open('./Database/robert.settings.json') as file:
             jason = file.read()
             # print(jason)
             parsed_json = json.loads(jason)
             return parsed_json
 
     def change_settings(self, new_settings):
-        with open('robert.settings.json', 'w') as file:
+        with open('./database/robert.settings.json', 'w+') as file:
             json.dump(new_settings, file, indent=6)
 
 class TaskManager(DbWorker):
