@@ -32,7 +32,7 @@ At last but not least you can open the gui or give commands to the robert withou
 - And at last it have hotkeys too so want to give commands by summoning the robert! or open the home page gui! ⌨️.
 
 ### Robert
-The main heart of the project and the bascially it do the everything say to him you can give him commands as commander by pressing a hotkey which is shift+tab+7 or by right clicking on this cutie thing as shown here and selecting the **Robert Listner**:- 
+The main heart of the project and the bascially it do the everything say to him you can give him commands as commander by pressing a hotkey which is shift+tab+7 or by right clicking on this icon in the system tray as shown here and selecting the **Robert Listner**:- 
 
 <img src="https://github.com/Champions-clan/Robert-Assistant/blob/master/Assets/cutie%20thing.png?raw=true" width=200px> 
 
@@ -51,7 +51,7 @@ As straight out of the word as it sounds. You might often face some foreign or n
 <img src="#" alt="THE GIF WILL BE HERE">
 
 ### **CODE SNIPPET**
-Here is your most useful thing!, So honestly tell me how many times you ever serach for a code which have some lines of code or a project on github in which you have used a module and you can't remember what module was it and how you used it (I know everyone have done this in there life if you didn't then you are noob!) ,So this is the best thing for this type of situation it will store the code in the database and which you can just sync or make gitlist for it so you can never lost the code. It is easy to open the code snippet thing right click on that cutie thing that I have mentioned earlier and choose the **Home Page** or press shift+tab+6 and you will get the code snippet gui button in the fornt from there you can access the code snippet gui and there you can select the files of any langauge and later on you can sort them, name the code snippet and to just access the code just press on the code's name and it will be copied to your clipborad and then you can just past it and do whatever you want!
+Here is your most useful thing!, So honestly tell me how many times you ever serach for a code which have some lines of code or a project on github in which you have used a module and you can't remember what module was it and how you used it (I know everyone have done this in there life if you didn't then you are noob!) ,So this is the best thing for this type of situation it will store the code in the database and which you can just sync or make gitlist for it so you can never lost the code. It is easy to open the code snippet thing right click on that icon in the system tray that I have mentioned earlier and choose the **Home Page** or press shift+tab+6 and you will get the code snippet gui button in the fornt from there you can access the code snippet gui and there you can select the files of any langauge and later on you can sort them, name the code snippet and to just access the code just press on the code's name and it will be copied to your clipborad and then you can just past it and do whatever you want!
 If you didn't understood then see this :-
 <img src="#" alt="THE GIF WILL BE HERE">
 
@@ -75,7 +75,7 @@ pip install -r requirements.txt
 # Run the badboy
 python Main.py
 ```
-Keep in mind that it is a background script so see your taskbar there you will find the icon in the system tray and in first the gui will open after closing the gui you can give commands to the robert but to give the roberts command again just use the hotkey shift+tab+7 or that cutie thing and to open the gui just right click on the cutie thing or press the hotkey shift+tab+6.
+Keep in mind that it is a background script so see your taskbar there you will find the icon in the system tray and in first the gui will open after closing the gui you can give commands to the robert but to give the roberts command again just use the hotkey shift+tab+7 or that icon in the system tray and to open the gui just right click on the icon in the system tray or press the hotkey shift+tab+6.
 
 Now enjoy the project 😉.
 Here is a simple gif on how to install it if you are still confused.
@@ -83,3 +83,13 @@ Here is a simple gif on how to install it if you are still confused.
 
 ## Contributions
 So you want to make a imporvement or want to make a whole new feature? Well we also want to see that how we have impacted the community or how the community can improve this project for different uses. However, as this project is a part of **Third Timathon Code Jam**, we are not allowed to make any changes to the project after the submission time ends. So, we won't be merging any pull requests. But after the voting time finish then we will be ready to merge your brilliant works 😊.
+
+## Champions Clan
+We are four!
+
+- Rajvir Singh aka <a href="https://github.com/RajvirSingh1313">RajvirSingh1313</a>
+- Abdella Solomon aka <a href="https://github.com/Abdesol">Abdesol</a>
+- Dawn Saju aka <a href="https://github.com/dawntom2006">dawntom2006</a>
+- Harsh Pandey aka <a href="https://github.com/akionsight">akionsight</a>
+
+**Created by,with & for Community**❤
