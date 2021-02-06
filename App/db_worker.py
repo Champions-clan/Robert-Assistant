@@ -15,7 +15,7 @@ class DbWorker:
         cursor.execute(
             "CREATE TABLE IF NOT EXISTS  alarms (alarm_number INTEGER PRIMARY KEY,alarm_name TEXT,is_alarm_on BOOLEAN, repeat_frequncy INTEGER,alarm_time INTEGER)")
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS tasks (task_number INTEGER PRIMARY KEY,task_name TEXT, task_description TEXT, checked BOOLEAN,time_created REAL)")
+            "CREATE TABLE IF NOT EXISTS tasks (task_number INTEGER PRIMARY KEY,task_name TEXT, task_description TEXT, priority INTEGER ,checked BOOLEAN,time_created REAL)")
         conn.commit()
         return conn, cursor
 
@@ -26,12 +26,10 @@ class Snippets(DbWorker):
     def insert_snippet(self, snippet, snippet_language, snippet_name):
         """
         Inserts snippets
-
         Arguments required
         - snippet
         - snippet_language
         - snippet_name
-
         Returns true if query is successful, False if not
         """
         try:
@@ -50,9 +48,7 @@ class Snippets(DbWorker):
     def snippet_used(self, snippet_number):
         """
         This number keeps the record whenever snippets are used
-
         it must be called whenever the snippet is used
-
         takes the argument of the snippet number
         """
         self.cursor.execute(
@@ -65,9 +61,7 @@ class Snippets(DbWorker):
     def delete_snippet(self, snippet_number):
         """
         This deletes snippet
-
         deletes the snippet when supplied by the snippet number
-
         """
         try:
 
@@ -130,13 +124,16 @@ class Alarms(DbWorker):
         if AM:
             return hour, minute
         else:
-            return hour + 12, minute
+            if hour == 12:
+                return hour, minute
+            else:
+                return hour + 12, minute
     def __convert_to_minutes_from_midnight(self, hours, minutes):
         assert minutes <= 59
         assert hours <= 23
         return (hours * 60) + minutes
 
-    def __back_to_hours_and_minutes(self, minutes_from_midnight):
+    def back_to_hours_and_minutes(self, minutes_from_midnight):
         return minutes_from_midnight // 60, minutes_from_midnight % 60
 
     def insert_alarm(self, alarm_name: str,alarm_hour: int, alarm_minutes: int):
@@ -169,7 +166,7 @@ class Alarms(DbWorker):
             return False
 
     def convert_to_12_hour_clock(self, minutes_from_minight):
-        time = self.__back_to_hours_and_minutes(minutes_from_minight)
+        time = self.back_to_hours_and_minutes(minutes_from_minight)
 
         if (time[0] < 12):
             Meridien = "AM";
@@ -180,7 +177,6 @@ class Alarms(DbWorker):
             return (time[0], time[1], Meridien)
         else:
             return (time[0] - 12, time[1], Meridien)
-
 
 
     def turn_alarm_on(self, alarm_number):
@@ -207,22 +203,16 @@ class Alarms(DbWorker):
             return False
 
     def listen_for_alarms(self, callback_func):
-        # day_of_the_week = datetime.datetime.today().weekday() + 1
-        timm = self.__convert_to_minutes_from_midnight(
-            datetime.datetime.now().hour, datetime.datetime.now().minute)
-        self.cursor.execute("SELECT * FROM alarms")
-        # print(timm)
+        timm = self.__convert_to_minutes_from_midnight(datetime.datetime.now().hour, datetime.datetime.now().minute)
+        self.cursor.execute("SELECT * FROM alarms WHERE is_alarm_on=?", (True, ))
         data = self.cursor.fetchall()
         for i in data:
-            # print("Looking")
-            # print(i[1])
             if i[4] == timm:
-                # print("Ringing alarm")
                 callback_func(i)
-                # self.delete_alarm(i[0])
+
 
     def parse_alarms(self, alarm):
-        hour, minute = self.__back_to_hours_and_minutes(alarm[1])
+        hour, minute = self.back_to_hours_and_minutes(alarm[1])
         return {
             "alarm_number": alarm[0],
             "alarm_hour": hour,
@@ -247,13 +237,14 @@ class Alarms(DbWorker):
 
 class SettingsManager:
     def get_settings(self):
-        with open('robert_settings.json') as file:
+        with open('./Database/robert.settings.json') as file:
             jason = file.read()
+            # print(jason)
             parsed_json = json.loads(jason)
             return parsed_json
 
     def change_settings(self, new_settings):
-        with open('robert_settings.json', 'w+') as file:
+        with open('./database/robert.settings.json', 'w+') as file:
             json.dump(new_settings, file, indent=6)
 
 class TaskManager(DbWorker):
@@ -310,35 +301,3 @@ class TaskManager(DbWorker):
             return True
         except:
             return False
-# task_name TEXT, task_description TEXT, priority INT,time_created REAL
-
-
-# task = TaskManager()
-
-# # print(task.insert_task('Code', "Code literally everything", 2))
-
-# print(task.uncheck_task(1))
-# alarm_manager = Alarms()
-
-
-# print(alarm_manager.insert_alarm('Wake up, its time for school', 18, 40))
-#
-
-# timee = Alarms()
-
-# print(timee.convert_to_12_hour_clock(946))
-
-# def this_will_run_when_alarm_rings(alarm):
-#     print(f"Alarm is ringing {alarm}")
-
-
-# alarm_manager = Alarms()
-
-# print(alarm_manager.insert_alarm("Test", 20, 8))
-# def listen():
-#     alarm_manager.listen_for_alarms(this_will_run_when_alarm_rings)
-
-# schedule.every().minute.at(':00').do(listen)
-
-# while True:
-#     schedule.run_pending()
