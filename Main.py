@@ -6,7 +6,7 @@ from App.db_worker import Alarms
 import schedule
 from notifypy import Notify
 
-os.system('python ./App/GUI.py')
+os.system('python ./App/Gui.py')
 
 
 app = QApplication([])
