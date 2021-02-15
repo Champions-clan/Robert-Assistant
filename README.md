@@ -51,7 +51,7 @@ So here comes the GUI's. They have very good things and we thought why not give 
 <img src="./Assets/taskmanager.gif" width=400px>
 
 ### Alarm
-The name is self-explanatory, If your little brain can't understand what it is so it is <a href="https://www.google.com/search?rlz=1C1CHBD_enIN916IN916&ei=oF8WYIHaA8LFz7sPzfeGuAE&q=alarm+meaning&oq=alarm+meaning&gs_lcp=CgZwc3ktYWIQAzIICAAQsQMQkQIyBQgAEJECMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BAgAEEc6BwgAELEDEEM6BQgAELEDUIIMWKgXYI8ZaABwAngCgAGuAogB6wqSAQcwLjYuMS4xmAEAoAEBqgEHZ3dzLXdpesgBCMABAQ&sclient=psy-ab&ved=0ahUKEwiBqoCl1sXuAhXC4nMBHc27ARcQ4dUDCA0&uact=5" target="_blank">alarm</a>. And you can set the alarm up give it the timing when to ring the alarm and when the alarm matches the time you set, It will give you a notification and will ring a beep sound, So you never forget to do the work on time.
+The name is self-explanatory. And you can set the alarm up give it the timing when to ring the alarm and when the alarm matches the time you set, It will give you a notification and will ring a beep sound, So you never forget to do the work on time.
 
 <img src="./Assets/alarm.gif" width=400px>
 
