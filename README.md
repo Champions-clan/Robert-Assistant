@@ -93,7 +93,7 @@ We are four!
 
 - Rajvir Singh aka <a href="https://github.com/RajvirSingh1313">RajvirSingh1313</a>
 - Abdella Solomon aka <a href="https://github.com/Abdesol">Abdesol</a>
-- Dawn Saju aka <a href="https://github.com/dawntom2006">dawntom2006</a>
+- Dawn Saju aka <a href="https://github.com/DawnSaju">DawnSaju</a>
 - Harsh Pandey aka <a href="https://github.com/akionsight">akionsight</a>
 
 **Created by, with & for the Community**❤
